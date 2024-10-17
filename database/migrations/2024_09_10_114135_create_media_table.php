@@ -10,7 +10,9 @@ return new class extends Migration
     {
         Schema::create('media', function (Blueprint $table) {
             $table->id();
-
+            $table->string('title');
+            $table->text('description');
+            $table->string('link');
             $table->morphs('model');
             $table->uuid()->nullable()->unique();
             $table->string('collection_name');

@@ -11,9 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
-        Schema::table('media', function (Blueprint $table) {
-            $table->string('link')->after('description')->nullable();
+        Schema::create('treatments', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('mediation_id');
+            $table->foreignId('user_id');
+            $table->string('before')->nullable();
+            $table->string('after')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -22,9 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
-        Schema::table('media', function (Blueprint $table) {
-            $table->dropColumn('link');
-        });
+        Schema::dropIfExists('treatments');
     }
 };

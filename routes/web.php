@@ -49,6 +49,7 @@ Route::middleware([
     Route::post('mission/stage/{stage}/upload',[App\Http\Controllers\StageController::class,'upload'])->name('mission.stage.upload'); 
     Route::get('mission/stage/{stage}/{media_id}/{mediaType}/delete',[App\Http\Controllers\StageController::class,'deleteUpload'])->name('mission.stage.deleteUpload'); 
 
+    Route::resource('meditation',App\Http\Controllers\MeditationController::class)->names('meditation');
  
 });
 Route::group([
