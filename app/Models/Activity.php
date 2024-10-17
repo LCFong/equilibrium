@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Activity extends Model
 {
     use HasFactory;
-    protected $casts=['options'=>'array'];
+    protected $casts=['options'=>'json'];
 
     public function meditation(){
         return $this->belongsTo(Meditation::class);

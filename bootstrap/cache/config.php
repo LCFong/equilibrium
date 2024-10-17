@@ -4,13 +4,13 @@
     'name' => 'Laravel',
     'env' => 'local',
     'debug' => true,
-    'url' => 'http://localhost',
+    'url' => 'http://localhost:8000',
     'asset_url' => NULL,
     'timezone' => 'UTC',
     'locale' => 'en',
     'fallback_locale' => 'en',
     'faker_locale' => 'en_US',
-    'key' => 'base64:pu498iNXZ5T8hy6U9DxPHfQHIcUZlE2cnH+l5fcBkx4=',
+    'key' => 'base64:oIHH9Z0tyCgeFuQALxdDjXtxOgIVbSBALR6HHICk2gs=',
     'cipher' => 'AES-256-CBC',
     'maintenance' => 
     array (
@@ -201,8 +201,8 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => '/var/www/html/equilibrium/storage/framework/cache/data',
-        'lock_path' => '/var/www/html/equilibrium/storage/framework/cache/data',
+        'path' => 'C:\\xampp8\\htdocs\\equilibrium\\storage\\framework/cache/data',
+        'lock_path' => 'C:\\xampp8\\htdocs\\equilibrium\\storage\\framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -296,8 +296,8 @@
         'host' => '127.0.0.1',
         'port' => '3306',
         'database' => 'equilibrium',
-        'username' => 'dbadmin',
-        'password' => 'password',
+        'username' => 'root',
+        'password' => '',
         'unix_socket' => '',
         'charset' => 'utf8mb4',
         'collation' => 'utf8mb4_unicode_ci',
@@ -316,8 +316,8 @@
         'host' => '127.0.0.1',
         'port' => '3306',
         'database' => 'equilibrium',
-        'username' => 'dbadmin',
-        'password' => 'password',
+        'username' => 'root',
+        'password' => '',
         'charset' => 'utf8',
         'prefix' => '',
         'prefix_indexes' => true,
@@ -331,8 +331,8 @@
         'host' => '127.0.0.1',
         'port' => '3306',
         'database' => 'equilibrium',
-        'username' => 'dbadmin',
-        'password' => 'password',
+        'username' => 'root',
+        'password' => '',
         'charset' => 'utf8',
         'prefix' => '',
         'prefix_indexes' => true,
@@ -375,14 +375,14 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => '/var/www/html/equilibrium/storage/app',
+        'root' => 'C:\\xampp8\\htdocs\\equilibrium\\storage\\app',
         'throw' => false,
       ),
       'public' => 
       array (
         'driver' => 'local',
-        'root' => '/var/www/html/equilibrium/storage/app/public',
-        'url' => 'http://localhost/storage',
+        'root' => 'C:\\xampp8\\htdocs\\equilibrium\\storage\\app/public',
+        'url' => 'http://localhost:8000/storage',
         'visibility' => 'public',
         'throw' => false,
       ),
@@ -401,7 +401,7 @@
     ),
     'links' => 
     array (
-      '/var/www/html/equilibrium/public/storage' => '/var/www/html/equilibrium/storage/app/public',
+      'C:\\xampp8\\htdocs\\equilibrium\\public\\storage' => 'C:\\xampp8\\htdocs\\equilibrium\\storage\\app/public',
     ),
   ),
   'fortify-options' => 
@@ -551,14 +551,14 @@
       'single' => 
       array (
         'driver' => 'single',
-        'path' => '/var/www/html/equilibrium/storage/logs/laravel.log',
+        'path' => 'C:\\xampp8\\htdocs\\equilibrium\\storage\\logs/laravel.log',
         'level' => 'debug',
         'replace_placeholders' => true,
       ),
       'daily' => 
       array (
         'driver' => 'daily',
-        'path' => '/var/www/html/equilibrium/storage/logs/laravel.log',
+        'path' => 'C:\\xampp8\\htdocs\\equilibrium\\storage\\logs/laravel.log',
         'level' => 'debug',
         'days' => 14,
         'replace_placeholders' => true,
@@ -623,7 +623,7 @@
       ),
       'emergency' => 
       array (
-        'path' => '/var/www/html/equilibrium/storage/logs/laravel.log',
+        'path' => 'C:\\xampp8\\htdocs\\equilibrium\\storage\\logs/laravel.log',
       ),
     ),
   ),
@@ -699,7 +699,7 @@
       'theme' => 'default',
       'paths' => 
       array (
-        0 => '/var/www/html/equilibrium/resources/views/vendor/mail',
+        0 => 'C:\\xampp8\\htdocs\\equilibrium\\resources\\views/vendor/mail',
       ),
     ),
   ),
@@ -932,7 +932,7 @@
       2 => '127.0.0.1',
       3 => '127.0.0.1:8000',
       4 => '::1',
-      5 => 'localhost',
+      5 => 'localhost:8000',
     ),
     'guard' => 
     array (
@@ -973,7 +973,7 @@
     'lifetime' => '120',
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => '/var/www/html/equilibrium/storage/framework/sessions',
+    'files' => 'C:\\xampp8\\htdocs\\equilibrium\\storage\\framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -994,9 +994,9 @@
   array (
     'paths' => 
     array (
-      0 => '/var/www/html/equilibrium/resources/views',
+      0 => 'C:\\xampp8\\htdocs\\equilibrium\\resources\\views',
     ),
-    'compiled' => '/var/www/html/equilibrium/storage/framework/views',
+    'compiled' => 'C:\\xampp8\\htdocs\\equilibrium\\storage\\framework\\views',
   ),
   'inertia' => 
   array (
@@ -1010,7 +1010,7 @@
       'ensure_pages_exist' => true,
       'page_paths' => 
       array (
-        0 => '/var/www/html/equilibrium/resources/js/Pages',
+        0 => 'C:\\xampp8\\htdocs\\equilibrium\\resources\\js/Pages',
       ),
       'page_extensions' => 
       array (
@@ -1111,7 +1111,7 @@
     array (
     ),
     'enable_runnable_solutions' => NULL,
-    'remote_sites_path' => '/var/www/html/equilibrium',
+    'remote_sites_path' => 'C:\\xampp8\\htdocs\\equilibrium',
     'local_sites_path' => '',
     'housekeeping_endpoint_prefix' => '_ignition',
     'settings_file_path' => '',
