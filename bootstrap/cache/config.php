@@ -1,16 +1,16 @@
 <?php return array (
   'app' => 
   array (
-    'name' => 'Laravel',
+    'name' => 'quillibrium',
     'env' => 'local',
     'debug' => true,
-    'url' => 'http://localhost:8000',
+    'url' => 'http://localhost',
     'asset_url' => NULL,
     'timezone' => 'UTC',
     'locale' => 'en',
     'fallback_locale' => 'en',
     'faker_locale' => 'en_US',
-    'key' => 'base64:oIHH9Z0tyCgeFuQALxdDjXtxOgIVbSBALR6HHICk2gs=',
+    'key' => 'base64:wwWDwvJy6rGLBJyYzVK5k9BD7vsuhQklyvwAvrqF+GQ=',
     'cipher' => 'AES-256-CBC',
     'maintenance' => 
     array (
@@ -246,7 +246,7 @@
         'driver' => 'octane',
       ),
     ),
-    'prefix' => 'laravel_cache_',
+    'prefix' => 'quillibrium_cache_',
   ),
   'cors' => 
   array (
@@ -345,7 +345,7 @@
       'options' => 
       array (
         'cluster' => 'redis',
-        'prefix' => 'laravel_database_',
+        'prefix' => 'quillibrium_database_',
       ),
       'default' => 
       array (
@@ -382,7 +382,7 @@
       array (
         'driver' => 'local',
         'root' => 'C:\\xampp8\\htdocs\\equilibrium\\storage\\app/public',
-        'url' => 'http://localhost:8000/storage',
+        'url' => 'http://localhost/storage',
         'visibility' => 'public',
         'throw' => false,
       ),
@@ -636,11 +636,11 @@
       array (
         'transport' => 'smtp',
         'url' => NULL,
-        'host' => 'mailpit',
-        'port' => '1025',
-        'encryption' => NULL,
-        'username' => NULL,
-        'password' => NULL,
+        'host' => 'smtp.gmail.com',
+        'port' => '587',
+        'encryption' => 'tls',
+        'username' => 'usermanualk12@gmail.com',
+        'password' => 'fundlvztcygahabb',
         'timeout' => NULL,
         'local_domain' => NULL,
       ),
@@ -691,8 +691,8 @@
     ),
     'from' => 
     array (
-      'address' => 'hello@example.com',
-      'name' => 'Laravel',
+      'address' => 'usermanualk12@gmail.com',
+      'name' => 'quillibrium',
     ),
     'markdown' => 
     array (
@@ -842,23 +842,9 @@
     'cache' => 
     array (
       'expiration_time' => 
-      DateInterval::__set_state(array(
-         'y' => 0,
-         'm' => 0,
-         'd' => 0,
-         'h' => 24,
-         'i' => 0,
-         's' => 0,
-         'f' => 0.0,
-         'weekday' => 0,
-         'weekday_behavior' => 0,
-         'first_last_day_of' => 0,
-         'invert' => 0,
-         'days' => false,
-         'special_type' => 0,
-         'special_amount' => 0,
-         'have_weekday_relative' => 0,
-         'have_special_relative' => 0,
+      \DateInterval::__set_state(array(
+         'from_string' => true,
+         'date_string' => '24 hours',
       )),
       'key' => 'spatie.permission.cache',
       'store' => 'default',
@@ -932,7 +918,7 @@
       2 => '127.0.0.1',
       3 => '127.0.0.1:8000',
       4 => '::1',
-      5 => 'localhost:8000',
+      5 => 'localhost',
     ),
     'guard' => 
     array (
@@ -982,7 +968,7 @@
       0 => 2,
       1 => 100,
     ),
-    'cookie' => 'laravel_session',
+    'cookie' => 'quillibrium_session',
     'path' => '/',
     'domain' => NULL,
     'secure' => NULL,

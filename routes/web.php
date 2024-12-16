@@ -42,6 +42,7 @@ Route::middleware([
     // Route::get('/dashboard', function () {
     //     return Inertia::render('Dashboard');
     // })->name('dashboard');
+
     Route::get('dashboard', [App\Http\Controllers\DashboardController::class,'index'])->name('dashboard');
     
     Route::resource('missions',App\Http\Controllers\MissionController::class)->names('missions');
@@ -61,7 +62,15 @@ Route::group([
         'role:admin'
     ]
 ], function () {
+
     Route::get('/',[App\Http\Controllers\Admin\DashboardController::class,'index'])->name('admin.dashboard');
+
+    Route::get('breath', [App\Http\Controllers\Admin\BreathController::class,'index'])->name('admin.breath.index');
+
+    Route::get('problem/view/{module}', [App\Http\Controllers\Admin\ProblemController::class,'view'])->name('admin.problems.view');
+    Route::resource('problem', App\Http\Controllers\Admin\ProblemController::class)->names('admin.problems');
+    Route::resource('answer', App\Http\Controllers\Admin\AnswerController::class)->names('admin.answers');
+
     Route::resource('configs',App\Http\Controllers\Admin\ConfigController::class)->names('admin.configs');
     Route::resource('template_stages',App\Http\Controllers\Admin\TemplateStageController::class)->names('admin.templateStages');
     Route::resource('missions',App\Http\Controllers\Admin\MissionController::class)->names('admin.missions');

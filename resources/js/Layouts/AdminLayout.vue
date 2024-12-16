@@ -41,7 +41,8 @@ const logout = () => {
 }
 .background{
     background: rgb(212,254,255);
-background: linear-gradient(135deg, rgba(212,254,255,0.5746673669467788) 0%, rgba(225,239,240,0.4766281512605042) 25%, rgba(235,245,246,0.40940126050420167) 60%, rgba(191,246,211,0.4682247899159664) 100%);
+    background: linear-gradient(135deg, rgba(212,254,255,0.5746673669467788) 0%, rgba(225,239,240,0.4766281512605042) 25%, rgba(235,245,246,0.40940126050420167) 60%, rgba(191,246,211,0.4682247899159664) 100%);
+
 }
 </style>
 
@@ -71,6 +72,15 @@ background: linear-gradient(135deg, rgba(212,254,255,0.5746673669467788) 0%, rgb
                                 </NavLink>
                                 <NavLink v-role="['admin']" :href="route('admin.missions.index')" :active="route().current('admin.missions.index')">
                                     {{ $t('mission') }}
+                                </NavLink>
+                                <NavLink :href="route('admin.breath.index')" :active="route().current('admin.breath.index')">
+                                    Breath
+                                </NavLink>
+                                <NavLink :href="route('admin.problems.create')" :active="route().current('admin.problems.create')">
+                                    Problem Create/Edit
+                                </NavLink>
+                                <NavLink :href="route('admin.problems.index')" :active="route().current('admin.problems.index')">
+                                    Problem
                                 </NavLink>
                                 <!-- <NavLink v-role="['admin']" :href="route('admin.templateStages.index')" :active="route().current('admin.templateStages.index')">
                                     Stage Template
