@@ -1,10 +1,10 @@
 <template>
-<div class="min-h-screen flex flex-col justify-center items-center pt-6 sm:pt-0 login-background">
+<div class="min-h-screen overflow-hidden flex flex-col justify-center items-center pt-6 sm:pt-0 login-background">
 
-    <div class="max-w-7xl w-[500px] shadow-md rounded-3xl  relative ">
+    <div class="max-w-7xl w-full lg:w-[500px] rounded-3xl relative p-2">
 
         
-        <div class="z-50 bg-slate-50 relative rounded-3xl border-2 border-slate-200">
+        <div class="z-50 bg-slate-50 relative shadow-md rounded-3xl border border-slate-200">
             <div class="flex justify-center overflow-hidden my-2">
                 <slot name="logo" />
             </div>
@@ -13,7 +13,7 @@
                 <slot />
             </div>
         </div>
-        <div class="z-0 absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-400 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
+        <div class="z-0 absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-400 shadow-lg transform -skew-y-4 sm:skew-y-0 -rotate-6 sm:-rotate-6 rounded-3xl"></div>
 
     </div>
 </div>

@@ -12,6 +12,7 @@ use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use LaravelAndVueJS\Traits\LaravelPermissionToVueJS;
+use Spatie\Permission\Models\Role;
 
 class User extends Authenticatable
 {
@@ -31,7 +32,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'gender', 'dob', 'education'
     ];
     /**
      * The attributes that should be hidden for serialization.
@@ -65,10 +66,15 @@ class User extends Authenticatable
 
     protected $with=['roles'];
 
-    public function mission(){
-        return $this->belongsToMany(Mission::class)->with('members')->first();
-    }
-    public function missions(){
-        return $this->belongsToMany(Mission::class);
+    protected static function boot(){
+        parent::boot();
+        static::created(
+            function($user){
+                $role = Role::find(1);
+                if( $role ){
+                    // dd($user->roles);  
+                    $user->roles()->attach( Role::find(1) );
+                }
+        });
     }
 }

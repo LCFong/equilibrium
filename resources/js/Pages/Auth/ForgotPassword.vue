@@ -29,7 +29,8 @@ const submit = () => {
         </template>
 
         <div class="mb-4 text-sm text-gray-600">
-            Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.
+            忘记密码？没问题。只需告诉我们您的电子邮件地址，我们将通过电子邮件向您发送密码重置链接，以便您选择新密码。
+            <!-- Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one. -->
         </div>
 
         <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
@@ -38,7 +39,7 @@ const submit = () => {
 
         <form @submit.prevent="submit">
             <div>
-                <InputLabel for="email" value="Email" />
+                <InputLabel for="email" value="电邮" />
                 <TextInput
                     id="email"
                     v-model="form.email"
@@ -53,7 +54,7 @@ const submit = () => {
 
             <div class="flex items-center justify-end mt-4">
                 <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Email Password Reset Link
+                    电邮密码重置链接
                 </PrimaryButton>
             </div>
         </form>

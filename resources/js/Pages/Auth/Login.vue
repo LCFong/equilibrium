@@ -44,7 +44,7 @@ const submit = () => {
 
             <form @submit.prevent="submit">
                 <div>
-                    <InputLabel for="email" value="Email" />
+                    <InputLabel for="email" value="电邮" />
                     <TextInput
                         id="email"
                         v-model="form.email"
@@ -58,7 +58,7 @@ const submit = () => {
                 </div>
 
                 <div class="mt-4">
-                    <InputLabel for="password" value="Password" />
+                    <InputLabel for="password" value="密码" />
                     <TextInput
                         id="password"
                         v-model="form.password"
@@ -73,22 +73,22 @@ const submit = () => {
                 <div class="block mt-4">
                     <label class="flex items-center">
                         <Checkbox v-model:checked="form.remember" name="remember" />
-                        <span class="ms-2 text-sm text-gray-600">Remember me</span>
+                        <span class="ms-2 text-sm text-gray-600">记住账号</span>
                     </label>
                 </div>
 
                 <div class="flex items-center justify-between mt-4">
                     <Link v-if="canResetPassword" :href="route('register')" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                        Register
+                        注册
                     </Link>
 
                     <div>
                         <Link v-if="canResetPassword" :href="route('password.request')" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            Forgot your password?
+                            忘记密码?
                         </Link>
 
                         <PrimaryButton class="ms-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                            Log in
+                            登入
                         </PrimaryButton>
                     </div>
                 </div>

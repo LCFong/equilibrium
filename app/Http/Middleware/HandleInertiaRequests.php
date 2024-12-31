@@ -38,6 +38,7 @@ class HandleInertiaRequests extends Middleware
     {
         return array_merge(parent::share($request), [
             'lang' => session('applocale'),
+            'user.roles' => $request->user() ? $request->user()->roles->pluck('name') : [],
             //
         ]);
     }

@@ -11,9 +11,9 @@ const props = defineProps({
 <template>
 <AdminLayout title="Dashboard">
     <template #header>
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <div class="font-semibold text-xl text-gray-800 ">
             {{$t('dashboard')}}
-        </h2>
+        </div>
     </template>
 
     <div class="py-12">
@@ -26,9 +26,6 @@ const props = defineProps({
                         
                     </p>
                 </div>
-            </div>
-            <div class="bg-white p-4 gap-4 my-2 rounded-lg shadow-md" v-for="mission in user.missions">
-                <a :href="route('missions.index', {mission_id: mission.id})" class="text-blue-500 underline">{{ $page.props.lang == "en" ? mission.title_en : mission.title }}</a>
             </div>
         </div>
     </div>

@@ -23,13 +23,13 @@ export default {
 <template>
 <AdminLayout title="Dashboard">
     <template #header>
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <div class="font-semibold text-xl text-gray-800 ">
             压力感知
-        </h2>
+        </div>
     </template>
 
     <div class="py-12">
-        <div class="max-w-4xl mx-auto sm:px-6 lg:px-8 flex flex-col gap-10">
+        <div class="max-w-4xl mx-auto sm:px-6 lg:px-8 flex flex-col gap-10 ">
 
             <div class="flex flex-col shadow-md rounded-lg ">
                 <div class="flex justify-between items-center rounded-t-lg bg-yellow-200 sm:px-8 lg:px-12 px-6 min-h-36 relative overflow-hidden">
@@ -40,7 +40,7 @@ export default {
                         <svg fill="#000000" class="w-24 " viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
                             <path fill="#94a3b8" fill-opacity="0.6" d="M746 835.28L544.529 723.678c74.88-58.912 95.216-174.688 95.216-239.601v-135.12c0-89.472-118.88-189.12-238.288-189.12-119.376 0-241.408 99.664-241.408 189.12v135.12c0 59.024 24.975 178.433 100.624 239.089L54 835.278S0 859.342 0 889.342v81.088c0 29.84 24.223 54.064 54 54.064h692c29.807 0 54.031-24.224 54.031-54.064v-81.087c0-31.808-54.032-54.064-54.032-54.064zm-9.967 125.215H64.002V903.28c4.592-3.343 11.008-7.216 16.064-9.536 1.503-.688 3.007-1.408 4.431-2.224l206.688-112.096c18.848-10.224 31.344-29.184 33.248-50.528s-7.008-42.256-23.712-55.664c-53.664-43.024-76.656-138.32-76.656-189.152V348.96c0-45.968 86.656-125.12 177.408-125.12 92.432 0 174.288 78.065 174.288 125.12v135.12c0 50.128-15.568 145.84-70.784 189.28a64.098 64.098 0 0 0-24.224 55.664 64.104 64.104 0 0 0 33.12 50.849l201.472 111.6c1.777.975 4.033 2.031 5.905 2.848 4.72 2 10.527 5.343 14.783 8.288v57.887zM969.97 675.936L765.505 564.335c74.88-58.912 98.224-174.688 98.224-239.601v-135.12c0-89.472-121.872-190.128-241.28-190.128-77.6 0-156.943 42.192-203.12 96.225 26.337 1.631 55.377 1.664 80.465 9.664 33.711-26.256 76.368-41.872 122.656-41.872 92.431 0 177.278 79.055 177.278 126.128v135.12c0 50.127-18.56 145.84-73.775 189.28a64.098 64.098 0 0 0-24.224 55.664 64.104 64.104 0 0 0 33.12 50.848l204.465 111.6c1.776.976 4.032 2.032 5.904 2.848 4.72 2 10.527 5.344 14.783 8.288v56.912H830.817c19.504 14.72 25.408 35.776 32.977 64h106.192c29.807 0 54.03-24.224 54.03-54.064V730.03c-.015-31.84-54.047-54.096-54.047-54.096z" /></svg>
                     </div>
-                    <div class="bg-yellow-500/20 h-60 w-60 rounded-full absolute -top-40 -left-36">&nbsp;</div>
+                    <div class="bg-yellow-500/20 h-60 w-60 rounded-full absolute -top-40 -left-36 ">&nbsp;</div>
                     <div class="bg-yellow-500/20 h-60 w-60 rounded-full absolute -right-10 top-4">&nbsp;</div>
                 </div>
                 <div class="flex  bg-yellow-300 min-h-10 items-center text-base px-12 rounded-b-lg ">
@@ -54,18 +54,16 @@ export default {
             <!-- ------------------------- -->
             <div class="flex flex-col shadow-md rounded-lg ">
                 <div class="flex justify-between items-center rounded-t-lg bg-indigo-500 sm:px-8 lg:px-12 px-6 min-h-36 relative overflow-hidden">
-                    <div class=" text-4xl text-slate-200 font-extrabold">
+                    <div class=" text-4xl text-slate-200 font-extrabold z-20">
                         学业压力
                     </div>
                     <div class="icon  ">
                         <svg version="1.1" class="w-24 " fill-opacity="0.6" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" sodipodi:docname="book.svg" inkscape:version="0.48.4 r9939" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1200 1200" enable-background="new 0 0 1200 1200" xml:space="preserve">
-                            <sodipodi:namedview inkscape:cy="448" inkscape:cx="-67.796606" inkscape:zoom="0.26339286" showgrid="false" id="namedview3073" guidetolerance="10" gridtolerance="10" objecttolerance="10" borderopacity="1" bordercolor="#666666" pagecolor="#ffffff" inkscape:current-layer="svg2" inkscape:window-maximized="1" inkscape:window-y="24" inkscape:window-height="876" inkscape:window-width="1535" inkscape:pageshadow="2" inkscape:pageopacity="0" inkscape:window-x="65">
-                            </sodipodi:namedview>
                             <path fill="#475569" inkscape:connector-curvature="0" d="M454.771,10.997c-76.209-40.113-226.406,37.395-269.553,105.63c-19.222,30.534-17.862,52.538-17.862,65.022v667.874L730.602,1200l105.917-57.833V491.739L258.215,159.706c31.033-39.057,100.827-86.683,153.16-67.555l515.104,275.498l0.001,724.58l106.184-57.936V309.728L454.771,10.997z" />
                         </svg>
                     </div>
-                    <div class="bg-indigo-700/40 h-60 w-60 rounded-full absolute -top-40 left-[25%]">&nbsp;</div>
-                    <div class="bg-indigo-700/50 h-60 w-60 rounded-full absolute right-[40%] top-16">&nbsp;</div>
+                    <div class="bg-indigo-700/40 h-60 w-60 rounded-full absolute -top-40 left-[25%] z-1">&nbsp;</div>
+                    <div class="bg-red-700/50 h-60 w-60 rounded-full absolute right-[40%] top-16 z-1">&nbsp;</div>
                 </div>
                 <div class="flex  bg-indigo-700 min-h-10 items-center text-base px-12 rounded-b-lg text-white">
                     進入

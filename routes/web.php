@@ -15,9 +15,10 @@ use Illuminate\Support\Facades\Redirect;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('test',[App\Http\Controllers\TestController::class,'index']); 
 
-Route::resource('blogs',App\Http\Controllers\BlogController::class)->names('blogs'); 
-Route::get('blogs/getBlog/{stage_id}',[App\Http\Controllers\BlogController::class,'getBlog'])->name('blogs.getBlog'); 
+// Route::resource('blogs',App\Http\Controllers\BlogController::class)->names('blogs'); 
+// Route::get('blogs/getBlog/{stage_id}',[App\Http\Controllers\BlogController::class,'getBlog'])->name('blogs.getBlog'); 
 
 Route::get('/language/{language}', function ($language) {
     Session::put('applocale', $language);
@@ -45,12 +46,12 @@ Route::middleware([
 
     Route::get('dashboard', [App\Http\Controllers\DashboardController::class,'index'])->name('dashboard');
     
-    Route::resource('missions',App\Http\Controllers\MissionController::class)->names('missions');
+    // Route::resource('missions',App\Http\Controllers\MissionController::class)->names('missions');
     
-    Route::post('mission/stage/{stage}/upload',[App\Http\Controllers\StageController::class,'upload'])->name('mission.stage.upload'); 
-    Route::get('mission/stage/{stage}/{media_id}/{mediaType}/delete',[App\Http\Controllers\StageController::class,'deleteUpload'])->name('mission.stage.deleteUpload'); 
+    // Route::post('mission/stage/{stage}/upload',[App\Http\Controllers\StageController::class,'upload'])->name('mission.stage.upload'); 
+    // Route::get('mission/stage/{stage}/{media_id}/{mediaType}/delete',[App\Http\Controllers\StageController::class,'deleteUpload'])->name('mission.stage.deleteUpload'); 
 
-    Route::resource('meditation',App\Http\Controllers\MeditationController::class)->names('meditation');
+    // Route::resource('meditation',App\Http\Controllers\MeditationController::class)->names('meditation');
  
 });
 Route::group([
@@ -70,17 +71,31 @@ Route::group([
     Route::get('problem/view/{module}', [App\Http\Controllers\Admin\ProblemController::class,'view'])->name('admin.problems.view');
     Route::resource('problem', App\Http\Controllers\Admin\ProblemController::class)->names('admin.problems');
     Route::resource('answer', App\Http\Controllers\Admin\AnswerController::class)->names('admin.answers');
+    
+    Route::get('consultation/view_answer', [App\Http\Controllers\Admin\ConsultationController::class,'viewAnswer'])->name('admin.consultations.view_answer');
+    Route::get('consultation/answer/{category}', [App\Http\Controllers\Admin\ConsultationController::class,'answer'])->name('admin.consultations.answer');
+    
+    Route::get('evaluation/view_answer', [App\Http\Controllers\Admin\EvaluationController::class,'viewAnswer'])->name('admin.evaluations.view_answer');
+    Route::get('evaluation/answer/{category}', [App\Http\Controllers\Admin\EvaluationController::class,'answer'])->name('admin.evaluations.answer');
+    
+    Route::get('mediate/view_answer', [App\Http\Controllers\Admin\MediateController::class,'viewAnswer'])->name('admin.mediates.view_answer');
+    Route::get('mediates/answer/{category}', [App\Http\Controllers\Admin\MediateController::class,'answer'])->name('admin.mediates.answer');
+    
+    Route::resource('consultations', App\Http\Controllers\Admin\ConsultationController::class)->names('admin.consultations');
+    Route::resource('evaluations', App\Http\Controllers\Admin\EvaluationController::class)->names('admin.evaluations');
+    Route::resource('mediates', App\Http\Controllers\Admin\MediateController::class)->names('admin.mediates');
+    Route::resource('consultation_items', App\Http\Controllers\Admin\ConsultationItemController::class)->names('admin.consultation_items');
 
     Route::resource('configs',App\Http\Controllers\Admin\ConfigController::class)->names('admin.configs');
-    Route::resource('template_stages',App\Http\Controllers\Admin\TemplateStageController::class)->names('admin.templateStages');
-    Route::resource('missions',App\Http\Controllers\Admin\MissionController::class)->names('admin.missions');
-    Route::resource('stages',App\Http\Controllers\Admin\StageController::class)->names('admin.stages');
-    Route::post('stages/update_media_thumbnail/{media}/{stage}',[App\Http\Controllers\Admin\StageController::class, 'updateMediaThumbnail'])->name('admin.stages.updateMediaThumbnail');
-    Route::post('missions/update_mission_user/{mission}',[App\Http\Controllers\Admin\MissionController::class,'updateMissionUser'])->name('admin.missions.updateMissionUser');
-    Route::get('missions/change_status/{mission}',[App\Http\Controllers\Admin\MissionController::class,'changeStatus'])->name('admin.missions.change_status');
-    Route::get('missions/approve/{mission}',[App\Http\Controllers\Admin\MissionController::class,'approve'])->name('admin.missions.approve');
-    Route::get('missions/regret/{mission}',[App\Http\Controllers\Admin\MissionController::class,'regret'])->name('admin.missions.regret');
-    Route::resource('mission/{mission}/stages',App\Http\Controllers\Admin\StageController::class)->names('admin.mission.stages');
+    // Route::resource('template_stages',App\Http\Controllers\Admin\TemplateStageController::class)->names('admin.templateStages');
+    // Route::resource('missions',App\Http\Controllers\Admin\MissionController::class)->names('admin.missions');
+    // Route::resource('stages',App\Http\Controllers\Admin\StageController::class)->names('admin.stages');
+    // Route::post('stages/update_media_thumbnail/{media}/{stage}',[App\Http\Controllers\Admin\StageController::class, 'updateMediaThumbnail'])->name('admin.stages.updateMediaThumbnail');
+    // Route::post('missions/update_mission_user/{mission}',[App\Http\Controllers\Admin\MissionController::class,'updateMissionUser'])->name('admin.missions.updateMissionUser');
+    // Route::get('missions/change_status/{mission}',[App\Http\Controllers\Admin\MissionController::class,'changeStatus'])->name('admin.missions.change_status');
+    // Route::get('missions/approve/{mission}',[App\Http\Controllers\Admin\MissionController::class,'approve'])->name('admin.missions.approve');
+    // Route::get('missions/regret/{mission}',[App\Http\Controllers\Admin\MissionController::class,'regret'])->name('admin.missions.regret');
+    // Route::resource('mission/{mission}/stages',App\Http\Controllers\Admin\StageController::class)->names('admin.mission.stages');
     Route::resource('files',App\Http\Controllers\Admin\FileController::class)->names('admin.files');
 });
 

@@ -6,7 +6,6 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\URL;
 use App\Models\User;
-use App\Observers\UserObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,7 +27,6 @@ class AppServiceProvider extends ServiceProvider
 		}
 		
 		// 新加入user 加一個mission
-		User::observe(UserObserver::class);
 
 		Builder::macro('whereLike', function ($columns, $search) {
 			$this->where(function ($query) use ($columns, $search) {
