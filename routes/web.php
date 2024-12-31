@@ -60,7 +60,7 @@ Route::group([
         'auth:sanctum',
         config('jetstream.auth_session'),
         'verified',
-        'role:admin'
+        // 'role:admin'
     ]
 ], function () {
 

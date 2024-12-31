@@ -10,12 +10,12 @@ return new class extends Migration
     {
         Schema::create('media', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('description');
-            $table->string('link');
+            $table->string('title')->nullable();
+            $table->text('description')->nullable();
+            $table->string('link')->nullable();
             $table->morphs('model');
             $table->uuid()->nullable()->unique();
-            $table->string('collection_name');
+            $table->string('collection_name')->nullable();
             $table->string('name');
             $table->string('file_name');
             $table->string('mime_type')->nullable();

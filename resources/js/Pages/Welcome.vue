@@ -64,38 +64,36 @@ onMounted(()=>{
 <style scoped>
 .circle_all {
     position: relative;
-    height: 70vh;
     margin-left: auto;
     margin-right: auto;
+    @apply h-[70vh];
+}
+.circle_Q {
+    @apply absolute left-1/2  w-[700px] h-[700px] -bottom-[40vh] translate-x-[-50%] translate-y-[50%] rounded-full z-[10] bg-cyan-500/70 opacity-70 ;
+    animation: scaleCircle_Q 9s linear forwards;
+    animation-delay: 2s;
 }
 .circle_message{
     @apply absolute left-1/2 -top-20 translate-x-[-50%] translate-y-[50%] font-bold text-3xl text-black text-center 
 }
-.circle_Q {
-    @apply absolute left-1/2 -bottom-[500px] w-[70vw] h-[70vw] translate-x-[-50%] translate-y-[50%] rounded-full z-[10] bg-cyan-500/70 opacity-70 ;
-    animation: scaleCircle_Q 9s linear forwards;
-    animation-delay: 2s; /* 延遲 3 秒 */
-}
 @keyframes scaleCircle_Q {
   0% {
-    @apply -bottom-[500px] ;
-    width: 70vw;
-    height: 70vw;
+    @apply   w-[700px] h-[700px] -bottom-[40vh];
+    
+    /* height: 70vw; */
   }
   35% {
-    @apply -bottom-[450px];
-    width: 100vw; /* 80vw * 1.5 */
-    height: 90vw; /* 80vw * 1.3 */
+    @apply  w-[1500px] h-[1500px] -bottom-[40vh];
+    /* width: 100vw; 
+    height: 90vw;  */
   }
   50% {
-    @apply -bottom-[450px];
-    width: 100vw; /* 80vw * 1.5 */
-    height: 90vw; /* 80vw * 1.3 */
+    @apply w-[1500px] h-[1500px] -bottom-[40vh];
+    /* width: 100vw;
+    height: 90vw;  */
   }
   100% {
-    @apply -bottom-[500px];
-    width: 70vw;
-    height: 70vw;
+    @apply w-[700px] h-[700px] -bottom-[40vh];
   }
 }
 
