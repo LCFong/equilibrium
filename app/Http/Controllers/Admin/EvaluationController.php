@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Config;
+use App\Models\User;
 use App\Models\Evaluation;
 use App\Models\EvaluationQuestion;
 
@@ -23,15 +24,19 @@ class EvaluationController extends Controller
 
     public function answer($category = null ){
         // Evaluation 作答頁
-        $options = EvaluationQuestion::where('category' , $category)->get();
+        $questions = EvaluationQuestion::where('category' , $category)->get();
         return Inertia::render('Evaluation/Answer',[
-            'options' => $options,
+            'questions' => $questions,
+            'seven_options' => config('evaluation.seven_options')
         ]);
     }
-    public function view( $category = null ){
-        $evaluations = Evaluation::where('category' , $category)->get();
-        return Inertia::render('Evaluation/View',[
+    public function viewAnswer($userId = null){
+        $evaluations = Evaluation::where('user_id', $userId)->with(['items.question','user'])->get();
+        return Inertia::render('Evaluation/ViewAnswer',[
             'evaluations' => $evaluations,
+            'users' => User::all(),
+            'user_id' => $userId,
+            'seven_options' => config('evaluation.seven_options')
         ]);
     }
 
@@ -50,7 +55,6 @@ class EvaluationController extends Controller
     {
         //
         $data = $request->all();
-
         
         $question = EvaluationQuestion::create($data);
 
@@ -84,10 +88,17 @@ class EvaluationController extends Controller
     /**
      * Update the specified resource in storage.
      */
+    
+    public function updateQuestion(Request $request){
+        $data = $request->all();
+        unset($data['created_at']);
+        unset($data['updated_at']);
+        EvaluationQuestion::where('id', $data['id'])->update($data);
+        return redirect()->back();
+    }
+     
     public function update(Request $request, Evaluation $evaluation)
     {
-        $evaluation->update($request->all());
-        return redirect()->back();
     }
 
     /**

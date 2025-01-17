@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('mediate_questions', function (Blueprint $table) {
+        Schema::create('mediate_options', function (Blueprint $table) {
             $table->id();
             $table->string('category')->nullable();
             $table->string('code')->nullable();

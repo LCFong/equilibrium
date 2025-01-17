@@ -77,4 +77,12 @@ class User extends Authenticatable
                 }
         });
     }
+
+    public function quizzes(){
+        return $this->hasMany(Quiz::class);
+    }
+    
+    public function quizToday(){
+        return $this->quizzes->where('created_at','>=',date('Y-m-d'));
+    }
 }

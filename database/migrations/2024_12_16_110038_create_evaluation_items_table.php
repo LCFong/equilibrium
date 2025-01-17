@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('evaluation_id')->nullable();
             $table->string('code');
-            $table->string('question');
-            $table->string('value');
+            $table->string('question')->nullable();
+            $table->string('value')->nullable();
             $table->string('selection')->nullable();
             $table->string('content')->nullable();
             $table->timestamps();

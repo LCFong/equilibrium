@@ -7,21 +7,34 @@
     </template>
 
     <div class="p-12">
+        
+        <div class="w-full sm:px-6 lg:px-8 flex flex-col gap-2 bg-white rounded shadow p-4 my-4 border-t-2 border-blue-500">
+            <div class="p-1 text-base font-semibold">选择用户</div>
+            <div class="flex gap-1">
+                <a-select
+                    v-model:value="selectedUserId"
+                    show-search
+                    placeholder="Select a person"
+                    style="width: 500px"
+                    :options="users.map( x => ( { label: x.name, value: x.id } ) ) "
+                    @change="handleSelectChange"
+                ></a-select>
+            </div>
+        </div>
+
         <div class="grid grid-cols-2 gap-4">
             <div class="w-full mx-auto sm:px-6 lg:px-8 flex flex-col bg-white rounded shadow p-4 border-t-2 border-blue-500">
-
                 <vue-echarts class="w-full" :option="consultationChat" style="height: 800px" ref="chart" />
-
             </div>
             <div class="w-full mx-auto sm:px-6 lg:px-8 flex flex-col bg-white rounded shadow p-4 border-t-2 border-green-500">
+                <div v-if="consultations.length > 0">
+                    <span class="text-base font-bold">{{ consultations[0].user.name }}</span>&nbsp;
+                    <span class="">{{ consultations[0].user.email }}</span>&nbsp;
+                    <span class="text-slate-400">@{{ displayDate(consultations[0].created_at) }}</span>
+                </div>
                 <div v-for="con in consultations" class="">
-                    <div>
-                        <span class="text-base font-bold">{{ con.user.name }}</span>&nbsp;
-                        <span class="">{{ con.user.email }}</span>&nbsp;
-                        <span class="text-slate-400">@{{ displayDate(con.created_at) }}</span>
-                    </div>
                     <div v-for="item in con.items" class="flex text-base">
-                        
+
                         <div v-if="item.option.type =='options'" class="my-1">
                             <span class="text-blue-500 px-1">✓</span>{{ item.option.title }}
                         </div>
@@ -54,7 +67,7 @@ export default {
         VueEcharts,
         ...AntdIcons,
     },
-    props: ["consultations", "classify"],
+    props: ["consultations", "classify", "users", "user_id"],
     data() {
         return {
             consultation_classify: [],
@@ -63,7 +76,8 @@ export default {
         };
     },
     created() {
-        
+        this.selectedUserId = this.user_id?parseInt(this.user_id):''
+
         this.consultations.forEach(con => {
 
             con.items.forEach(item => {
@@ -76,16 +90,19 @@ export default {
             return acc;
         }, {});
 
-        this.chat_source = Object.keys( this.classify ).map(key => {
+        this.chat_source = Object.keys(this.classify).map(key => {
             const count = countClassify[key] || 0; // 如果計數不存在，則為0
             return [count, this.classify[key]];
         });
 
         this.chat_source.unshift(['amount', 'type']);
-        
+
     },
     methods: {
 
+        handleSelectChange(value){
+            window.location.href = route('admin.consultations.view_answer', value)
+        }, 
         displayDate(date) {
             return dayjs(date).format('YYYY-MM-DD HH:mm')
         },
@@ -100,8 +117,8 @@ export default {
                 xAxis: {
                     name: '次數',
                     minInterval: 1,
-                    axisLine:{
-                        show:true,
+                    axisLine: {
+                        show: true,
                     },
                 },
                 yAxis: {

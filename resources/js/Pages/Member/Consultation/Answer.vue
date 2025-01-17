@@ -1,10 +1,10 @@
 <script>
-import AdminLayout from "@/Layouts/AdminLayout.vue";
+import MemberLayout from "@/Layouts/MemberLayout.vue";
 import * as AntdIcons from '@ant-design/icons-vue';
 
 export default {
     components: {
-        AdminLayout,
+        MemberLayout,
         ...AntdIcons,
     },
     props: ["options", "category"],
@@ -56,17 +56,20 @@ export default {
             let o = this.formitems.map( x => ({code: x, value:true}))
             let i = this.formInput.filter(item => item.value !== "")
             let result = [...o , ...i]
-            
-            this.$inertia.post(route("admin.consultation_items.store"), result, {
+
+            this.$inertia.post(route("member.consultation_items.store"), result, {
                 onSuccess: (page) => { location.reload() },
             });
+        },
+        redirectBack(){
+            history.back()
         }
     }
 }
 </script>
 
 <template>
-<AdminLayout title="Dashboard">
+<MemberLayout title="Dashboard">
     <template #header>
         <div class="font-semibold text-xl text-gray-800 ">
             压力感知 {{ categoryTitle }}
@@ -99,15 +102,16 @@ export default {
                             </div>
                         </div>
                     </a-checkbox-group>
-                    <div class="mt-4">
+                    <div class="mt-4 flex gap-4">
                         <a-button key="Update" type="primary" @click="submitForm()">提交</a-button>
+                        <a-button key="Update" type="default" @click="redirectBack()">返回</a-button>
                     </div>
                 </a-form>
             </div>
-            <div v-else>未輸入問題<a class="text-blue-500" :href="route('admin.consultations.create')">到此創建</a></div>
+            <div v-else>暂未有问题</div>
         </div>
     </div>
-</AdminLayout>
+</MemberLayout>
 </template>
 
 <style>

@@ -17,6 +17,8 @@ class LoginResponse implements LoginResponseContract
      */
     public function toResponse($request)
     {
+        session(['logged' => true]); // 建立 session
+
         return $request->wantsJson()
             ? response()->json(['two_factor' => false])
             : redirect()->intended(config('fortify.home'));

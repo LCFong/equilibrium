@@ -5,16 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Evaluation extends Model
+class Quiz extends Model
 {
     use HasFactory;
+    protected $table='quizs';
 
-    protected $fillable=['user_id','title','description'];
+    protected $fillable=['data_start', 'user_id'];
+    protected $with=['items'];
 
-    public function items(){
-        return $this->hasMany(EvaluationItem::class);
-    }
     public function user(){
         return $this->belongsTo(User::class);
+    }
+
+    public function items(){
+        return $this->hasMany(QuizItem::class);
     }
 }

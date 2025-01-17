@@ -1,45 +1,38 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Member;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Config;
 use App\Models\User;
-use App\Models\Consultation;
-use App\Models\ConsultationItem;
-use App\Models\ConsultationOption;
+use App\Models\Quiz;
+use App\Models\QuizItem;
+use App\Models\QuizOption;
 
-class ConsultationController extends Controller
+class QuizController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return Inertia::render('Consultation/Index',[
-            
+        return Inertia::render('Quiz/Index',[
+
         ]);
     }
 
-    public function answer($category = null ){
-        // Consultation 作答頁
-        $options = ConsultationOption::where('category' , $category)->get();
-        return Inertia::render('Consultation/Answer',[
+    public function answer(){
+        // Quiz 作答頁
+        $options = QuizOption::get();
+        return Inertia::render('Quiz/Answer',[
             'options' => $options,
-            'category' => $category,
         ]);
     }
-    public function viewAnswer($userId = null){
-        // Consultation 查看 result 頁
-        $consultations = Consultation::where('user_id', $userId)->with(['items.option','user'])->orderBy('id','desc')->get();
-        return Inertia::render('Consultation/ViewAnswer',[
-            'consultations' => $consultations,
-            'classify' => config('consultation.classify'),
-            'users' => User::all(),
-            'user_id' => $userId,
-        ]);
+
+    public function getOption(){
+        return response()->json( QuizOption::get() );
     }
 
     /**
@@ -48,9 +41,8 @@ class ConsultationController extends Controller
     public function create()
     {
         //
-        return Inertia::render('Consultation/CreateOption',[
-            'options' => ConsultationOption::all(),
-            'classify' => config('consultation.classify'),
+        return Inertia::render('Quiz/CreateOption',[
+            'options' => QuizOption::all(),
         ]);
     }
 
@@ -61,7 +53,8 @@ class ConsultationController extends Controller
     {
         //
         $data = $request->all();
-        ConsultationOption::insert($data);
+        // dd($data);
+        QuizOption::insert($data);
         return redirect()->back();
     }
 

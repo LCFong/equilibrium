@@ -17,11 +17,11 @@ defineProps({
     phpVersion: String,
 });
 
-const message = ref("Breath In")
+const message = ref("吸气")
 
 onMounted(()=>{
     setTimeout(() => {
-        message.value = "Breath Out";
+        message.value = "呼气";
     }, 6500); 
 })
 
@@ -46,14 +46,19 @@ onMounted(()=>{
 
     <div class="w-full mx-auto">
         
+
         <div class="overflow-y-hidden h-screen">
             
+
             <div class="circle_all ">
+
                 <div class="circle_Q ">
                     <div class="circle_message">
                         {{ message }}
                     </div>
                 </div>
+                <div class="circle_A "></div>
+                <div class="circle_B "></div>
             </div>
         </div>
     </div>
@@ -62,38 +67,89 @@ onMounted(()=>{
 
 
 <style scoped>
+
 .circle_all {
     position: relative;
     margin-left: auto;
     margin-right: auto;
     @apply h-[70vh];
 }
-.circle_Q {
-    @apply absolute left-1/2  w-[700px] h-[700px] -bottom-[40vh] translate-x-[-50%] translate-y-[50%] rounded-full z-[10] bg-cyan-500/70 opacity-70 ;
-    animation: scaleCircle_Q 9s linear forwards;
+.circle_A {
+    @apply absolute left-1/2  w-[800px] h-[800px] -bottom-[45vh] translate-x-[-50%] translate-y-[50%] rounded-full z-[7] bg-cyan-400 opacity-30 ;
+    animation: scaleCircle_A 9s linear forwards ;
     animation-delay: 2s;
 }
-.circle_message{
-    @apply absolute left-1/2 -top-20 translate-x-[-50%] translate-y-[50%] font-bold text-3xl text-black text-center 
-}
-@keyframes scaleCircle_Q {
+@keyframes scaleCircle_A {
   0% {
-    @apply   w-[700px] h-[700px] -bottom-[40vh];
+    @apply  w-[800px] h-[800px] -bottom-[45vh] opacity-30;
     
     /* height: 70vw; */
   }
   35% {
-    @apply  w-[1500px] h-[1500px] -bottom-[40vh];
+    @apply  w-[1400px] h-[1400px] -bottom-[45vh] opacity-40;
     /* width: 100vw; 
     height: 90vw;  */
   }
   50% {
-    @apply w-[1500px] h-[1500px] -bottom-[40vh];
+    @apply w-[1400px] h-[1400px] -bottom-[45vh] opacity-40;
     /* width: 100vw;
     height: 90vw;  */
   }
   100% {
-    @apply w-[700px] h-[700px] -bottom-[40vh];
+    @apply w-[800px] h-[800px] -bottom-[45vh] opacity-30;
+  }
+}
+.circle_B {
+    @apply absolute left-1/2  w-[750px] h-[750px] -bottom-[45vh] translate-x-[-50%] translate-y-[50%] rounded-full z-[8] bg-cyan-400 opacity-40 ;
+    animation: scaleCircle_B 9s linear forwards;
+    animation-delay: 2s;
+}
+@keyframes scaleCircle_B {
+  0% {
+    @apply   w-[750px] h-[750px] -bottom-[45vh] opacity-40;
+    
+    /* height: 70vw; */
+  }
+  35% {
+    @apply  w-[1300px] h-[1300px] -bottom-[45vh] opacity-50;
+    /* width: 100vw; 
+    height: 90vw;  */
+  }
+  50% {
+    @apply w-[1300px] h-[1300px] -bottom-[45vh] opacity-50;
+    /* width: 100vw;
+    height: 90vw;  */
+  }
+  100% {
+    @apply w-[750px] h-[750px] -bottom-[45vh] opacity-40;
+  }
+}
+.circle_Q {
+    @apply absolute left-1/2  w-[700px] h-[700px] -bottom-[45vh] translate-x-[-50%] translate-y-[50%] rounded-full z-[10] bg-cyan-400 ;
+    animation: scaleCircle_Q 9s linear forwards ;
+    animation-delay: 2s;
+}
+.circle_message{
+    @apply absolute left-1/2 -top-32 translate-x-[-50%] translate-y-[50%] font-bold text-3xl text-black text-center 
+}
+@keyframes scaleCircle_Q {
+  0% {
+    @apply   w-[700px] h-[700px] -bottom-[45vh] bg-cyan-400 ;
+    
+    /* height: 70vw; */
+  }
+  35% {
+    @apply  w-[1500px] h-[1500px] -bottom-[45vh] bg-cyan-600;
+    /* width: 100vw; 
+    height: 90vw;  */
+  }
+  50% {
+    @apply w-[1500px] h-[1500px] -bottom-[45vh] bg-cyan-600 ;
+    /* width: 100vw;
+    height: 90vw;  */
+  }
+  100% {
+    @apply w-[750px] h-[750px] -bottom-[45vh] bg-cyan-400;
   }
 }
 

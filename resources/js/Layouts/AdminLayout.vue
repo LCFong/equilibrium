@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue';
+import axios from 'axios';
 import { Head, Link, router } from '@inertiajs/vue3';
 import ApplicationMark from '@/Components/ApplicationMark.vue';
 import Banner from '@/Components/Banner.vue';
@@ -11,6 +12,7 @@ import { GlobalOutlined, LogoutOutlined, MenuUnfoldOutlined, MenuFoldOutlined, H
 import AdminMenu from "@/Components/AdminMenu.vue";
 // import { loadLanguageAsync } from "laravel-vue-i18n";
 // import { usePage } from "@inertiajs/vue3";
+import AnswerModal from '@/Pages/Quiz/AnswerModal.vue';
 
 defineProps({
     title: String,
@@ -46,6 +48,18 @@ const checkScreenSize = () => {
     collapsed.value = (window.innerWidth <= 768); 
 };
 
+const checkSession = async () => {
+    const response = await axios.get('/admin/session');
+    console.log(response.data)
+    if( response.data ){
+        showQuizModal()
+    }
+};
+
+onMounted(() => {
+    checkSession(); 
+});
+
 onMounted(() => {
     checkScreenSize(); // 檢查初始屏幕尺寸
     window.addEventListener('resize', checkScreenSize); // 監聽窗口大小變化
@@ -53,49 +67,6 @@ onMounted(() => {
 
 
 </script>
-
-<style>
-@media only screen and (max-width: 768px){
-    .ant-layout-sider{
-        width: fit-content !important;
-        min-width: fit-content !important;
-    }
-    .ant-layout-sider.ant-layout-sider-collapsed{
-        /* display: none; */
-        width: 0px !important;
-        min-width: 0px !important;
-    }
-    .ant-layout-sider .ant-menu-inline-collapsed{
-        display: none !important;
-    }
-    .ant-menu-title-content{
-        /* display:none; */
-    }
-    .ant-menu-item {
-        text-overflow:unset !important;
-    }
-}
-
-.ant-menu-item {
-    @apply !pt-1 !pl-5;
-}
-.side-bar{
-    @apply min-h-[100vh] bg-amber-400/70 shadow-md ;
-}
-.side-bar .ant-menu{
-    @apply bg-amber-200 
-}
-.banner{
-    @apply flex items-center justify-center h-14 lg:h-12 px-12 sm:px-24 lg:px-40;
-    background: linear-gradient(90deg, rgb(255, 220, 114) 0%, rgba(255,224,130,1) 25%, 
-                        rgba(255,239,143,1) 100%);
-}
-.background{
-    background: rgba(252, 238, 212, 0.753);
-    /* background: linear-gradient(135deg, rgba(212,254,255,0.5746673669467788) 0%, rgba(225,239,240,0.4766281512605042) 25%, rgba(235,245,246,0.40940126050420167) 60%, rgba(191,246,211,0.4682247899159664) 100%); */
-
-}
-</style>
 
 <template>
     <div class="">
@@ -237,27 +208,14 @@ onMounted(() => {
             </nav>
 
             <!-- sidebar -->
-            <a-layout class="background ">
-                <div class="side-bar pt-12" >
+            <a-layout class="background " style="min-height: 100vh"> 
+                <div class="side-bar " >
                     
-                    <a-layout-sider v-model:collapsed="collapsed" :trigger="null" collapsible width="200px" >
+                    <a-layout-sider v-model:collapsed="collapsed" :trigger="null" collapsible width="200px" 
+                    :style="{ overflow: 'auto', height: '100vh',  left: 0, top: 0, bottom: 0 , paddingTop: '48px', backgroundColor:'#fcd34d' }">
 
-                        <a-menu  :inline-collapsed="collapsed" class="p-1">
+                    <a-menu  :inline-collapsed="collapsed" class="pr-1 md:p-2 !shadow">
                             
-                            <a-menu-item key="admin.consultations.view.normal" >
-                                <template #icon>
-                                    <div class="icon">
-                                        <svg  class="w-6" viewBox="0 0 36 36" version="1.1" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                            <path d="M21,12H7a1,1,0,0,1-1-1V7A1,1,0,0,1,7,6H21a1,1,0,0,1,1,1v4A1,1,0,0,1,21,12ZM8,10H20V7.94H8Z" class="clr-i-outline clr-i-outline-path-1"></path><path d="M21,14.08H7a1,1,0,0,0-1,1V19a1,1,0,0,0,1,1H18.36L22,16.3V15.08A1,1,0,0,0,21,14.08ZM20,18H8V16H20Z" class="clr-i-outline clr-i-outline-path-2"></path><path d="M11.06,31.51v-.06l.32-1.39H4V4h20V14.25L26,12.36V3a1,1,0,0,0-1-1H3A1,1,0,0,0,2,3V31a1,1,0,0,0,1,1h8A3.44,3.44,0,0,1,11.06,31.51Z" class="clr-i-outline clr-i-outline-path-3"></path><path d="M22,19.17l-.78.79A1,1,0,0,0,22,19.17Z" class="clr-i-outline clr-i-outline-path-4"></path><path d="M6,26.94a1,1,0,0,0,1,1h4.84l.3-1.3.13-.55,0-.05H8V24h6.34l2-2H7a1,1,0,0,0-1,1Z" class="clr-i-outline clr-i-outline-path-5"></path><path d="M33.49,16.67,30.12,13.3a1.61,1.61,0,0,0-2.28,0h0L14.13,27.09,13,31.9a1.61,1.61,0,0,0,1.26,1.9,1.55,1.55,0,0,0,.31,0,1.15,1.15,0,0,0,.37,0l4.85-1.07L33.49,19a1.6,1.6,0,0,0,0-2.27ZM18.77,30.91l-3.66.81L16,28.09,26.28,17.7l2.82,2.82ZM30.23,19.39l-2.82-2.82L29,15l2.84,2.84Z" class="clr-i-outline clr-i-outline-path-6"></path>
-                                        </svg>
-                                    </div>
-                                </template>
-                                <NavLink :href="route('admin.evaluations.answer' , 'normal')" :active="route().current('admin.consultations.answer.normal')"  class="!text-lg !p-0 ">
-                                    问卷
-                                </NavLink>
-                            </a-menu-item>
-                            <a-divider />
-                            <!--  -->
                             <a-menu-item key="admin.consultations.answer.peer" >
                                 <template #icon>
                                     <div class="icon">
@@ -323,6 +281,38 @@ onMounted(() => {
                             </a-menu-item>
                             
                             <template v-if="$page.props.user.roles.includes('admin')">
+                                
+                                <a-divider orientation="right"><span v-if="!collapsed">问卷</span></a-divider>
+                                <a-menu-item key="admin.evaluations.answer" >
+                                    <template #icon>
+                                        <div class="icon">
+                                            <svg  class="w-6" viewBox="0 0 36 36" version="1.1" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                <path d="M21,12H7a1,1,0,0,1-1-1V7A1,1,0,0,1,7,6H21a1,1,0,0,1,1,1v4A1,1,0,0,1,21,12ZM8,10H20V7.94H8Z" class="clr-i-outline clr-i-outline-path-1"></path><path d="M21,14.08H7a1,1,0,0,0-1,1V19a1,1,0,0,0,1,1H18.36L22,16.3V15.08A1,1,0,0,0,21,14.08ZM20,18H8V16H20Z" class="clr-i-outline clr-i-outline-path-2"></path><path d="M11.06,31.51v-.06l.32-1.39H4V4h20V14.25L26,12.36V3a1,1,0,0,0-1-1H3A1,1,0,0,0,2,3V31a1,1,0,0,0,1,1h8A3.44,3.44,0,0,1,11.06,31.51Z" class="clr-i-outline clr-i-outline-path-3"></path><path d="M22,19.17l-.78.79A1,1,0,0,0,22,19.17Z" class="clr-i-outline clr-i-outline-path-4"></path><path d="M6,26.94a1,1,0,0,0,1,1h4.84l.3-1.3.13-.55,0-.05H8V24h6.34l2-2H7a1,1,0,0,0-1,1Z" class="clr-i-outline clr-i-outline-path-5"></path><path d="M33.49,16.67,30.12,13.3a1.61,1.61,0,0,0-2.28,0h0L14.13,27.09,13,31.9a1.61,1.61,0,0,0,1.26,1.9,1.55,1.55,0,0,0,.31,0,1.15,1.15,0,0,0,.37,0l4.85-1.07L33.49,19a1.6,1.6,0,0,0,0-2.27ZM18.77,30.91l-3.66.81L16,28.09,26.28,17.7l2.82,2.82ZM30.23,19.39l-2.82-2.82L29,15l2.84,2.84Z" class="clr-i-outline clr-i-outline-path-6"></path>
+                                            </svg>
+                                        </div>
+                                    </template>
+                                    <NavLink :href="route('admin.evaluations.answer' , 'normal')" :active="route().current('admin.evaluations.answer')"  class="!text-lg !p-0 ">
+                                        问卷
+                                    </NavLink>
+                                </a-menu-item>
+                                <a-menu-item key="admin.evaluations.create" >
+                                    <template #icon>
+                                        <HomeOutlined  class="!text-2xl " />
+                                    </template>
+                                    <NavLink :href="route('admin.evaluations.create')" :active="route().current('admin.evaluations.create')" class="!text-xl !p-0 ">
+                                        选项
+                                    </NavLink>
+                                </a-menu-item>
+                                <a-menu-item key="admin.evaluations.index">
+                                    <template #icon>
+                                        <HomeOutlined  class="!text-2xl " />
+                                    </template>
+                                    <NavLink :href="route('admin.evaluations.view_answer')" :active="route().current('admin.evaluations.view_answer')" class="!text-lg !p-0 ">
+                                        结果
+                                    </NavLink>
+                                </a-menu-item>
+                                <!--  -->
+
                                 <a-divider orientation="right"><span v-if="!collapsed">压力感知</span></a-divider>
                                 <a-menu-item key="admin.consultations.index">
                                     <template #icon>
@@ -341,7 +331,7 @@ onMounted(() => {
                                         选项
                                     </NavLink>
                                 </a-menu-item>
-                                <a-menu-item key="admin.evaluations.index">
+                                <a-menu-item key="admin.consultations.index">
                                     <template #icon>
                                         <HomeOutlined  class="!text-2xl " />
                                     </template>
@@ -349,8 +339,8 @@ onMounted(() => {
                                         结果
                                     </NavLink>
                                 </a-menu-item>
-
                                 <!--  -->
+
                                 <!-- Mediate -->
                                 <a-divider orientation="right"><span v-if="!collapsed">情绪调解</span></a-divider>
                                 <a-menu-item key="admin.mediates.index">
@@ -361,6 +351,7 @@ onMounted(() => {
                                         情绪调解
                                     </NavLink>
                                 </a-menu-item>
+                                
                                 <!--  -->
                                 <a-menu-item key="admin.mediates.create" >
                                     <template #icon>
@@ -370,7 +361,7 @@ onMounted(() => {
                                         选项
                                     </NavLink>
                                 </a-menu-item>
-                                <a-menu-item key="admin.evaluations.index">
+                                <a-menu-item key="admin.mediates.index">
                                     <template #icon>
                                         <HomeOutlined  class="!text-2xl " />
                                     </template>
@@ -380,26 +371,27 @@ onMounted(() => {
                                 </a-menu-item>
                                 <!--  -->
 
-                                <!-- Evaluation -->
-                                <a-divider orientation="right" ><span v-if="!collapsed">問卷</span></a-divider>
+                                <!-- Quiz -->
+                                <a-divider orientation="right"><span v-if="!collapsed">小问题</span></a-divider>
                                 <!--  -->
-                                <a-menu-item key="admin.evaluations.create" >
+                                <a-menu-item key="admin.quizs.create" >
                                     <template #icon>
                                         <HomeOutlined  class="!text-2xl " />
                                     </template>
-                                    <NavLink :href="route('admin.evaluations.create')" :active="route().current('admin.evaluations.create')" class="!text-xl !p-0 ">
+                                    <NavLink :href="route('admin.quizs.create')" :active="route().current('admin.quizs.create')" class="!text-xl !p-0 ">
                                         选项
                                     </NavLink>
                                 </a-menu-item>
-                                <a-menu-item key="admin.evaluations.index">
+                                <a-menu-item key="admin.quizs.index">
                                     <template #icon>
                                         <HomeOutlined  class="!text-2xl " />
                                     </template>
-                                    <NavLink :href="route('admin.evaluations.view_answer')" :active="route().current('admin.evaluations.view_answer')" class="!text-lg !p-0 ">
+                                    <NavLink :href="route('admin.quizs.view_answer')" :active="route().current('admin.quizs.view_answer')" class="!text-lg !p-0 ">
                                         结果
                                     </NavLink>
                                 </a-menu-item>
-                                <a-divider></a-divider>
+                                <!--  -->
+
                                 <!--  -->
                                 <a-menu-item key="admin.logout" >
                                     <template #icon>
@@ -429,9 +421,12 @@ onMounted(() => {
                             <slot name="header" />
                         </div>
                         <div>
-                            <div class="">
+                            <div class="flex gap-4">
+                                
+                                <AnswerModal :open="open? open:''"/>
+
                                 <!-- Authentication -->
-                                <a href="#" class="text-lg text-blue-800 hover:text-blue-900" @click="logout">
+                                <a href="#" class="text-xl text-blue-600 hover:text-blue-800" @click="logout">
                                     登出
                                     <LogoutOutlined />
                                 </a>
@@ -449,3 +444,77 @@ onMounted(() => {
         </div>
     </div>
 </template>
+
+
+<style>
+/* scroll bar */
+
+::-webkit-scrollbar-track
+{
+    @apply bg-slate-200;
+}
+
+::-webkit-scrollbar
+{
+	width: 4px;
+    @apply bg-slate-200;
+}
+
+::-webkit-scrollbar-thumb
+{
+    @apply rounded-lg bg-amber-300;
+    background-image: -webkit-linear-gradient(90deg,
+                                          rgba(255, 255, 255, 0.2) 25%,
+                                          transparent 25%,
+                                          transparent 50%,
+                                          rgba(255, 255, 255, 0.2) 50%,
+                                          rgba(255, 255, 255, 0.2) 75%,
+                                          transparent 75%,
+                                          transparent);
+}
+
+
+@media only screen and (max-width: 768px){
+    .ant-layout-sider{
+        width: fit-content !important;
+        min-width: fit-content !important;
+    }
+    .ant-layout-sider.ant-layout-sider-collapsed{
+        /* display: none; */
+        width: 0px !important;
+        min-width: 0px !important;
+    }
+    .ant-layout-sider .ant-menu-inline-collapsed{
+        display: none !important;
+    }
+    .ant-menu-title-content{
+        /* display:none; */
+    }
+    .ant-menu-item {
+        text-overflow:unset !important;
+    }
+}
+
+.ant-menu-item {
+    @apply !pt-1 !pl-5;
+}
+.side-bar{
+    @apply min-h-[100vh] bg-amber-400/70 shadow-md ;
+}
+.side-bar .ant-menu{
+    @apply bg-amber-200 
+}
+.side-bar .ant-layout-sider-children{
+    @apply bg-amber-300
+}
+.banner{
+    @apply flex items-center justify-center h-14 lg:h-12 px-12 sm:px-24 lg:px-40;
+    background: linear-gradient(90deg, rgb(255, 220, 114) 0%, rgba(255,224,130,1) 25%, 
+                        rgba(255,239,143,1) 100%);
+}
+.background{
+    background: rgba(252, 238, 212, 0.753);
+    /* background: linear-gradient(135deg, rgba(212,254,255,0.5746673669467788) 0%, rgba(225,239,240,0.4766281512605042) 25%, rgba(235,245,246,0.40940126050420167) 60%, rgba(191,246,211,0.4682247899159664) 100%); */
+
+}
+</style>

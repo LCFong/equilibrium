@@ -1,40 +1,45 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Member;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Config;
-use App\Models\Mediate;
-use App\Models\MediateItem;
-use App\Models\MediateOption;
+use App\Models\Quiz;
+use App\Models\User;
+use App\Models\Consultation;
+use App\Models\ConsultationItem;
+use App\Models\ConsultationOption;
 
-class MediateController extends Controller
+class ConsultationController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return Inertia::render('Mediate/Index',[
+        return Inertia::render('Member/Consultation/Index',[
+            
         ]);
     }
 
     public function answer($category = null ){
-        // Mediate 作答頁
-        $options = MediateOption::where('category' , $category)->get();
-        return Inertia::render('Mediate/Answer',[
+        // Consultation 作答頁
+        $options = ConsultationOption::where('category' , $category)->get();
+        //dd($category, $options);
+        return Inertia::render('Member/Consultation/Answer',[
             'options' => $options,
             'category' => $category,
         ]);
     }
-    public function viewAnswer(){
-        // Mediate 查看 result 頁
-        $mediates = MediateOption::where('user_id', Auth()->user()->id)->with(['items.option','user'])->orderBy('id','desc')->get();
-        return Inertia::render('Mediate/ViewAnswer',[
-            'mediates' => $mediates,
+    public function viewAnswer($userId = null){
+        // Consultation 查看 result 頁
+        $consultations = Consultation::where('user_id', $userId)->with(['items.option','user'])->orderBy('id','desc')->get();
+        return Inertia::render('Consultation/ViewAnswer',[
+            'consultations' => $consultations,
             'classify' => config('consultation.classify'),
+            'users' => User::all(),
         ]);
     }
 
@@ -44,8 +49,8 @@ class MediateController extends Controller
     public function create()
     {
         //
-        return Inertia::render('Mediate/CreateOption',[
-            'options' => MediateOption::all(),
+        return Inertia::render('Consultation/CreateOption',[
+            'options' => ConsultationOption::all(),
             'classify' => config('consultation.classify'),
         ]);
     }
@@ -57,17 +62,7 @@ class MediateController extends Controller
     {
         //
         $data = $request->all();
-        
-        $question = MediateOption::create($data);
-
-        if($request->file('media') ){
-
-            foreach($request->file('media') as $file){
-                $thumbnail = $question->addMedia($file['originFileObj'])->toMediaCollection('media');    
-                $thumbnail->update(['model_type' => 'App\Models\Media' , 'model_id' => $question->id]);
-            }
-        }
-
+        ConsultationOption::insert($data);
         return redirect()->back();
     }
 

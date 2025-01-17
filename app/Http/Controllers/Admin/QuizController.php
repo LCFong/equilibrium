@@ -6,36 +6,43 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Config;
-use App\Models\Mediate;
-use App\Models\MediateItem;
-use App\Models\MediateOption;
+use App\Models\User;
+use App\Models\Quiz;
+use App\Models\QuizItem;
+use App\Models\QuizOption;
 
-class MediateController extends Controller
+class QuizController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return Inertia::render('Mediate/Index',[
+        return Inertia::render('Quiz/Index',[
+
         ]);
     }
 
-    public function answer($category = null ){
-        // Mediate 作答頁
-        $options = MediateOption::where('category' , $category)->get();
-        return Inertia::render('Mediate/Answer',[
+    public function answer(){
+        // Consultation 作答頁
+        $options = QuizOption::get();
+        return Inertia::render('Quiz/Answer',[
             'options' => $options,
-            'category' => $category,
         ]);
     }
-    public function viewAnswer(){
-        // Mediate 查看 result 頁
-        $mediates = MediateOption::where('user_id', Auth()->user()->id)->with(['items.option','user'])->orderBy('id','desc')->get();
-        return Inertia::render('Mediate/ViewAnswer',[
-            'mediates' => $mediates,
-            'classify' => config('consultation.classify'),
+    public function viewAnswer($userId = null){
+        // Consultation 查看 result 頁
+        $quizs = Quiz::where('user_id', $userId)->with(['items.option','user'])->orderBy('id','desc')->get();
+        return Inertia::render('Quiz/ViewAnswer',[
+            'quizs' => $quizs,
+            'users' => User::all(),
+            'user_id' => $userId,
         ]);
+    }
+
+    public function getOption(){
+        
+        return response()->json( QuizOption::get() );
     }
 
     /**
@@ -44,9 +51,8 @@ class MediateController extends Controller
     public function create()
     {
         //
-        return Inertia::render('Mediate/CreateOption',[
-            'options' => MediateOption::all(),
-            'classify' => config('consultation.classify'),
+        return Inertia::render('Quiz/CreateOption',[
+            'options' => QuizOption::all(),
         ]);
     }
 
@@ -57,17 +63,8 @@ class MediateController extends Controller
     {
         //
         $data = $request->all();
-        
-        $question = MediateOption::create($data);
-
-        if($request->file('media') ){
-
-            foreach($request->file('media') as $file){
-                $thumbnail = $question->addMedia($file['originFileObj'])->toMediaCollection('media');    
-                $thumbnail->update(['model_type' => 'App\Models\Media' , 'model_id' => $question->id]);
-            }
-        }
-
+        // dd($data);
+        QuizOption::insert($data);
         return redirect()->back();
     }
 

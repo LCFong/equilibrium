@@ -10,7 +10,7 @@ use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 
-class MediateQuesiton extends Model implements HasMedia
+class MediateOption extends Model implements HasMedia
 {
     use HasFactory;
     use InteractsWithMedia;

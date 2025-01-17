@@ -11,15 +11,13 @@ export default {
     data() {
         return {
             // Create Option Form 
-            categoryOption:[
-                {label : "normal" , value: "normal"},
-                // {label : "study" , value: "study"},
-                // {label : "interpersonal" , value: "interpersonal"},
+            propertyOption:[
+                {label : "positive" , value: "positive"},
+                {label : "negative" , value: "negative"},
             ],
             typeOption:[
-                {label : "options (seven)" , value: "seven_options"},
-                {label : "options (five)" , value: "five_options"},
-                // {label : "question box" , value: "input"},
+                {label : "options" , value: "options"},
+                {label : "question box" , value: "input"},
             ],
             formState:'create',
             formData:{},
@@ -31,7 +29,7 @@ export default {
 
             columns:[
                 { title: 'id', dataIndex: 'id',  sorter: (a, b) => a.id - b.id},
-                { title: 'Category', dataIndex: 'category'},
+                { title: 'Property', dataIndex: 'property'},
                 { title: 'Type', dataIndex: 'type'},
                 { title: 'Title', dataIndex: 'title'},
                 { title: 'Code', dataIndex: 'code'},
@@ -46,34 +44,22 @@ export default {
             }
         })
     },
+    computed:{
+    },
     methods:{
         createOptions(){
-            this.$inertia.post(route("admin.evaluations.store"), this.formData, {
+            this.$inertia.post(route("admin.quizs.store"), this.formData, {
                 onSuccess: (page) => { location.reload() },
             });
         },
         editOptions(){
-            this.$inertia.post(route("admin.evaluations.update_question", this.formData), {
+            this.$inertia.put(route("admin.quizs.update", this.formData['id']), this.formData, {
                 onSuccess: (page) => { location.reload() },
             });
         },
         editRecord(record){
             this.formState = 'edit'
             this.formData = record
-        },
-        beforeUploadThumbnail(file) {
-            return true
-        },
-        handleChangeMedia(newFileList) {
-            this.formData.thumbnails = newFileList.fileList;
-        },
-        dummyRequest({
-            file,
-            onSuccess
-        }) {
-            setTimeout(() => {
-                onSuccess(file);
-            }, 0);
         },
     }
 }
@@ -96,8 +82,8 @@ export default {
                     <a-form-item label="Title" name="title" autoc>
                         <a-input type="input" v-model:value="formData.title" />
                     </a-form-item>
-                    <a-form-item label="Category" name="category" >
-                        <a-select v-model:value="formData.category" :options="categoryOption" />
+                    <a-form-item label="Property" name="property" >
+                        <a-select v-model:value="formData.property" :options="propertyOption" />
                     </a-form-item>
                     <a-form-item label="Type" name="type" >
                         <a-select type="input" v-model:value="formData.type" :options="typeOption"/>
@@ -105,15 +91,6 @@ export default {
                     <a-form-item label="Code" name="code" >
                         <a-input type="input" v-model:value="formData.code" />
                     </a-form-item>
-                    <a-form-item label="Media" name="media" >
-                        <a-upload  :before-upload="beforeUploadThumbnail" :on-change="handleChangeMedia" :multiple="false" :show-upload-list="true" :custom-request="dummyRequest">
-                            <a-button >
-                                <UploadOutlined />
-                                Click to upload
-                            </a-button>
-                        </a-upload>
-                    </a-form-item>
-
                     <a-form-item >
                         <a-button v-if="formState == 'create'" type="primary" html-type="submit" @click="createOptions()">Submit</a-button>
                         <a-button v-else-if="formState == 'edit'" type="primary" html-type="submit" @click="editOptions()">Edit</a-button>

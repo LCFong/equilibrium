@@ -1,10 +1,10 @@
 <script>
-import AdminLayout from "@/Layouts/AdminLayout.vue";
+import MemberLayout from "@/Layouts/MemberLayout.vue";
 import * as AntdIcons from '@ant-design/icons-vue';
 
 export default {
     components: {
-        AdminLayout,
+        MemberLayout,
         ...AntdIcons,
     },
     props: ['logged'],
@@ -16,12 +16,15 @@ export default {
     created(){
     },
     methods:{
+        redirectUrl(url){
+            window.location.href = url;
+        }
     }
 }
 </script>
 
 <template>
-<AdminLayout title="Dashboard">
+<MemberLayout title="Dashboard" >
     <template #header>
         <div class="font-semibold text-xl text-gray-800 ">
             压力感知
@@ -30,9 +33,9 @@ export default {
 
     <div class="py-12">
         
-        <div class="max-w-4xl mx-auto sm:px-6 lg:px-8 flex flex-col gap-10 ">
+        <div class=" mx-auto px-6 py-2 md:px-1 lg:px-8 grid grid-cols-1 md:grid-cols-2 md:w-[70vw] gap-10 ">
 
-            <div class="flex flex-col shadow-md rounded-lg ">
+            <div class="flex flex-col shadow-md rounded-lg hover:scale-105 transition-transform cursor-pointer" @click="redirectUrl( route('member.consultations.answer', 'peer'))">
                 <div class="flex justify-between items-center rounded-t-lg bg-violet-300 sm:px-8 lg:px-12 px-6 min-h-36 relative overflow-hidden">
                     <div class=" text-4xl  font-extrabold z-20">
                         同伴影响
@@ -45,7 +48,7 @@ export default {
                     <div class="bg-violet-500/20 h-60 w-60 rounded-full absolute right-36 top-16 z-0">&nbsp;</div>
                 </div>
                 <div class="flex  bg-violet-400 min-h-10 items-center text-base px-12 rounded-b-lg ">
-                    進入 <a :href="route('admin.consultations.answer', 'peer')" class=" mx-1 rounded-full p-1 w-6 text-center h-auto text-yellow-600 font-extrabold text-base bg-white ">
+                    点击进入 <a :href="route('member.consultations.answer', 'peer')" class=" mx-1 rounded-full p-1 w-6 text-center h-auto text-yellow-600 font-extrabold text-base bg-white ">
                         <svg fill="#000000" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg" id="arrow">
                             <path d="M8.29289 2.29289C8.68342 1.90237 9.31658 1.90237 9.70711 2.29289L14.2071 6.79289C14.5976 7.18342 14.5976 7.81658 14.2071 8.20711L9.70711 12.7071C9.31658 13.0976 8.68342 13.0976 8.29289 12.7071C7.90237 12.3166 7.90237 11.6834 8.29289 11.2929L11 8.5H1.5C0.947715 8.5 0.5 8.05228 0.5 7.5C0.5 6.94772 0.947715 6.5 1.5 6.5H11L8.29289 3.70711C7.90237 3.31658 7.90237 2.68342 8.29289 2.29289Z" />
                         </svg>
@@ -53,7 +56,7 @@ export default {
                 </div>
             </div>
             <!-- ------------------------- -->
-            <div class="flex flex-col shadow-md rounded-lg ">
+            <div class="flex flex-col shadow-md rounded-lg hover:scale-105 transition-transform cursor-pointer" @click="redirectUrl( route('member.consultations.answer', 'study'))">
                 <div class="flex justify-between items-center rounded-t-lg bg-indigo-500 sm:px-8 lg:px-12 px-6 min-h-36 relative overflow-hidden">
                     <div class=" text-4xl text-slate-200 font-extrabold z-20">
                         学业压力
@@ -67,8 +70,8 @@ export default {
                     <div class="bg-indigo-700/50 h-60 w-60 rounded-full absolute right-[40%] top-16 z-0">&nbsp;</div>
                 </div>
                 <div class="flex  bg-indigo-700 min-h-10 items-center text-base px-12 rounded-b-lg text-white">
-                    進入
-                    <a :href="route('admin.consultations.answer','study')" class=" mx-1 rounded-full p-1 w-6 text-center h-auto text-indigo-600 font-extrabold text-base bg-white ">
+                    点击进入
+                    <a class=" mx-1 rounded-full p-1 w-6 text-center h-auto text-indigo-600 font-extrabold text-base bg-white ">
                         <svg fill="#000000" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg" id="arrow">
                             <path d="M8.29289 2.29289C8.68342 1.90237 9.31658 1.90237 9.70711 2.29289L14.2071 6.79289C14.5976 7.18342 14.5976 7.81658 14.2071 8.20711L9.70711 12.7071C9.31658 13.0976 8.68342 13.0976 8.29289 12.7071C7.90237 12.3166 7.90237 11.6834 8.29289 11.2929L11 8.5H1.5C0.947715 8.5 0.5 8.05228 0.5 7.5C0.5 6.94772 0.947715 6.5 1.5 6.5H11L8.29289 3.70711C7.90237 3.31658 7.90237 2.68342 8.29289 2.29289Z" />
                         </svg>
@@ -76,7 +79,7 @@ export default {
                 </div>
             </div>
             <!-- ------------------------- -->
-            <div class="flex flex-col shadow-md rounded-lg ">
+            <div class="flex flex-col shadow-md rounded-lg hover:scale-105 transition-transform cursor-pointer" @click="redirectUrl( route('member.consultations.answer', 'interpersonal'))">
                 <div class="flex justify-between items-center rounded-t-lg bg-green-300 sm:px-8 lg:px-12 px-6 min-h-36 relative overflow-hidden">
                     <div class=" text-4xl  font-extrabold z-20">
                         人际关系
@@ -105,8 +108,8 @@ export default {
                     <div class="bg-green-500/30 h-60 w-60 rounded-full absolute right-[25%] -top-32 z-0">&nbsp;</div>
                 </div>
                 <div class="flex  bg-green-400 min-h-10 items-center text-base px-12 rounded-b-lg ">
-                    進入
-                    <a :href="route('admin.consultations.answer','interpersonal')" class=" mx-1 rounded-full p-1 w-6 text-center h-auto text-green-600 font-extrabold text-base bg-white ">
+                    点击进入
+                    <a class=" mx-1 rounded-full p-1 w-6 text-center h-auto text-green-600 font-extrabold text-base bg-white ">
                         <svg fill="#000000" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg" id="arrow">
                             <path d="M8.29289 2.29289C8.68342 1.90237 9.31658 1.90237 9.70711 2.29289L14.2071 6.79289C14.5976 7.18342 14.5976 7.81658 14.2071 8.20711L9.70711 12.7071C9.31658 13.0976 8.68342 13.0976 8.29289 12.7071C7.90237 12.3166 7.90237 11.6834 8.29289 11.2929L11 8.5H1.5C0.947715 8.5 0.5 8.05228 0.5 7.5C0.5 6.94772 0.947715 6.5 1.5 6.5H11L8.29289 3.70711C7.90237 3.31658 7.90237 2.68342 8.29289 2.29289Z" />
                         </svg>
@@ -114,7 +117,7 @@ export default {
                 </div>
             </div>
             <!-- ------------------------- -->
-            <div class="flex flex-col shadow-md rounded-lg ">
+            <div class="flex flex-col shadow-md rounded-lg  hover:scale-105 transition-transform cursor-pointer" @click="redirectUrl( route('member.consultations.answer', 'sleep'))">
                 <div class="flex justify-between items-center rounded-t-lg bg-pink-200 sm:px-8 lg:px-12 px-6 min-h-36 relative overflow-hidden">
                     <div class=" text-4xl  font-extrabold z-20">
                         睡眠
@@ -130,18 +133,20 @@ export default {
                     <div class="bg-pink-400/30 h-60 w-60 rounded-full absolute top-10 right-48 z-0">&nbsp;</div>
                 </div>
                 <div class="flex  bg-pink-400/70 min-h-10 items-center text-base px-12 rounded-b-lg ">
-                    進入
-                    <a :href="route('admin.consultations.answer','interpersonal')" class=" mx-1 rounded-full p-1 w-6 text-center h-auto text-green-600 font-extrabold text-base bg-white ">
+                    点击进入
+                    <a class=" mx-1 rounded-full p-1 w-6 text-center h-auto text-green-600 font-extrabold text-base bg-white ">
                         <svg fill="#000000" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg" id="arrow">
                             <path d="M8.29289 2.29289C8.68342 1.90237 9.31658 1.90237 9.70711 2.29289L14.2071 6.79289C14.5976 7.18342 14.5976 7.81658 14.2071 8.20711L9.70711 12.7071C9.31658 13.0976 8.68342 13.0976 8.29289 12.7071C7.90237 12.3166 7.90237 11.6834 8.29289 11.2929L11 8.5H1.5C0.947715 8.5 0.5 8.05228 0.5 7.5C0.5 6.94772 0.947715 6.5 1.5 6.5H11L8.29289 3.70711C7.90237 3.31658 7.90237 2.68342 8.29289 2.29289Z" />
                         </svg>
                     </a>
                 </div>
             </div>
-
+            <div class="col-span-full flex  justify-center">
+                <a-button class="w-[60vw] md:w-[40vw] h-10 shadow rounded-lg  hover:scale-110 hover:bg-slate-100" @click="redirectUrl( route('member.mediates.index'))">下一步 <ArrowRightOutlined /> </a-button>
+            </div>
         </div>
     </div>
-</AdminLayout>
+</MemberLayout>
 </template>
 
 <style>

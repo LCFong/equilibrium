@@ -1,10 +1,10 @@
 <script>
-import AdminLayout from "@/Layouts/AdminLayout.vue";
+import MemberLayout from "@/Layouts/MemberLayout.vue";
 import * as AntdIcons from '@ant-design/icons-vue';
 
 export default {
     components: {
-        AdminLayout,
+        MemberLayout,
         ...AntdIcons,
     },
     props: ["options", "category"],
@@ -66,7 +66,7 @@ export default {
 </script>
 
 <template>
-<AdminLayout title="Dashboard">
+<MemberLayout title="Dashboard">
     <template #header>
         <div class="font-semibold text-xl text-gray-800 ">
             压力感知 {{ categoryTitle }}
@@ -85,7 +85,7 @@ export default {
                                 :class=" formitems.includes(o.code)? 'checkedOption ':'uncheckedOption'"
                                 @click="checkOption(o)">
 
-                                <a-checkbox :value="o.code" @click="checkOption(o)"></a-checkbox>
+                                <a-checkbox :value="o.code" ></a-checkbox>
 
                                 <span  class="flex items-center ">
                                     <a-divider class="py-4 bg-slate-200" type="vertical"  />
@@ -107,7 +107,7 @@ export default {
             <div v-else>未輸入問題<a class="text-blue-500" :href="route('admin.consultations.create')">到此創建</a></div>
         </div>
     </div>
-</AdminLayout>
+</MemberLayout>
 </template>
 
 <style>

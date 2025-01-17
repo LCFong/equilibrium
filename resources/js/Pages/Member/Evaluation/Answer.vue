@@ -1,29 +1,41 @@
 <script>
-import AdminLayout from "@/Layouts/AdminLayout.vue";
+import MemberLayout from "@/Layouts/MemberLayout.vue";
 import * as AntdIcons from '@ant-design/icons-vue';
 import { contentQuotesLinter } from "ant-design-vue/es/_util/cssinjs/linters";
 
 export default {
     components: {
-        AdminLayout,
+        MemberLayout,
         ...AntdIcons,
     },
-    props: ["questions", "seven_options"],
+    props: ["questions"],
     data() {
         return {
             
             // 
             formItems: [],
             formInput:[],
+
+            sevenOptions:[
+                { label: '好', value: 1 },
+                { label: '尚好', value: 2 },
+                { label: '還好', value: 3 },
+                { label: '一般', value: 4 },
+                { label: '較差', value: 5 },
+                { label: '差', value: 6 },
+                { label: '非常差', value: 7 },
+            ],
+
+            fiveOptions:[
+                { label: '好', value: 1 },
+                { label: '還好', value: 2 },
+                { label: '一般', value: 3 },
+                { label: '差', value: 4 },
+                { label: '非常差', value: 5 },
+            ]
         };
     },
     created(){
-        // this.formItems = this.options
-        // this.options.forEach( (item)=>{
-        //     if( item.type == "input"){
-        //         this.formInput.push( {code:item.code, value:""} )
-        //     }
-        // })
     },
     methods:{
         checkOption(row){
@@ -37,8 +49,7 @@ export default {
             }
         },
         submitForm(){
-            
-            this.$inertia.post(route("admin.evaluation_items.store"), this.questions, {
+            this.$inertia.post(route("member.evaluation_items.store"), this.questions, {
                 onSuccess: (page) => { location.reload() },
             });
         }
@@ -47,7 +58,7 @@ export default {
 </script>
 
 <template>
-<AdminLayout title="Dashboard" >
+<MemberLayout title="Dashboard" :showMenu="false">
     <template #header>
         <div class="font-semibold text-xl text-gray-800 ">
             问卷
@@ -64,7 +75,7 @@ export default {
                                 <a-form-item :label="q.title">
                                     <a-radio-group v-model:value="q.value">
                                         <template v-if="q.type == 'seven_options'">
-                                            <a-radio v-for="option in seven_options" :value="option.value">{{ option.label }}</a-radio>
+                                            <a-radio v-for="option in sevenOptions" :value="option.value">{{ option.label }}</a-radio>
                                         </template>
                                     </a-radio-group>
                                 </a-form-item>
@@ -79,7 +90,7 @@ export default {
             <div v-else>未輸入問題<a class="text-blue-500" :href="route('admin.consultations.create')">到此創建</a></div>
         </div>
     </div>
-</AdminLayout>
+</MemberLayout>
 </template>
 
 <style>

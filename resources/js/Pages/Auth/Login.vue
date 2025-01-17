@@ -70,12 +70,12 @@ const submit = () => {
                     <InputError class="mt-2" :message="form.errors.password" />
                 </div>
 
-                <div class="block mt-4">
+                <!-- <div class="block mt-4">
                     <label class="flex items-center">
                         <Checkbox v-model:checked="form.remember" name="remember" />
                         <span class="ms-2 text-sm text-gray-600">记住账号</span>
                     </label>
-                </div>
+                </div> -->
 
                 <div class="flex items-center justify-between mt-4">
                     <Link v-if="canResetPassword" :href="route('register')" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
