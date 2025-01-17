@@ -15,15 +15,10 @@ class EvaluationController extends Controller
 
     public function answer(Request $request){
         // Evaluation 作答頁
-        if($request->exists('test')){
             $questions = EvaluationQuestion::get();
             return Inertia::render('Member/Evaluation/Answer',[
                 'questions' => $questions,
             ]);
-        }else{
-            return redirect()->route('member.consultations.index');
-
-        }
     }
 
 }

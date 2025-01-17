@@ -24,6 +24,8 @@ class DatabaseSeeder extends Seeder
             // MissionSeeder::class,
             UserSeeder::class,
             ConfigSeeder::class,
+            EvaluationQuestionSeeder::class,
+            ConsultationOptionSeeder::class,
             // TemplateStageSeeder::class,
         ]);
     }

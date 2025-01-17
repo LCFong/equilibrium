@@ -79,6 +79,8 @@ Route::group([
     Route::get('quizs/answer', [App\Http\Controllers\Member\QuizController::class,'answer'])->name('member.quizs.answer');
     Route::resource('member/quiz_items', App\Http\Controllers\Member\QuizItemController::class)->names('member.quiz_items');
 
+    Route::resource('evaluations', App\Http\Controllers\Member\EvaluationController::class)->names('member.evaluations');
+
     Route::get('evaluation/answer', [App\Http\Controllers\Member\EvaluationController::class,'answer'])->name('member.evaluations.answer');
     Route::resource('evaluation_items', App\Http\Controllers\Member\EvaluationItemController::class)->names('member.evaluation_items');
 
