@@ -26,17 +26,20 @@ export default {
     },
     computed:{
         categoryTitle(){
-            if(this.category == 'peer'){
-                return "同伴影响";
+            if(this.category == 'selection'){
+                return "情境选择";
             }
-            if(this.category == 'study'){
-                return "学业压力";
+            if(this.category == 'revision'){
+                return "情境修正";
             }
-            if(this.category == 'interpersonal'){
-                return "人际关系";
+            if(this.category == 'attention'){
+                return "注意部署";
             }
-            if(this.category == 'sleep'){
-                return "睡眠";
+            if(this.category == 'cognition'){
+                return "认知重评/认知改变";
+            }
+            if(this.category == 'reaction'){
+                return "反应调节";
             }
             return "";
         }
@@ -57,8 +60,9 @@ export default {
             let i = this.formInput.filter(item => item.value !== "")
             let result = [...o , ...i]
             
-            this.$inertia.post(route("admin.consultation_items.store"), result, {
-                onSuccess: (page) => { location.reload() },
+            this.$inertia.post(route("member.mediate_items.store"), result, {
+                onSuccess: (page) => { 
+                    window.location.href = route("member.mediates.index"); },
             });
         }
     }
@@ -81,7 +85,8 @@ export default {
                     <a-checkbox-group v-model:value="formitems" class="flex flex-col gap-5 ">
 
                         <div v-for="(o,index) in options">
-                            <div v-if="o.type =='options'" class="flex px-4 gap-2 rounded-lg text-base bg-white shadow-md flex-1"  
+                            <!-- Option -->
+                            <div v-if="o.type =='options'" class="flex px-4 gap-2 rounded-lg text-base bg-white shadow-md flex-1 text-wrap"  
                                 :class=" formitems.includes(o.code)? 'checkedOption ':'uncheckedOption'"
                                 @click="checkOption(o)">
 

@@ -69,25 +69,42 @@ export default {
         <div class="max-w-5xl mx-auto sm:px-6 lg:px-8 flex flex-col gap-10">
             <div class="flex" v-if="questions.length > 0">
                 <a-form class="w-full bg-white rounded-lg shadow-md p-4" :model="questions" autocomplete="off"  enctype="multipart/form-data" layout="vertical">
-                        <a-page-header title="问卷" class="py-2" />
-                        <div v-for="(q,index) in questions">
-                            <div v-if="q.type =='seven_options'" class="flex px-4 gap-2 text-base flex-1" >
-                                <a-form-item :label="q.title">
-                                    <a-radio-group v-model:value="q.value">
-                                        <template v-if="q.type == 'seven_options'">
-                                            <a-radio v-for="option in sevenOptions" :value="option.value">{{ option.label }}</a-radio>
-                                        </template>
-                                    </a-radio-group>
-                                </a-form-item>
-                            </div>
+                    
+                    <a-page-header title="问卷" class="py-2" />
+                    <div v-for="(q,index) in questions.filter( x => x.category == 'pss')">
+                        <div class="flex px-4 gap-2 text-base flex-1" >
+                            <a-form-item :label="q.title">
+                                <a-radio-group v-model:value="q.value">
+                                    <a-radio-button value="1">Never</a-radio-button>
+                                    <a-radio-button value="2">Almost Never</a-radio-button>
+                                    <a-radio-button value="3">Sometime</a-radio-button>
+                                    <a-radio-button value="4">Fairly Often</a-radio-button>
+                                    <a-radio-button value="5">Very Often</a-radio-button>
+                                </a-radio-group>
+                            </a-form-item>
                         </div>
+                    </div>
+
+                    <a-page-header title="The Warwick-Edinburgh Mental Well-being Scale" class="py-2" />
+                    <div v-for="(q,index) in questions.filter( x => x.category == 'wellbeing')">
+                        <div class="flex px-4 gap-2 text-base flex-1" >
+                            <a-form-item :label="q.title">
+                                <a-radio-group v-model:value="q.value">
+                                    <a-radio-button value="1">从来没有</a-radio-button>
+                                    <a-radio-button value="2">很少有</a-radio-button>
+                                    <a-radio-button value="3">有</a-radio-button>
+                                    <a-radio-button value="4">很多时有</a-radio-button>
+                                    <a-radio-button value="5">不停有</a-radio-button>
+                                </a-radio-group>
+                            </a-form-item>
+                        </div>
+                    </div>
 
                     <div class="mt-4">
                         <a-button key="Update" type="primary" @click="submitForm()">提交</a-button>
                     </div>
                 </a-form>
             </div>
-            <div v-else>未輸入問題<a class="text-blue-500" :href="route('admin.consultations.create')">到此創建</a></div>
         </div>
     </div>
 </MemberLayout>

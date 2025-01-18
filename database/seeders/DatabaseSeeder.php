@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
             ConfigSeeder::class,
             EvaluationQuestionSeeder::class,
             ConsultationOptionSeeder::class,
-            // TemplateStageSeeder::class,
+            MediateOptionSeeder::class,
         ]);
     }
 }

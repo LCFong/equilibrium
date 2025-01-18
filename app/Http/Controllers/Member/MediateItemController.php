@@ -10,28 +10,15 @@ use App\Models\Mediate;
 use App\Models\MediateItem;
 use App\Models\MediateOption;
 
-class MediateController extends Controller
+class MediateItemController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return Inertia::render('Member/Mediate/Index',[
-        ]);
     }
 
-    public function answer($category = null ){
-        // Mediate 作答頁
-        $options = MediateOption::where('category' , $category)->get();
-        return Inertia::render('Member/Mediate/Answer',[
-            'options' => $options,
-            'category' => $category,
-        ]);
-    }
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
     }
@@ -41,6 +28,13 @@ class MediateController extends Controller
      */
     public function store(Request $request)
     {
+        $data = $request->all();
+        $user_id = Auth()->user()->id;
+        
+        $mediate = Mediate::create(['user_id' => $user_id]);
+        
+        $mediate->items()->createMany($data);
+        return redirect()->back();
     }
 
     /**

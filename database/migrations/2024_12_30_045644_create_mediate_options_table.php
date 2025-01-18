@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('code')->nullable();
             $table->string('type')->nullable();
             $table->string('title')->nullable();
+            $table->string('classify')->nullable();
             $table->timestamps();
         });
     }

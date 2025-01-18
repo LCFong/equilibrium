@@ -80,13 +80,14 @@ Route::group([
     Route::resource('member/quiz_items', App\Http\Controllers\Member\QuizItemController::class)->names('member.quiz_items');
 
     Route::resource('evaluations', App\Http\Controllers\Member\EvaluationController::class)->names('member.evaluations');
-
     Route::get('evaluation/answer', [App\Http\Controllers\Member\EvaluationController::class,'answer'])->name('member.evaluations.answer');
     Route::resource('evaluation_items', App\Http\Controllers\Member\EvaluationItemController::class)->names('member.evaluation_items');
 
     Route::resource('consultations', App\Http\Controllers\Member\ConsultationController::class)->names('member.consultations');
+    Route::resource('consultation_items', App\Http\Controllers\Member\ConsultationItemController::class)->names('member.consultation_items');
     Route::get('consultation/answer/{category}', [App\Http\Controllers\Member\ConsultationController::class,'answer'])->name('member.consultations.answer');
 
+    Route::resource('mediate_items', App\Http\Controllers\Member\MediateItemController::class)->names('member.mediate_items');
     Route::get('mediates/answer/{category}', [App\Http\Controllers\Member\MediateController::class,'answer'])->name('member.mediates.answer');
     Route::resource('mediates', App\Http\Controllers\Member\MediateController::class)->names('member.mediates');
 

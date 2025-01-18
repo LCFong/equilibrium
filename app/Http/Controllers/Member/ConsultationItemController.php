@@ -6,32 +6,19 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Config;
-use App\Models\Mediate;
-use App\Models\MediateItem;
-use App\Models\MediateOption;
+use App\Models\Consultation;
+use App\Models\ConsultationItem;
+use App\Models\ConsultationOption;
 
-class MediateController extends Controller
+class ConsultationItemController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return Inertia::render('Member/Mediate/Index',[
-        ]);
     }
 
-    public function answer($category = null ){
-        // Mediate 作答頁
-        $options = MediateOption::where('category' , $category)->get();
-        return Inertia::render('Member/Mediate/Answer',[
-            'options' => $options,
-            'category' => $category,
-        ]);
-    }
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
     }
@@ -41,6 +28,13 @@ class MediateController extends Controller
      */
     public function store(Request $request)
     {
+        $data = $request->all();
+        $user_id = Auth()->user()->id;
+        
+        $consultation = Consultation::create(['user_id' => $user_id]);
+        
+        $consultation->items()->createMany($data);
+        return redirect()->back();
     }
 
     /**

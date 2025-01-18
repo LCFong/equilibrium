@@ -12,7 +12,8 @@ export default {
         return {
             // Create Option Form 
             categoryOption:[
-                {label : "situation" , value: "situation"},
+                {label : "selection" , value: "selection"},
+                {label : "revision" , value: "revision"},
                 {label : "attention" , value: "attention"},
                 {label : "cognition" , value: "cognition"},
                 {label : "reaction" , value: "reaction"},

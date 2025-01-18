@@ -40,13 +40,13 @@ export default {
                             </svg>
                         </div>
                         <div class="flex flex-col gap-1">
-                            <span class="text-xl font-bold leading-none text-gray-900 sm:text-2xl">情境修正</span>
-                            <h3 class="text-base font-normal text-gray-500">通过改变情境特征来影响情绪。</h3>
+                            <span class="text-xl font-bold leading-none text-gray-900 sm:text-2xl">情境选择</span>
+                            <h3 class="text-base font-normal text-gray-500">通过选择环境避免或引发特定情绪</h3>
                         </div>
                     </div>
                 </div>
                 <div class="flex min-h-8 items-center bg-slate-100 text-base rounded-b-2xl justify-center">
-                    進入 <a :href="route('member.consultations.answer', 'peer')" class=" mx-1 rounded-full p-1 w-6 text-center h-auto text-yellow-600 font-extrabold text-base bg-white ">
+                    進入 <a :href="route('member.mediates.answer', 'selection')" class=" mx-1 rounded-full p-1 w-6 text-center h-auto text-yellow-600 font-extrabold text-base bg-white ">
                         <svg fill="#000000" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg" id="arrow">
                             <path d="M8.29289 2.29289C8.68342 1.90237 9.31658 1.90237 9.70711 2.29289L14.2071 6.79289C14.5976 7.18342 14.5976 7.81658 14.2071 8.20711L9.70711 12.7071C9.31658 13.0976 8.68342 13.0976 8.29289 12.7071C7.90237 12.3166 7.90237 11.6834 8.29289 11.2929L11 8.5H1.5C0.947715 8.5 0.5 8.05228 0.5 7.5C0.5 6.94772 0.947715 6.5 1.5 6.5H11L8.29289 3.70711C7.90237 3.31658 7.90237 2.68342 8.29289 2.29289Z" />
                         </svg>
@@ -55,7 +55,7 @@ export default {
             </div>
             <!-- ------ -->
 
-            <!-- 注意部署 -->
+            <!-- 情境修正 -->
             <div class="flex flex-col shadow-lg shadow-gray-200 rounded-2xl">
                 <div class=" p-4 min-h-30 flex items-center justify-start  rounded-t-2xl bg-white ">
                     <div class="flex gap-4 items-center">
@@ -65,13 +65,13 @@ export default {
                             </svg>
                         </div>
                         <div class="flex flex-col gap-1">
-                            <span class="text-xl font-bold leading-none text-gray-900 sm:text-2xl">注意部署</span>
-                            <h3 class="text-base font-normal text-gray-500">改变注意力的方向（如分心或集中注意）来调节情绪。</h3>
+                            <span class="text-xl font-bold leading-none text-gray-900 sm:text-2xl">情境修正</span>
+                            <h3 class="text-base font-normal text-gray-500">通过改变情境特征来影响情绪。</h3>
                         </div>
                     </div>
                 </div>
                 <div class="flex min-h-8 items-center bg-slate-100 text-base rounded-b-2xl justify-center">
-                    進入 <a :href="route('member.consultations.answer', 'peer')" class=" mx-1 rounded-full p-1 w-6 text-center h-auto text-yellow-600 font-extrabold text-base bg-white ">
+                    進入 <a :href="route('member.mediates.answer', 'revision')" class=" mx-1 rounded-full p-1 w-6 text-center h-auto text-yellow-600 font-extrabold text-base bg-white ">
                         <svg fill="#000000" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg" id="arrow">
                             <path d="M8.29289 2.29289C8.68342 1.90237 9.31658 1.90237 9.70711 2.29289L14.2071 6.79289C14.5976 7.18342 14.5976 7.81658 14.2071 8.20711L9.70711 12.7071C9.31658 13.0976 8.68342 13.0976 8.29289 12.7071C7.90237 12.3166 7.90237 11.6834 8.29289 11.2929L11 8.5H1.5C0.947715 8.5 0.5 8.05228 0.5 7.5C0.5 6.94772 0.947715 6.5 1.5 6.5H11L8.29289 3.70711C7.90237 3.31658 7.90237 2.68342 8.29289 2.29289Z" />
                         </svg>
@@ -96,7 +96,7 @@ export default {
                     </div>
                 </div>
                 <div class="flex min-h-8 items-center bg-slate-100 text-base rounded-b-2xl justify-center">
-                    進入 <a :href="route('member.consultations.answer', 'peer')" class=" mx-1 rounded-full p-1 w-6 text-center h-auto text-yellow-600 font-extrabold text-base bg-white ">
+                    進入 <a :href="route('member.mediates.answer', 'attention')" class=" mx-1 rounded-full p-1 w-6 text-center h-auto text-yellow-600 font-extrabold text-base bg-white ">
                         <svg fill="#000000" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg" id="arrow">
                             <path d="M8.29289 2.29289C8.68342 1.90237 9.31658 1.90237 9.70711 2.29289L14.2071 6.79289C14.5976 7.18342 14.5976 7.81658 14.2071 8.20711L9.70711 12.7071C9.31658 13.0976 8.68342 13.0976 8.29289 12.7071C7.90237 12.3166 7.90237 11.6834 8.29289 11.2929L11 8.5H1.5C0.947715 8.5 0.5 8.05228 0.5 7.5C0.5 6.94772 0.947715 6.5 1.5 6.5H11L8.29289 3.70711C7.90237 3.31658 7.90237 2.68342 8.29289 2.29289Z" />
                         </svg>
@@ -121,7 +121,7 @@ export default {
                     </div>
                 </div>
                 <div class="flex min-h-8 items-center bg-slate-100 text-base rounded-b-2xl justify-center">
-                    進入 <a :href="route('member.consultations.answer', 'peer')" class=" mx-1 rounded-full p-1 w-6 text-center h-auto text-yellow-600 font-extrabold text-base bg-white ">
+                    進入 <a :href="route('member.mediates.answer', 'cognition')" class=" mx-1 rounded-full p-1 w-6 text-center h-auto text-yellow-600 font-extrabold text-base bg-white ">
                         <svg fill="#000000" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg" id="arrow">
                             <path d="M8.29289 2.29289C8.68342 1.90237 9.31658 1.90237 9.70711 2.29289L14.2071 6.79289C14.5976 7.18342 14.5976 7.81658 14.2071 8.20711L9.70711 12.7071C9.31658 13.0976 8.68342 13.0976 8.29289 12.7071C7.90237 12.3166 7.90237 11.6834 8.29289 11.2929L11 8.5H1.5C0.947715 8.5 0.5 8.05228 0.5 7.5C0.5 6.94772 0.947715 6.5 1.5 6.5H11L8.29289 3.70711C7.90237 3.31658 7.90237 2.68342 8.29289 2.29289Z" />
                         </svg>
@@ -146,7 +146,7 @@ export default {
                     </div>
                 </div>
                 <div class="flex min-h-8 items-center bg-slate-100 text-base rounded-b-2xl justify-center">
-                    進入 <a :href="route('member.consultations.answer', 'peer')" class=" mx-1 rounded-full p-1 w-6 text-center h-auto text-yellow-600 font-extrabold text-base bg-white ">
+                    進入 <a :href="route('member.mediates.answer', 'reaction')" class=" mx-1 rounded-full p-1 w-6 text-center h-auto text-yellow-600 font-extrabold text-base bg-white ">
                         <svg fill="#000000" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg" id="arrow">
                             <path d="M8.29289 2.29289C8.68342 1.90237 9.31658 1.90237 9.70711 2.29289L14.2071 6.79289C14.5976 7.18342 14.5976 7.81658 14.2071 8.20711L9.70711 12.7071C9.31658 13.0976 8.68342 13.0976 8.29289 12.7071C7.90237 12.3166 7.90237 11.6834 8.29289 11.2929L11 8.5H1.5C0.947715 8.5 0.5 8.05228 0.5 7.5C0.5 6.94772 0.947715 6.5 1.5 6.5H11L8.29289 3.70711C7.90237 3.31658 7.90237 2.68342 8.29289 2.29289Z" />
                         </svg>

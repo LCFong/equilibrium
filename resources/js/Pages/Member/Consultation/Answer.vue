@@ -58,7 +58,9 @@ export default {
             let result = [...o , ...i]
 
             this.$inertia.post(route("member.consultation_items.store"), result, {
-                onSuccess: (page) => { location.reload() },
+                onSuccess: (page) => { 
+                    window.location.href = route("member.consultations.index");
+                },
             });
         },
         redirectBack(){
