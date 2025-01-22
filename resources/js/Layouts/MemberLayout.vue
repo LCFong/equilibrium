@@ -72,7 +72,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="">
+    <div >
         <Head :title="title" />
 
         <Banner />

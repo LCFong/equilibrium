@@ -105,7 +105,7 @@ export default {
 
                                     <span  class="flex items-center ">
                                         <!-- <a-divider class="py-4 bg-slate-200" type="vertical"  /> -->
-                                        <div class="py-3 ">{{ o.title }}</div>
+                                        <div class="p-3" style="line-height: 16px; white-space: normal;">{{ o.title }}</div>
                                     </span>
                                 </div>
                                 <div v-else-if="o.type =='input'" class="px-4 py-2 flex flex-col gap-2 "

@@ -31,13 +31,14 @@ export default {
 
             <a-page-header class="m-0 p-0 " title="情绪调节" sub-title="请选择任意一个情绪调节情境。" />
 
+            
             <audio controls>
-                <!-- <source src="山的冥想.m4a" > -->
-                <source :src="route('download', { 'path': 'music.mp3' })" type="audio/mpeg">
-                Your browser does not support the audio element.
+                <source :src=" route('download', { 'path': 'music.mp3' }) " type="audio/mpeg"  preload="metadata">
             </audio>
 
-            <img :src=" route('download', { 'path': 'login-background.jpg' }) "/>
+            <audio controls>
+                <source :src=" route('download', { 'path': 'meditation.m4a' }) " type="audio/mpeg"  preload="metadata">
+            </audio>
 
             <div class="flex flex-col shadow-lg shadow-gray-200 rounded-2xl">
                 <div class=" p-4 min-h-30 flex items-center justify-start  rounded-t-2xl bg-white ">
@@ -175,5 +176,13 @@ export default {
 
 .uncheckedOption {
     @apply transition-transform duration-300 scale-100
+}
+
+audio::-webkit-media-controls-panel {
+  background-color: white;
+}
+
+audio {
+  width: 100%;
 }
 </style>

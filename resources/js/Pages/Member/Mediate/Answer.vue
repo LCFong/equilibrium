@@ -83,10 +83,10 @@ export default {
             <div class="flex" v-if="options.length > 0">
                 <a-form class="w-full" :model="formitems" autocomplete="off"  enctype="multipart/form-data">
                     <a-checkbox-group v-model:value="formitems" class="flex flex-col gap-5 ">
-
+                        
                         <div v-for="(o,index) in options">
                             <!-- Option -->
-                            <div v-if="o.type =='options'" class="flex px-4 gap-2 rounded-lg text-base bg-white shadow-md flex-1 text-wrap"  
+                            <div v-if="o.type =='options'" class="flex px-4 gap-2 rounded-lg text-base bg-white shadow-md flex-1 "  
                                 :class=" formitems.includes(o.code)? 'checkedOption ':'uncheckedOption'"
                                 @click="checkOption(o)">
 
@@ -94,7 +94,8 @@ export default {
 
                                 <span  class="flex items-center ">
                                     <a-divider class="py-4 bg-slate-200" type="vertical"  />
-                                    <div class="py-3 ">{{ o.title }}</div>
+                                    <div class="py-3 "
+                                    style="white-space: normal;">{{ o.title }}</div>
                                 </span>
                             </div>
                             <div v-else-if="o.type =='input'" class="px-4 py-2 flex flex-col gap-2 rounded-lg text-base bg-white shadow-md "

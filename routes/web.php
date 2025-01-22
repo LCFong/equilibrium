@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Storage;
 Route::get('test',[App\Http\Controllers\TestController::class,'index']); 
 
 Route::get('/download', function ( Request $request) {
+   
     return Storage::get( $request->query('path'));
 })->name('download');
 
