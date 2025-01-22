@@ -73,7 +73,7 @@ export default {
 <MemberLayout title="Dashboard">
     <template #header>
         <div class="font-semibold text-xl text-gray-800 ">
-            压力感知 {{ categoryTitle }}
+            情绪调解 {{ categoryTitle }}
         </div>
     </template>
 

@@ -31,6 +31,14 @@ export default {
 
             <a-page-header class="m-0 p-0 " title="情绪调节" sub-title="请选择任意一个情绪调节情境。" />
 
+            <audio controls>
+                <!-- <source src="山的冥想.m4a" > -->
+                <source :src="route('download', { 'path': 'music.mp3' })" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+
+            <img :src=" route('download', { 'path': 'login-background.jpg' }) "/>
+
             <div class="flex flex-col shadow-lg shadow-gray-200 rounded-2xl">
                 <div class=" p-4 min-h-30 flex items-center justify-start  rounded-t-2xl bg-white ">
                     <div class="flex gap-4 items-center">

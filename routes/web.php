@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,8 +20,9 @@ use Illuminate\Support\Facades\Redirect;
 */
 Route::get('test',[App\Http\Controllers\TestController::class,'index']); 
 
-// Route::resource('blogs',App\Http\Controllers\BlogController::class)->names('blogs'); 
-// Route::get('blogs/getBlog/{stage_id}',[App\Http\Controllers\BlogController::class,'getBlog'])->name('blogs.getBlog'); 
+Route::get('/download', function ( Request $request) {
+    return Storage::get( $request->query('path'));
+})->name('download');
 
 Route::get('/language/{language}', function ($language) {
     Session::put('applocale', $language);

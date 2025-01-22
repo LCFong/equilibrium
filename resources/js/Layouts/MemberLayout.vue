@@ -198,6 +198,14 @@ onMounted(() => {
                             <a-divider></a-divider>
 
                             
+                            <a-menu-item key="member.mediates.index">
+                                <template #icon>
+                                    <HomeOutlined  class="!text-2xl " />
+                                </template>
+                                <NavLink :href="route('member.mediates.index')" :active="route().current('member.mediates.index')" class="!text-lg !p-0 ">
+                                    情绪调解
+                                </NavLink>
+                            </a-menu-item>
                             <a-menu-item key="member.mediates.answer.selection" >
                                 <template #icon>
                                     <div class="icon">
@@ -212,7 +220,7 @@ onMounted(() => {
                                     <div class="icon">
                                     </div>
                                 </template>
-                                <NavLink :href="route('member.mediates.answer', 'revision')" :active="route().current('member.consultations.answer')"  class="!text-lg !p-0 ">
+                                <NavLink :href="route('member.mediates.answer', 'revision')" :active="route().current('member.mediates.answer')"  class="!text-lg !p-0 ">
                                     情境修正
                                 </NavLink>
                             </a-menu-item>
@@ -355,7 +363,7 @@ onMounted(() => {
     @apply min-h-[100vh] bg-amber-400/70 shadow-md ;
 }
 .side-bar .ant-menu{
-    @apply bg-amber-200 
+    @apply bg-amber-400/30 shadow-lg border-y-2 border-orange-300
 }
 .side-bar .ant-layout-sider-children{
     @apply bg-amber-300

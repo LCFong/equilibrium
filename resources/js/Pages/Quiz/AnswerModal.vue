@@ -83,11 +83,13 @@ export default {
         <FormOutlined />
     </a>
 
-    <a-modal v-model:open="modalOpen" class="" title="小问题" :footer="null">
+    <a-modal  width="800px" v-model:open="modalOpen" class="" title="小问题" :footer="null">
         <div class="py-12">
             <div class="max-w-4xl mx-auto sm:px-6 lg:px-8 flex flex-col">
                 <div class="pb-4">
-                    今日小问题： (若今天已经完成了可以跳过)
+                    若今天已经完成了可以跳过<br><br>
+
+                    每次登陆情绪感受提问的问题，回答点击即可，距上次登陆有如下感受？是否选择：
                 </div>
 
                 <div class="flex " v-if="options.length > 0">

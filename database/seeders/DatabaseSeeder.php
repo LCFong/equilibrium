@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             EvaluationQuestionSeeder::class,
             ConsultationOptionSeeder::class,
             MediateOptionSeeder::class,
+            QuizOptionSeeder::class,
         ]);
     }
 }

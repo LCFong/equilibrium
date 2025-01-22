@@ -21,6 +21,12 @@ class MediateOptionSeeder extends Seeder
         ];
         MediateOption::insert($selection);
 
+        $revision=[
+            ["category"=>"revision","code"=>"r1","type"=>"options","title"=>"物理环境改变","classify"=>null],
+            ["category"=>"revision","code"=>"r2","type"=>"options","title"=>"以问题为中心的行为改变","classify"=>null],
+        ];
+        MediateOption::insert($revision);
+        
         $attention=[
             ["category"=>"attention","code"=>"a1","type"=>"options","title"=>"集中注意力：主动将注意力集中在当前任务或活动上，以减少情绪波动对效率的影响。示例：在感到焦虑时，通过专注完成手头的工作或学习任务来屏蔽消极情绪。","classify"=>"注意集中"],
             ["category"=>"attention","code"=>"a2","type"=>"options","title"=>"将注意力从情绪诱发事件上转移到其他无关的刺激或活动上。示例：在感到愤怒时，把注意力集中在观看喜欢的电影或阅读小说上。或在等待重要考试结果时，通过听音乐或锻炼来分散注意力。","classify"=>"注意分散"],

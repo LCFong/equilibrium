@@ -68,14 +68,14 @@ class User extends Authenticatable
 
     protected static function boot(){
         parent::boot();
-        static::created(
-            function($user){
-                $role = Role::find(1);
-                if( $role ){
-                    // dd($user->roles);  
-                    $user->roles()->attach( Role::find(1) );
-                }
-        });
+        // static::created(
+        //     function($user){
+        //         $role = Role::find(1);
+        //         if( $role ){
+        //             // dd($user->roles);  
+        //             $user->roles()->attach( Role::find(1) );
+        //         }
+        // });
     }
 
     public function quizzes(){

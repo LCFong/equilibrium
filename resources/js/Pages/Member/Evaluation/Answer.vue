@@ -13,26 +13,33 @@ export default {
         return {
             
             // 
-            formItems: [],
-            formInput:[],
+            formInput:{},
 
-            sevenOptions:[
-                { label: '好', value: 1 },
-                { label: '尚好', value: 2 },
-                { label: '還好', value: 3 },
-                { label: '一般', value: 4 },
-                { label: '較差', value: 5 },
-                { label: '差', value: 6 },
-                { label: '非常差', value: 7 },
+            pssOptions:[
+                { label: '从来没有', value: 1 },
+                { label: '很少有', value: 2 },
+                { label: '有', value: 3 },
+                { label: '很多时有', value: 4 },
+                { label: '不停有', value: 5 },
             ],
 
-            fiveOptions:[
-                { label: '好', value: 1 },
-                { label: '還好', value: 2 },
-                { label: '一般', value: 3 },
-                { label: '差', value: 4 },
-                { label: '非常差', value: 5 },
-            ]
+            wellbeingOptions:[
+                { label: '从来没有', value: 1 },
+                { label: '很少有', value: 2 },
+                { label: '有', value: 3 },
+                { label: '很多时有', value: 4 },
+                { label: '不停有', value: 5 },
+            ],
+            
+            learningOptions:[
+                { label: '完全不符合', value: 1 },
+                { label: '不符合', value: 2 },
+                { label: '有点符合', value: 3 },
+                { label: '基本符合', value: 4 },
+                { label: '比较符合 ', value: 5 },
+                { label: '符合 ', value: 6 },
+                { label: '非常符合 ', value: 7 },
+            ],
         };
     },
     created(){
@@ -49,8 +56,14 @@ export default {
             }
         },
         submitForm(){
-            this.$inertia.post(route("member.evaluation_items.store"), this.questions, {
-                onSuccess: (page) => { location.reload() },
+            
+            this.$refs.evaluationForm.validateFields().then(()=>{
+                
+                this.$inertia.post(route("member.evaluation_items.store"), this.formInput, {
+                    onSuccess: (page) => { location.reload() },
+                });
+            }).catch(err => {
+                console.log(err);
             });
         }
     }
@@ -68,33 +81,36 @@ export default {
     <div class="py-12">
         <div class="max-w-5xl mx-auto sm:px-6 lg:px-8 flex flex-col gap-10">
             <div class="flex" v-if="questions.length > 0">
-                <a-form class="w-full bg-white rounded-lg shadow-md p-4" :model="questions" autocomplete="off"  enctype="multipart/form-data" layout="vertical">
+                <a-form :model="formInput" ref="evaluationForm" class="w-full bg-white rounded-lg shadow-md p-4" autocomplete="off"  enctype="multipart/form-data" layout="vertical">
                     
-                    <a-page-header title="问卷" class="py-2" />
+                    <a-page-header title="压力感知量表" class="py-2" />
                     <div v-for="(q,index) in questions.filter( x => x.category == 'pss')">
                         <div class="flex px-4 gap-2 text-base flex-1" >
-                            <a-form-item :label="q.title">
-                                <a-radio-group v-model:value="q.value">
-                                    <a-radio-button value="1">Never</a-radio-button>
-                                    <a-radio-button value="2">Almost Never</a-radio-button>
-                                    <a-radio-button value="3">Sometime</a-radio-button>
-                                    <a-radio-button value="4">Fairly Often</a-radio-button>
-                                    <a-radio-button value="5">Very Often</a-radio-button>
+                            <a-form-item :name="q.code" :label="q.title" :rules="[{ required: true, message: '请选择' }]">
+                                <a-radio-group v-model:value="formInput[q.code]">
+                                    <a-radio-button v-for="o in pssOptions" :value="o.value">{{o.label}}</a-radio-button>
                                 </a-radio-group>
                             </a-form-item>
                         </div>
                     </div>
-
+                    <a-divider />
                     <a-page-header title="The Warwick-Edinburgh Mental Well-being Scale" class="py-2" />
                     <div v-for="(q,index) in questions.filter( x => x.category == 'wellbeing')">
                         <div class="flex px-4 gap-2 text-base flex-1" >
-                            <a-form-item :label="q.title">
-                                <a-radio-group v-model:value="q.value">
-                                    <a-radio-button value="1">从来没有</a-radio-button>
-                                    <a-radio-button value="2">很少有</a-radio-button>
-                                    <a-radio-button value="3">有</a-radio-button>
-                                    <a-radio-button value="4">很多时有</a-radio-button>
-                                    <a-radio-button value="5">不停有</a-radio-button>
+                            <a-form-item :name="q.code" :label="q.title" :rules="[{ required: true, message: '请选择' }]">
+                                <a-radio-group v-model:value="formInput[q.code]">
+                                    <a-radio-button v-for="o in learningOptions" :value="o.value">{{o.label}}</a-radio-button>
+                                </a-radio-group>
+                            </a-form-item>
+                        </div>
+                    </div>
+                    <a-divider />
+                    <a-page-header title="学习动机问卷" class="py-2" />
+                    <div v-for="(q,index) in questions.filter( x => x.category == 'learning')">
+                        <div class="flex px-4 gap-2 text-base flex-1" >
+                            <a-form-item :name="q.code" :label="q.title" :rules="[{ required: true, message: '请选择' }]">
+                                <a-radio-group v-model:value="formInput[q.code]">
+                                    <a-radio-button v-for="o in learningOptions" :value="o.value">{{o.label}}</a-radio-button>
                                 </a-radio-group>
                             </a-form-item>
                         </div>
@@ -117,5 +133,11 @@ export default {
 .uncheckedOption{
     @apply transition-transform duration-300 scale-100
 }
+.ant-radio-button-wrapper-checked{
+    @apply !text-white
+}
 
+.ant-radio-button-checked{
+    @apply bg-blue-500 
+}
 </style>

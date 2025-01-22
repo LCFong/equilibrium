@@ -39,9 +39,9 @@ class EvaluationItemController extends Controller
         
         foreach( $data  as $key => $value ){
             $evaluation->items()->create([ 
-                'code' => $value['code'],
-                'question' => $value['title'],
-                'value' => $value['value'],
+                'code' => $key,
+                // 'question' => $value['title'],
+                'value' => $value,
             ]);
         }
         return redirect()->route('member.consultations.index');
