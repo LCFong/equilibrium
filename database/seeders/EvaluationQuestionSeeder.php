@@ -48,7 +48,7 @@ class EvaluationQuestionSeeder extends Seeder
         $wellbeing=[
             ["category"=>"wellbeing","code"=>"w1","type"=>"five_options","title"=>"我一直对未来感到乐观"], 
             ["category"=>"wellbeing","code"=>"w2","type"=>"five_options","title"=>"我一直感到自己是有用"],
-            ["category"=>"wellbeing","code"=>"w3","type"=>"five_options","title"=>"我一直感觉轻松"],
+            ["category"=>"wellbeing","code"=>"w3","type"=>"five_opti ons","title"=>"我一直感觉轻松"],
             ["category"=>"wellbeing","code"=>"w4","type"=>"five_options","title"=>"我对别人的事情感兴趣"],
             ["category"=>"wellbeing","code"=>"w5","type"=>"five_options","title"=>"我有很多精力和能量"],
             ["category"=>"wellbeing","code"=>"w6","type"=>"five_options","title"=>"我一直能妥善地处理问题"],

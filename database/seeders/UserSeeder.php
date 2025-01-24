@@ -31,7 +31,7 @@ class UserSeeder extends Seeder
             'name' => explode(' ', $user->name, 2)[0]."'s Team",
             'personal_team' => true,
         ]));
-        // $user->roles()->attach($roleAdmin);
+        $user->roles()->attach($roleAdmin);
 
         $user=User::create([
             'name' => 'Teacher',

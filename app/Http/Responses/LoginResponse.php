@@ -17,6 +17,14 @@ class LoginResponse implements LoginResponseContract
      */
     public function toResponse($request)
     {
+        if( Auth::user()->hasRole('admin') ){
+
+            return redirect()->route('admin.dashboard');
+        }else{
+
+            return redirect()->route('member.consultations.index');
+        }
+
         session(['logged' => true]); // 建立 session
 
         return $request->wantsJson()

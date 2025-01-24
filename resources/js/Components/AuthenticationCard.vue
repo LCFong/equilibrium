@@ -13,8 +13,7 @@
                 <slot />
             </div>
         </div>
-        <div class="z-0 absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-400 shadow-lg transform -skew-y-4 sm:skew-y-0 -rotate-6 sm:-rotate-6 rounded-3xl"></div>
-
+        <div class="z-0 absolute inset-0 bg-gradient-to-r from-orange-300/80 to-amber-400/70 shadow-lg transform -skew-y-4 sm:skew-y-0 -rotate-6 sm:-rotate-6 rounded-3xl"></div>
     </div>
 </div>
 </template>
@@ -38,9 +37,8 @@
 </template> -->
 
 <style>
-.login-background{
-    background: rgb(214,255,219);
-    background: linear-gradient(135deg, rgba(214,255,219,0.5746673669467788) 0%, rgba(227,255,229,0.5830707282913166) 25%, rgba(214,255,215,0.5382528011204482) 60%, rgba(189,244,255,1) 100%);
-
+.login-background {
+    background: rgb(255, 214, 186);
+    background: linear-gradient(135deg, rgba(224, 168, 130, 0.3) 0%, rgba(255, 227, 186, 0.583) 25%, rgba(255, 214, 186, 0.538) 60%, rgba(255, 215, 200, 0.8) 100%);
 }
 </style>

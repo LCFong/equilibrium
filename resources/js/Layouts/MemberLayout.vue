@@ -363,7 +363,7 @@ onMounted(() => {
     @apply min-h-[100vh] bg-amber-400/70 shadow-md ;
 }
 .side-bar .ant-menu{
-    @apply bg-amber-400/30 shadow-lg border-y-2 border-orange-300
+    @apply bg-amber-400/30 shadow-lg border-orange-300
 }
 .side-bar .ant-layout-sider-children{
     @apply bg-amber-300

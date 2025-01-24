@@ -14,7 +14,11 @@ export default {
         };
     },
     created() {},
-    methods: {}
+    methods:{
+        redirectUrl(url){
+            window.location.href = url;
+        }
+    }
 }
 </script>
 
@@ -40,7 +44,7 @@ export default {
                 <source :src=" route('download', { 'path': 'meditation.m4a' }) " type="audio/mpeg"  preload="metadata">
             </audio>
 
-            <div class="flex flex-col shadow-lg shadow-gray-200 rounded-2xl">
+            <div class="flex flex-col shadow-lg shadow-gray-200 rounded-2xl cursor-pointer transition-transform hover:scale-105" @click="redirectUrl( route('member.mediates.answer', 'selection'))">
                 <div class=" p-4 min-h-30 flex items-center justify-start  rounded-t-2xl bg-white ">
                     <div class="flex gap-4 items-center">
                         <div class="inline-flex justify-center items-center w-16 h-16 text-white bg-gradient-to-br from-pink-500 to-violet-300 rounded-lg">
@@ -65,7 +69,7 @@ export default {
             <!-- ------ -->
 
             <!-- 情境修正 -->
-            <div class="flex flex-col shadow-lg shadow-gray-200 rounded-2xl">
+            <div class="flex flex-col shadow-lg shadow-gray-200 rounded-2xl cursor-pointer transition-transform hover:scale-105" @click="redirectUrl( route('member.mediates.answer', 'revision'))">
                 <div class=" p-4 min-h-30 flex items-center justify-start  rounded-t-2xl bg-white ">
                     <div class="flex gap-4 items-center">
                         <div class="inline-flex justify-center items-center w-16 h-16 text-white bg-gradient-to-br from-blue-500 to-cyan-300 rounded-lg">
@@ -90,7 +94,7 @@ export default {
             <!-- ------ -->
 
             <!-- 注意部署 -->
-            <div class="flex flex-col shadow-lg shadow-gray-200 rounded-2xl">
+            <div class="flex flex-col shadow-lg shadow-gray-200 rounded-2xl cursor-pointer transition-transform hover:scale-105" @click="redirectUrl( route('member.mediates.answer', 'attention'))">
                 <div class=" p-4 min-h-30 flex items-center justify-start  rounded-t-2xl bg-white ">
                     <div class="flex gap-4 items-center">
                         <div class="inline-flex justify-center items-center w-16 h-16 text-white bg-gradient-to-br from-teal-500 to-sky-300 rounded-lg">
@@ -115,7 +119,7 @@ export default {
             <!-- ------ -->
 
             <!-- 认知重评/认知改变 -->
-            <div class="flex flex-col shadow-lg shadow-gray-200 rounded-2xl">
+            <div class="flex flex-col shadow-lg shadow-gray-200 rounded-2xl cursor-pointer transition-transform hover:scale-105" @click="redirectUrl( route('member.mediates.answer', 'cognition'))">
                 <div class=" p-4 min-h-30 flex items-center justify-start  rounded-t-2xl bg-white ">
                     <div class="flex gap-4 items-center">
                         <div class="inline-flex justify-center items-center w-16 h-16 text-white bg-gradient-to-br from-indigo-500 to-fuchsia-400 rounded-lg">
@@ -140,7 +144,7 @@ export default {
             <!-- ------ -->
 
             <!-- 反应调节 -->
-            <div class="flex flex-col shadow-lg shadow-gray-200 rounded-2xl">
+            <div class="flex flex-col shadow-lg shadow-gray-200 rounded-2xl cursor-pointer transition-transform hover:scale-105" @click="redirectUrl( route('member.mediates.answer', 'reaction'))">
                 <div class=" p-4 min-h-30 flex items-center justify-start  rounded-t-2xl bg-white ">
                     <div class="flex gap-4 items-center">
                         <div class="inline-flex justify-center items-center w-16 h-16 text-white bg-gradient-to-br from-red-500 to-amber-300 rounded-lg">
