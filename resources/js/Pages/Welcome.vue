@@ -18,11 +18,16 @@ defineProps({
 });
 
 const message = ref("吸气")
+const show = ref(true)
 
 onMounted(()=>{
-    setTimeout(() => {
-        message.value = "呼气";
-    }, 6500); 
+  setTimeout(() => {
+      message.value = "呼气";
+  }, 6500); 
+
+  setTimeout(() => {
+    show.value = false;
+  }, 12000); // 9000 毫秒 = 9 秒
 })
 
 </script>
@@ -31,7 +36,7 @@ onMounted(()=>{
 
 <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center background">
     
-    <div v-if="canLogin" class="sm:fixed sm:top-0 sm:end-0 p-6 text-end z-10 bg-white rounded-b-lg shadow-md px-10 w-full " >
+    <!-- <div v-if="canLogin" class="sm:fixed sm:top-0 sm:end-0 p-6 text-end z-10 bg-white rounded-b-lg shadow-md px-10 w-full " >
         <Link v-if="$page.props.auth.user" :href="route('dashboard')" class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</Link>
         <template v-else>
             <Link :href="route('login')" class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
@@ -42,25 +47,29 @@ onMounted(()=>{
             <UserAddOutlined /> 註冊
             </Link>
         </template>
-    </div>
-
+    </div> -->
     <div class="w-full mx-auto">
-        
-
-        <div class="overflow-y-hidden h-screen">
-            
-
-            <div class="circle_all ">
-
-                <div class="circle_Q ">
-                    <div class="circle_message">
-                        {{ message }}
-                    </div>
+      <div class="overflow-y-hidden h-screen" v-if="show">
+        <div class="circle_all ">
+            <div class="circle_Q ">
+                <div class="circle_message">
+                    {{ message }}
                 </div>
-                <div class="circle_A "></div>
-                <div class="circle_B "></div>
             </div>
+            <div class="circle_A "></div>
+            <div class="circle_B "></div>
         </div>
+      </div>
+      <div v-if="!show" class="max-w-4xl mx-auto">
+        <p class="font-bold text-2xl text-center">学生心理健康养护平台</p>
+        <p class="font-bold text-xl">这个平台是为大学生压力感知及情绪调节所设计，目标是为了在日常生活中感知和觉察压力来源，有效的预防心理问题的产生。</p>
+        <a-divider />
+        <p class="font-bold text-base">情绪失调，尤其是长期处于压力、焦虑、抑郁或情绪不稳定的状态时，可能会表现出一些躯体化症状。躯体化是指情绪或心理问题通过身体症状表现出来。以下是一些常见的躯体化症状：疲劳感、头痛、胃肠道问题、胸痛或胸闷、肌肉紧张和疼痛、睡眠问题、心跳加速或心悸、呼吸急促、出汗、免疫系统问题、皮肤问题，这些躯体化症状有时可能被误认为是身体健康问题，实际上它们往往是情绪或心理问题的表现。如果情绪失调症状严重或持续，建议寻求专业帮助，及时进行情绪调节或心理治疗，以防止症状进一步加重。</p>
+        <a-divider />
+        <div class="text-center">
+          <a class="py-2 px-6 rounded-lg shadow border-1 bg-white hover:bg-slate-50" :href="route('login')">开始</a>
+        </div>
+      </div>
     </div>
 </div>
 </template>

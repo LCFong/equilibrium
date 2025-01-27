@@ -93,7 +93,8 @@ class MediateController extends Controller
     public function update(Request $request, Config $config)
     {
         $data = $request->all();
-        ConsultationOption::where('id', $data['id'])->update($data);
+        unset($data['media']);
+        MediateOption::where('id', $data['id'])->update($data);
         return redirect()->back();
     }
 

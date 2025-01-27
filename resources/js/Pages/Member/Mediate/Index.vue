@@ -35,13 +35,14 @@ export default {
 
             <a-page-header class="m-0 p-0 " title="情绪调节" sub-title="请选择任意一个情绪调节情境。" />
 
-            
+            <p class="font-semibold my-0 py-0">心理放松音乐</p>
             <audio controls>
                 <source :src=" route('download', { 'path': 'music.mp3' }) " type="audio/mpeg"  preload="metadata">
             </audio>
 
+            <p class="font-semibold my-0 py-0">山的冥想</p>
             <audio controls>
-                <source :src=" route('download', { 'path': 'meditation.m4a' }) " type="audio/mpeg"  preload="metadata">
+                <source :src=" route('download', { 'path': 'meditation.mp3' }) " type="audio/mpeg"  preload="metadata">
             </audio>
 
             <div class="flex flex-col shadow-lg shadow-gray-200 rounded-2xl cursor-pointer transition-transform hover:scale-105" @click="redirectUrl( route('member.mediates.answer', 'selection'))">
