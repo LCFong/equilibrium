@@ -30,7 +30,7 @@ class QuizItemController extends Controller
     {
         $data = $request->all();
         $user_id = Auth()->user()->id;
-        
+        dd($data);
         $quiz = Quiz::create(['user_id' => $user_id]);
         $quiz->items()->createMany($data);
         return redirect()->route('admin.consultations.index');

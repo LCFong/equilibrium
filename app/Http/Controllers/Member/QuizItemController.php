@@ -42,7 +42,12 @@ class QuizItemController extends Controller
         $user_id = Auth()->user()->id;
         
         $quiz = Quiz::create(['user_id' => $user_id]);
-        $quiz->items()->createMany($data);
+        foreach($data as $k => $v){
+            $quiz->items()->create([
+                'code' =>  $k,
+                'value' => $v
+            ]);
+        }
         return redirect()->back();
     }
 

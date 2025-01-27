@@ -50,7 +50,6 @@ class MediateOptionSeeder extends Seeder
             ["category"=>"cognition","code"=>"c1","type"=>"options","title"=>"重新解读情境：赋予情境不同的意义或视角来看待事情，从而改变情绪反应。例如：将考试失败解读为学习的机会，而不是能力的不足","classify"=>"认知重评/改变"],
             ["category"=>"cognition","code"=>"c2","type"=>"options","title"=>"改变归因方式：改变对事件原因的解释，避免过于消极的归因方式。示例：当他人对你态度冷淡时，不将其归因于对你的反感，而是考虑他们可能正在经历个人问题。","classify"=>"认知重评/改变"],
             ["category"=>"cognition","code"=>"c3","type"=>"options","title"=>"假设更大的图景：从宏观或长期的视角来看待当前问题，减轻情绪的即时冲击。示例：在交通堵塞时，告诉自己这只是日常生活中的一个小插曲，对整体生活并无重大影响。","classify"=>"认知重评/改变"],
-            ["category"=>"cognition","code"=>"c4","type"=>"options","title"=>"假设更大的图景：从宏观或长期的视角来看待当前问题，减轻情绪的即时冲击。示例：在交通堵塞时，告诉自己这只是日常生活中的一个小插曲，对整体生活并无重大影响。","classify"=>"认知重评/改变"],
             ["category"=>"cognition","code"=>"c5","type"=>"options","title"=>"积极预期：关注事件中可能出现的积极结果，而不是沉溺于消极后果的想象。示例：面对一场重要的面试，期待学到新经验，而不是过度担忧失败。","classify"=>"认知重评/改变"],
             ["category"=>"cognition","code"=>"c6","type"=>"options","title"=>"情境对比：与更糟糕的可能情境相比，从而减轻负面情绪。示例：在一次摔倒后想到“至少我没有受重伤”。","classify"=>"认知重评/改变"],
         ];
