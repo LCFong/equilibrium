@@ -22,9 +22,9 @@
         </div>
         
         <div class="grid grid-cols-2 gap-4">
-            <div class="w-full mx-auto sm:px-6 lg:px-8 flex flex-col bg-white rounded shadow p-4 border-t-2 border-blue-500">
+            <!-- <div class="w-full mx-auto sm:px-6 lg:px-8 flex flex-col bg-white rounded shadow p-4 border-t-2 border-blue-500">
                 <vue-echarts class="w-full" :option="quizStackLine" style="height: 800px" ref="chart" />
-            </div>
+            </div> -->
             <div class="w-full mx-auto sm:px-6 lg:px-8 flex flex-col bg-white rounded shadow p-4 border-t-2 border-blue-500">
                 <vue-echarts class="w-full" :option="quizBarChat" style="height: 800px" ref="chart" />
             </div>
@@ -36,9 +36,11 @@
                 </div>
                 <div v-for="con in quizs" class="">
                     <div v-for="item in con.items" class="flex text-base">
-
+                        
                         <div v-if="item.option.type =='options'" class="my-1">
-                            <span class="text-blue-500 px-1">✓</span>{{ item.option.title }}
+                            <span v-if="item.value == 1" class="text-blue-800 px-1">是</span>
+                            <span v-else class="px-1">否</span>
+                            {{ item.option.title }}
                         </div>
                         <div v-if="item.option.type =='input'" class="my-1">
                             <span class="text-slate-600">{{ item.option.title}}</span> <br>

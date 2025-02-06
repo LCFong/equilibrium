@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use App\Models\User;
 use App\Models\Config;
 use App\Models\Mediate;
 use App\Models\MediateItem;
@@ -29,12 +30,14 @@ class MediateController extends Controller
             'category' => $category,
         ]);
     }
-    public function viewAnswer(){
+    public function viewAnswer($userId = null){
         // Mediate 查看 result 頁
-        $mediates = MediateOption::where('user_id', Auth()->user()->id)->with(['items.option','user'])->orderBy('id','desc')->get();
+        $mediates = Mediate::where('user_id', $userId)->with(['items.option','user'])->orderBy('id','desc')->get();
         return Inertia::render('Mediate/ViewAnswer',[
             'mediates' => $mediates,
             'classify' => config('consultation.classify'),
+            'users' => User::all(),
+            'user_id' => $userId,
         ]);
     }
 

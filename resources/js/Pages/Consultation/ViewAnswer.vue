@@ -7,7 +7,9 @@
     </template>
 
     <div class="p-12">
-        
+        {{ chat_source }}
+        <br>
+        {{ classify }}
         <div class="w-full sm:px-6 lg:px-8 flex flex-col gap-2 bg-white rounded shadow p-4 my-4 border-t-2 border-blue-500">
             <div class="p-1 text-base font-semibold">选择用户</div>
             <div class="flex gap-1">
@@ -89,9 +91,12 @@ export default {
             acc[key] = (acc[key] || 0) + 1;
             return acc;
         }, {});
+        
+        console.log(countClassify)         
+        console.log(this.classify)         
 
-        this.chat_source = Object.keys(this.classify).map(key => {
-            const count = countClassify[key] || 0; // 如果計數不存在，則為0
+        this.chat_source = Object.keys(this.classify).map( (key) => {   
+            let count = countClassify[this.classify[key]] || 0; // 如果計數不存在，則為0
             return [count, this.classify[key]];
         });
 
