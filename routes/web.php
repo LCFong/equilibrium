@@ -66,6 +66,7 @@ Route::get('/session', function () {
     $logged = session('logged'); 
     session()->forget('logged');
     return $logged && Auth()->user()->quizToday()->count() <= 0;
+    // return Auth()->user()->quizToday()->count() <= 0;
 });
 
 Route::group([

@@ -34,7 +34,7 @@ onMounted(()=>{
 
 <template>
 
-<div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center background">
+<div v-if="show" class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center background">
     
     <!-- <div v-if="canLogin" class="sm:fixed sm:top-0 sm:end-0 p-6 text-end z-10 bg-white rounded-b-lg shadow-md px-10 w-full " >
         <Link v-if="$page.props.auth.user" :href="route('dashboard')" class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</Link>
@@ -49,7 +49,7 @@ onMounted(()=>{
         </template>
     </div> -->
     <div class="w-full mx-auto">
-      <div class="overflow-y-hidden h-screen" v-if="show">
+      <div class="overflow-y-hidden h-screen" >
         <div class="circle_all ">
             <div class="circle_Q ">
                 <div class="circle_message">
@@ -60,7 +60,12 @@ onMounted(()=>{
             <div class="circle_B "></div>
         </div>
       </div>
-      <div v-if="!show" class="max-w-4xl mx-auto">
+    </div>
+</div>
+<div v-if="!show" class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center message-background">
+
+  <div class="w-full mx-auto">
+    <div class="max-w-4xl mx-auto ">
         <p class="font-bold text-2xl text-center">学生心理健康养护平台</p>
         <p class="font-bold text-xl">这个平台是为大学生压力感知及情绪调节所设计，目标是为了在日常生活中感知和觉察压力来源，有效的预防心理问题的产生。</p>
         <a-divider />
@@ -70,7 +75,7 @@ onMounted(()=>{
           <a class="py-2 px-6 rounded-lg shadow border-1 bg-white hover:bg-slate-50" :href="route('login')">开始</a>
         </div>
       </div>
-    </div>
+  </div>
 </div>
 </template>
 
@@ -176,4 +181,10 @@ onMounted(()=>{
     background: rgb(184, 240, 206);
     background: linear-gradient(225deg, rgba(184, 240, 206, 0.5746673669467788) 0%, rgba(220, 252, 240, 0.4766281512605042) 25%, rgba(235, 246, 245, 0.40940126050420167) 60%, rgba(208, 250, 250, 0.4682247899159664) 100%);
 }
+
+.message-background {
+  background: rgb(255, 214, 186);
+  background: linear-gradient(135deg, rgba(224, 168, 130, 0.3) 0%, rgba(255, 227, 186, 0.583) 25%, rgba(255, 214, 186, 0.538) 60%, rgba(255, 215, 200, 0.8) 100%);
+}
+
 </style>

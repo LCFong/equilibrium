@@ -11,6 +11,6 @@ class DashboardController extends Controller
 {
     public function index(){
         
-        return redirect()->route('member.consultations.index');
+        return redirect()->route('dashboard');
     }
 }
