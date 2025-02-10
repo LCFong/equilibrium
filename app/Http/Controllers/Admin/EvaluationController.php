@@ -10,6 +10,9 @@ use App\Models\User;
 use App\Models\Evaluation;
 use App\Models\EvaluationQuestion;
 
+use App\Exports\EvaluationExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 class EvaluationController extends Controller
 {
     /**
@@ -107,5 +110,87 @@ class EvaluationController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    
+    public function export( ){
+        
+        $user = User::with('evaluations.items.question')->get();
+
+        $quesitons = EvaluationQuestion::get();
+
+        $pssOptions = config('evaluation.pssOptions');
+        $wellbeingOptions = config('evaluation.wellbeingOptions');
+        $learningOptions = config('evaluation.learningOptions');
+
+        $data = array_map(function($item) {
+            return $item['code'];
+        }, $quesitons->toArray());
+
+        $userCount = $user->count();
+        $result = [];
+
+        foreach ($data as $d) {
+            $result[$d] = array_fill(0, $userCount, 0);
+        }
+        foreach( $user as $k => $u ){
+
+            foreach($u->evaluations as $e){
+                
+                foreach($e->items->toArray() as $i){
+
+                    echo json_encode( $i['question']['category'] );
+                    // die();
+                    if( $i['question']['code'] ){
+
+                        // 從Option中找label
+                        if( $i['question']['category'] == 'pss' ){
+                            $options = $pssOptions;
+                        }else if( $i['question']['category'] == 'wellbeing' ){
+                            $options = $wellbeingOptions;
+                        }else if( $i['question']['category'] == 'learning' ){
+                            $options = $learningOptions;
+                        }
+                        $label = null; 
+                        foreach ($options as $option) {
+                            if ($option['value'] == $i['value']) {
+                                $label = $option['label'];
+                            }
+                        }
+
+                        $result[$i['question']['code'] ][$k] = $label; 
+                    }
+
+                }
+            }   
+        }
+
+        $stringResult = [];
+        foreach($result as $k => $r){
+
+            // 根據code加問題的title
+            foreach ($quesitons as $item) {
+                if ($item->code === $k) {
+                    
+                    if( is_numeric($r[0] ) ){
+                        // 加title
+                        array_unshift($result[$k], $item->title );
+                    }
+                }
+            }
+        }
+
+        foreach($result as $k => $r){
+            // 數字轉string
+            $stringResult[$k] = array_map('strval', $r);
+        }
+        
+        // 加user name header
+        array_unshift($stringResult, array_column($user->toArray(),'name') );
+        array_unshift($stringResult[0], "");
+        
+        $instance=new EvaluationExport();
+        $instance->set_export_data($stringResult);
+        return Excel::download($instance, '问卷.xlsx');
     }
 }

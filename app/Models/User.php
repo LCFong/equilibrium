@@ -86,6 +86,10 @@ class User extends Authenticatable
         return $this->hasMany(Mediate::class);
     }
 
+    public function evaluations(){
+        return $this->hasMany(Evaluation::class);
+    }
+
     public function quizzes(){
         return $this->hasMany(Quiz::class);
     }

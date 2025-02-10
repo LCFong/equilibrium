@@ -41,9 +41,10 @@ return [
 
     'mediate' => [
         
+        'selection' => '情境选择',
         // -----------
 
-
+        'modification' => '情境修正',
         // -----------
 
         'focus' => '注意集中',

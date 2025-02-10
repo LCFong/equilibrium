@@ -131,7 +131,7 @@ class ConsultationController extends Controller
                     }
                     if( $i->option?->type == 'input'){
                         // 加文字
-                    echo $i->option?->code."  /// ".json_encode($result[$i->option?->code][$k]);
+                    // echo $i->option?->code."  /// ".json_encode($result[$i->option?->code][$k]);
                         is_string( $result[$i->option?->code][$k] ) ?  
                         $result[$i->option?->code][$k] = $result[$i->option?->code][$k].",   ". $i->value : 
                         $result[$i->option?->code][$k] =  $i->value; 
@@ -166,6 +166,6 @@ class ConsultationController extends Controller
         
         $instance=new ConsultationExport();
         $instance->set_export_data($stringResult);
-        return Excel::download($instance, 'Consultation.xlsx');
+        return Excel::download($instance, '压力感知.xlsx');
     }
 }

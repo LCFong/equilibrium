@@ -46,7 +46,7 @@ export default {
                             </svg>
                         </div>
                         <div class="flex flex-col gap-1">
-                            <span class="text-xl font-bold leading-none text-gray-900 sm:text-2xl">注意部署</span>
+                            <span class="text-xl font-bold leading-none text-gray-900 sm:text-2xl">情境选择</span>
                             <h3 class="text-base font-normal text-gray-500">改变注意力的方向（如分心或集中注意）来调节情绪。</h3>
                         </div>
                     </div>
@@ -61,7 +61,7 @@ export default {
             </div>
             <!-- ------ -->
 
-            <div class="flex flex-col shadow-lg shadow-gray-200 rounded-2xl hover:scale-105 transition-transform cursor-pointer" @click="redirectUrl( route('admin.mediates.answer', 'modification'))">
+            <div class="flex flex-col shadow-lg shadow-gray-200 rounded-2xl hover:scale-105 transition-transform cursor-pointer" @click="redirectUrl( route('admin.mediates.answer', 'revision'))">
                 <div class=" p-4 min-h-30 flex items-center justify-start  rounded-t-2xl bg-white ">
                     <div class="flex gap-4 items-center">
                         <div class="inline-flex justify-center items-center w-16 h-16 text-white bg-gradient-to-br from-pink-500 to-violet-300 rounded-lg">
