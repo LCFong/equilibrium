@@ -11,6 +11,9 @@ use App\Models\Consultation;
 use App\Models\ConsultationItem;
 use App\Models\ConsultationOption;
 
+use App\Exports\ConsultationExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 class ConsultationController extends Controller
 {
     /**
@@ -97,5 +100,72 @@ class ConsultationController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    
+    public function export( ){
+        
+        $user = User::with('consultations.items.option')->get();
+
+        $options = ConsultationOption::get();
+
+        $data = array_map(function($item) {
+            return $item['code'];
+        }, $options->toArray());
+
+        $userCount = $user->count();
+        $result = [];
+
+        foreach ($data as $d) {
+            $result[$d] = array_fill(0, $userCount, 0);
+        }
+        
+        foreach( $user as $k => $u ){
+
+            foreach($u->consultations as $c){
+                
+                foreach($c->items as $i){
+
+                    if( $i->option?->code ){
+                        // 計次數
+                        $result[$i->option?->code][$k]++; 
+                    }
+                    if( $i->option?->type == 'input'){
+                        // 加文字
+                    echo $i->option?->code."  /// ".json_encode($result[$i->option?->code][$k]);
+                        is_string( $result[$i->option?->code][$k] ) ?  
+                        $result[$i->option?->code][$k] = $result[$i->option?->code][$k].",   ". $i->value : 
+                        $result[$i->option?->code][$k] =  $i->value; 
+                    }
+                }
+            }   
+        }
+
+        $stringResult = [];
+        foreach($result as $k => $r){
+
+            // 根據code加問題的title
+            foreach ($options as $item) {
+                if ($item->code === $k) {
+                    
+                    if( is_numeric($r[0] ) ){
+                        // 加title
+                        array_unshift($result[$k], $item->title );
+                    }
+                }
+            }
+        }
+
+        foreach($result as $k => $r){
+            // 數字轉string
+            $stringResult[$k] = array_map('strval', $r);
+        }
+        
+        // 加user name header
+        array_unshift($stringResult, array_column($user->toArray(),'name') );
+        array_unshift($stringResult[0], "");
+        
+        $instance=new ConsultationExport();
+        $instance->set_export_data($stringResult);
+        return Excel::download($instance, 'Consultation.xlsx');
     }
 }

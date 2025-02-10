@@ -120,6 +120,7 @@ Route::group([
     
     Route::get('consultation/view_answer/{user_id?}', [App\Http\Controllers\Admin\ConsultationController::class,'viewAnswer'])->name('admin.consultations.view_answer');
     Route::get('consultation/answer/{category}', [App\Http\Controllers\Admin\ConsultationController::class,'answer'])->name('admin.consultations.answer');
+    Route::get('consultation/export', [App\Http\Controllers\Admin\ConsultationController::class,'export'])->name('admin.consultations.export');
     
     Route::get('evaluation/view_answer/{user_id?}', [App\Http\Controllers\Admin\EvaluationController::class,'viewAnswer'])->name('admin.evaluations.view_answer');
     Route::get('evaluation/answer/{category}', [App\Http\Controllers\Admin\EvaluationController::class,'answer'])->name('admin.evaluations.answer');
@@ -127,7 +128,7 @@ Route::group([
     Route::get('mediate/view_answer/{user_id?}', [App\Http\Controllers\Admin\MediateController::class,'viewAnswer'])->name('admin.mediates.view_answer');
     Route::get('mediates/answer/{category}', [App\Http\Controllers\Admin\MediateController::class,'answer'])->name('admin.mediates.answer');
     Route::resource('mediate_items', App\Http\Controllers\Admin\MediateItemController::class)->names('admin.mediate_items');
-
+    Route::get('mediate/export', [App\Http\Controllers\Admin\MediateController::class,'export'])->name('admin.mediates.export');
     
     Route::resource('consultations', App\Http\Controllers\Admin\ConsultationController::class)->names('admin.consultations');
     Route::resource('evaluations', App\Http\Controllers\Admin\EvaluationController::class)->names('admin.evaluations');
@@ -135,6 +136,7 @@ Route::group([
     Route::resource('mediates', App\Http\Controllers\Admin\MediateController::class)->names('admin.mediates');
     Route::resource('consultation_items', App\Http\Controllers\Admin\ConsultationItemController::class)->names('admin.consultation_items');
     Route::resource('evaluation_items', App\Http\Controllers\Admin\EvaluationItemController::class)->names('admin.evaluation_items');
+    Route::get('evaluation/export', [App\Http\Controllers\Admin\EvaluationController::class,'export'])->name('admin.evaluations.export');
 
     // Quiz
     Route::get('quizs/get_option', [App\Http\Controllers\Admin\QuizController::class,'getOption'])->name('admin.quizs.get_option');
@@ -142,6 +144,7 @@ Route::group([
     Route::get('quizs/answer', [App\Http\Controllers\Admin\QuizController::class,'answer'])->name('admin.quizs.answer');
     Route::resource('quizs', App\Http\Controllers\Admin\QuizController::class)->names('admin.quizs');
     Route::resource('quiz_items', App\Http\Controllers\Admin\QuizItemController::class)->names('admin.quiz_items');
+    Route::get('quiz/export', [App\Http\Controllers\Admin\QuizController::class,'export'])->name('admin.quizs.export');
 
     Route::get('/session', function () {
         

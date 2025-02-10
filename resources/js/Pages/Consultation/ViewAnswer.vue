@@ -7,9 +7,10 @@
     </template>
 
     <div class="p-12">
-        {{ chat_source }}
+        
+        <a-button :href="route('admin.consultations.export')" class="ant-btn">汇出数据</a-button>
         <br>
-        {{ classify }}
+        
         <div class="w-full sm:px-6 lg:px-8 flex flex-col gap-2 bg-white rounded shadow p-4 my-4 border-t-2 border-blue-500">
             <div class="p-1 text-base font-semibold">选择用户</div>
             <div class="flex gap-1">

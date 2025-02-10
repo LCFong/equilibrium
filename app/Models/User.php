@@ -78,6 +78,14 @@ class User extends Authenticatable
         // });
     }
 
+    public function consultations(){
+        return $this->hasMany(Consultation::class);
+    }
+
+    public function mediates(){
+        return $this->hasMany(Mediate::class);
+    }
+
     public function quizzes(){
         return $this->hasMany(Quiz::class);
     }
