@@ -94,7 +94,7 @@
             }, {});
     
             this.chat_source = Object.keys( this.classify ).map(key => {
-                const count = countClassify[key] || 0; // 如果計數不存在，則為0
+                let count = countClassify[this.classify[key]] || 0; // 如果計數不存在，則為0
                 return [count, this.classify[key]];
             });
     

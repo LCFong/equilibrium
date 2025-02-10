@@ -197,60 +197,61 @@ onMounted(() => {
                             
                             <a-divider></a-divider>
 
-                            
-                            <a-menu-item key="member.mediates.index">
-                                <template #icon>
-                                    <HomeOutlined  class="!text-2xl " />
-                                </template>
-                                <NavLink :href="route('member.mediates.index')" :active="route().current('member.mediates.index')" class="!text-lg !p-0 ">
-                                    情绪调解
-                                </NavLink>
-                            </a-menu-item>
-                            <a-menu-item key="member.mediates.answer.selection" >
-                                <template #icon>
-                                    <div class="icon">
-                                    </div>
-                                </template>
-                                <NavLink :href="route('member.mediates.answer', 'selection')" :active="route().current('member.mediates.answer')"  class="!text-lg !p-0 ">
-                                    情境选择
-                                </NavLink>
-                            </a-menu-item>
-                            <a-menu-item key="member.mediates.answer.revision" >
-                                <template #icon>
-                                    <div class="icon">
-                                    </div>
-                                </template>
-                                <NavLink :href="route('member.mediates.answer', 'revision')" :active="route().current('member.mediates.answer')"  class="!text-lg !p-0 ">
-                                    情境修正
-                                </NavLink>
-                            </a-menu-item>
-                            <a-menu-item key="member.mediates.answer.attention" >
-                                <template #icon>
-                                    <div class="icon">
-                                    </div>
-                                </template>
-                                <NavLink :href="route('member.mediates.answer', 'attention')" :active="route().current('member.mediates.answer')"  class="!text-lg !p-0 ">
-                                    注意部署
-                                </NavLink>
-                            </a-menu-item>
-                            <a-menu-item key="member.mediates.answer.cognition" >
-                                <template #icon>
-                                    <div class="icon">
-                                    </div>
-                                </template>
-                                <NavLink :href="route('member.mediates.answer', 'cognition')" :active="route().current('member.mediates.answer')"  class="!text-lg !p-0 ">
-                                    认知重评
-                                </NavLink>
-                            </a-menu-item>
-                            <a-menu-item key="member.mediates.answer.reaction" >
-                                <template #icon>
-                                    <div class="icon">
-                                    </div>
-                                </template>
-                                <NavLink :href="route('member.mediates.answer', 'reaction')" :active="route().current('member.mediates.answer')"  class="!text-lg !p-0 ">
-                                    反应调节
-                                </NavLink>
-                            </a-menu-item>
+                            <template v-if="$page.props.mediate">
+                                <a-menu-item key="member.mediates.index">
+                                    <template #icon>
+                                        <HomeOutlined  class="!text-2xl " />
+                                    </template>
+                                    <NavLink :href="route('member.mediates.index')" :active="route().current('member.mediates.index')" class="!text-lg !p-0 ">
+                                        情绪调解
+                                    </NavLink>
+                                </a-menu-item>
+                                <a-menu-item key="member.mediates.answer.selection" >
+                                    <template #icon>
+                                        <div class="icon">
+                                        </div>
+                                    </template>
+                                    <NavLink :href="route('member.mediates.answer', 'selection')" :active="route().current('member.mediates.answer')"  class="!text-lg !p-0 ">
+                                        情境选择
+                                    </NavLink>
+                                </a-menu-item>
+                                <a-menu-item key="member.mediates.answer.revision" >
+                                    <template #icon>
+                                        <div class="icon">
+                                        </div>
+                                    </template>
+                                    <NavLink :href="route('member.mediates.answer', 'revision')" :active="route().current('member.mediates.answer')"  class="!text-lg !p-0 ">
+                                        情境修正
+                                    </NavLink>
+                                </a-menu-item>
+                                <a-menu-item key="member.mediates.answer.attention" >
+                                    <template #icon>
+                                        <div class="icon">
+                                        </div>
+                                    </template>
+                                    <NavLink :href="route('member.mediates.answer', 'attention')" :active="route().current('member.mediates.answer')"  class="!text-lg !p-0 ">
+                                        注意部署
+                                    </NavLink>
+                                </a-menu-item>
+                                <a-menu-item key="member.mediates.answer.cognition" >
+                                    <template #icon>
+                                        <div class="icon">
+                                        </div>
+                                    </template>
+                                    <NavLink :href="route('member.mediates.answer', 'cognition')" :active="route().current('member.mediates.answer')"  class="!text-lg !p-0 ">
+                                        认知重评
+                                    </NavLink>
+                                </a-menu-item>
+                                <a-menu-item key="member.mediates.answer.reaction" >
+                                    <template #icon>
+                                        <div class="icon">
+                                        </div>
+                                    </template>
+                                    <NavLink :href="route('member.mediates.answer', 'reaction')" :active="route().current('member.mediates.answer')"  class="!text-lg !p-0 ">
+                                        反应调节
+                                    </NavLink>
+                                </a-menu-item>
+                            </template>
 
                             <a-divider></a-divider>
 

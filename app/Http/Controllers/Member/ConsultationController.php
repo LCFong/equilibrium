@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\Consultation;
 use App\Models\ConsultationItem;
 use App\Models\ConsultationOption;
+use Illuminate\Support\Facades\Session;
 
 class ConsultationController extends Controller
 {
@@ -22,6 +23,11 @@ class ConsultationController extends Controller
         return Inertia::render('Member/Consultation/Index',[
             
         ]);
+    }
+
+    public function to_mediate( Request $request ){
+        session()->put('medaite', true);
+        return redirect()->route( 'member.mediates.index') ;
     }
 
     public function answer($category = null ){
@@ -38,7 +44,7 @@ class ConsultationController extends Controller
         $consultations = Consultation::where('user_id', $userId)->with(['items.option','user'])->orderBy('id','desc')->get();
         return Inertia::render('Consultation/ViewAnswer',[
             'consultations' => $consultations,
-            'classify' => config('consultation.classify'),
+            'classify' => config('classify.consultation'),
             'users' => User::all(),
         ]);
     }
@@ -51,7 +57,7 @@ class ConsultationController extends Controller
         //
         return Inertia::render('Consultation/CreateOption',[
             'options' => ConsultationOption::all(),
-            'classify' => config('consultation.classify'),
+            'classify' => config('classify.consultation'),
         ]);
     }
 

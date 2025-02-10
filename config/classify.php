@@ -1,8 +1,9 @@
+
 <?php
 
 return [
     
-    'classify' => [
+    'consultation' => [
         
         'positive' => '正向作用',
         'reverse' => '反向作用',
@@ -36,5 +37,30 @@ return [
 
         
         'expanding_data' => '扩大数据类型',
+    ],
+
+    'mediate' => [
+        
+        // -----------
+
+
+        // -----------
+
+        'focus' => '注意集中',
+        'distraction' => '注意分散',
+        'meditation' => '冥想',
+        'refocus' => '重新聚焦积极因素',
+        'predictive_attention' => '预测性注意管理',
+        'ignore_block' => '忽略与屏蔽',
+        'self_suggestion' => '自我暗示',
+        // -----------
+        
+        'cognitive_reappraisal' => '认知重评/改变',
+        // -----------
+        
+        'emotional_approach' => '情绪方式',
+        'socially_behavior' => '社会适应性行为',
+        'physical' => '物理方式',
+        // -----------
     ]
 ];

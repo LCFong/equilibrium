@@ -36,7 +36,7 @@ class ConsultationController extends Controller
         $consultations = Consultation::where('user_id', $userId)->with(['items.option','user'])->orderBy('id','desc')->get();
         return Inertia::render('Consultation/ViewAnswer',[
             'consultations' => $consultations,
-            'classify' => config('consultation.classify'),
+            'classify' => config('classify.consultation'),
             'users' => User::all(),
             'user_id' => $userId,
         ]);
@@ -50,7 +50,7 @@ class ConsultationController extends Controller
         //
         return Inertia::render('Consultation/CreateOption',[
             'options' => ConsultationOption::all(),
-            'classify' => config('consultation.classify'),
+            'classify' => config('classify.consultation'),
         ]);
     }
 

@@ -11,7 +11,7 @@ import { i18nVue } from 'laravel-vue-i18n'
 import LaravelPermissionToVueJS from 'laravel-permission-to-vuejs'
 import  RolePermission  from './Directives/RolePermission.js';
 
-const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+const appName = import.meta.env.VITE_APP_NAME || 'equillibrium';
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,

@@ -91,6 +91,8 @@ Route::group([
     Route::resource('consultations', App\Http\Controllers\Member\ConsultationController::class)->names('member.consultations');
     Route::resource('consultation_items', App\Http\Controllers\Member\ConsultationItemController::class)->names('member.consultation_items');
     Route::get('consultation/answer/{category}', [App\Http\Controllers\Member\ConsultationController::class,'answer'])->name('member.consultations.answer');
+    Route::get('consultation/toMediate', [App\Http\Controllers\Member\ConsultationController::class,'to_mediate'])->name('member.consultations.toMediate');
+
 
     Route::resource('mediate_items', App\Http\Controllers\Member\MediateItemController::class)->names('member.mediate_items');
     Route::get('mediates/answer/{category}', [App\Http\Controllers\Member\MediateController::class,'answer'])->name('member.mediates.answer');
@@ -124,7 +126,8 @@ Route::group([
     
     Route::get('mediate/view_answer/{user_id?}', [App\Http\Controllers\Admin\MediateController::class,'viewAnswer'])->name('admin.mediates.view_answer');
     Route::get('mediates/answer/{category}', [App\Http\Controllers\Admin\MediateController::class,'answer'])->name('admin.mediates.answer');
-    
+    Route::resource('mediate_items', App\Http\Controllers\Admin\MediateItemController::class)->names('admin.mediate_items');
+
     
     Route::resource('consultations', App\Http\Controllers\Admin\ConsultationController::class)->names('admin.consultations');
     Route::resource('evaluations', App\Http\Controllers\Admin\EvaluationController::class)->names('admin.evaluations');

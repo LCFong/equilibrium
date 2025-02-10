@@ -40,6 +40,9 @@ class HandleInertiaRequests extends Middleware
             'lang' => session('applocale'),
             'user.roles' => $request->user() ? $request->user()->roles->pluck('name') : [],
             //
+            // $request->session()->get('data'),
+            // Session::set('mediate', false),
+            'mediate' => fn () => $request->session()->get('medaite', false)
         ]);
     }
 }

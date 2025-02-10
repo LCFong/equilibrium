@@ -142,7 +142,7 @@ export default {
                 </div>
             </div>
             <div class="col-span-full flex  justify-center">
-                <a-button class="w-[60vw] md:w-[40vw] h-10 shadow rounded-lg  hover:scale-110 hover:bg-slate-100" @click="redirectUrl( route('member.mediates.index'))">下一步 <ArrowRightOutlined /> </a-button>
+                <a-button class="w-[60vw] md:w-[40vw] h-10 shadow rounded-lg  hover:scale-110 hover:bg-slate-100" @click="redirectUrl( route('member.consultations.toMediate'))">下一步 <ArrowRightOutlined /> </a-button>
             </div>
         </div>
     </div>

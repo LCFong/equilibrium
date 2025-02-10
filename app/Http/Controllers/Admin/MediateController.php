@@ -35,7 +35,7 @@ class MediateController extends Controller
         $mediates = Mediate::where('user_id', $userId)->with(['items.option','user'])->orderBy('id','desc')->get();
         return Inertia::render('Mediate/ViewAnswer',[
             'mediates' => $mediates,
-            'classify' => config('consultation.classify'),
+            'classify' => config('classify.mediate'),
             'users' => User::all(),
             'user_id' => $userId,
         ]);
@@ -49,7 +49,7 @@ class MediateController extends Controller
         //
         return Inertia::render('Mediate/CreateOption',[
             'options' => MediateOption::all(),
-            'classify' => config('consultation.classify'),
+            'classify' => config('classify.mediate'),
         ]);
     }
 
