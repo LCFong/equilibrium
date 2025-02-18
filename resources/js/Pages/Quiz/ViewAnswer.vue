@@ -29,12 +29,13 @@
                 <vue-echarts class="w-full" :option="quizBarChat" style="height: 800px" ref="chart" />
             </div>
             <div class="w-full mx-auto sm:px-6 lg:px-8 flex flex-col bg-white rounded shadow p-4 border-t-2 border-green-500">
-                <div v-if="quizs.length > 0">
-                    <span class="text-base font-bold">{{ quizs[0].user.name }}</span>&nbsp;
-                    <span class="">{{ quizs[0].user.email }}</span>&nbsp;
-                    <span class="text-slate-400">@{{ displayDateTime(quizs[0].created_at) }}</span>
-                </div>
+                
                 <div v-for="con in quizs" class="">
+                    <div >
+                        <span class="text-base font-bold">{{ con.user.name }}</span>&nbsp;
+                        <span class="">{{ con.user.email }}</span>&nbsp;
+                        <span class="text-slate-400">@{{ displayDateTime(con.created_at) }}</span>
+                    </div>
                     <div v-for="item in con.items" class="flex text-base">
                         
                         <div v-if="item.option.type =='options'" class="my-1">

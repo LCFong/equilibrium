@@ -29,13 +29,15 @@
                 <vue-echarts class="w-full" :option="consultationChat" style="height: 800px" ref="chart" />
             </div> -->
             <div class="w-full mx-auto sm:px-6 lg:px-8 flex flex-col bg-white rounded shadow p-4 border-t-2 border-green-500">
-                <div v-if="evaluations.length > 0">
-                    <span class="text-base font-bold">{{ evaluations[0].user.name }}</span>&nbsp;
-                    <span class="">{{ evaluations[0].user.email }}</span>&nbsp;
-                    <span class="text-slate-400">@{{ displayDate(evaluations[0].created_at) }}</span>
-                </div>
+                
                 <a-divider class="m-3" />
                 <div v-for="eva in evaluations" class="">
+
+                    <div >
+                        <span class="text-base font-bold">{{ eva.user.name }}</span>&nbsp;
+                        <span class="">{{ eva.user.email }}</span>&nbsp;
+                        <span class="text-slate-400">@{{ displayDate(eva.created_at) }}</span>
+                    </div>
                     <div v-for="item in eva.items" class="flex text-base">
 
                         <div v-if="item.question.type =='seven_options'" class="my-1">
