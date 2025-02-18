@@ -81,9 +81,12 @@ Route::group([
         return redirect()->route('member.consultations.index');
     });
 
+
     Route::get('quizs/get_option', [App\Http\Controllers\Member\QuizController::class,'getOption'])->name('member.quizs.get_option');
     Route::get('quizs/answer', [App\Http\Controllers\Member\QuizController::class,'answer'])->name('member.quizs.answer');
     Route::resource('member/quiz_items', App\Http\Controllers\Member\QuizItemController::class)->names('member.quiz_items');
+    Route::resource('quizs', App\Http\Controllers\Member\QuizController::class)->names('member.quizs');
+
 
     Route::resource('evaluations', App\Http\Controllers\Member\EvaluationController::class)->names('member.evaluations');
     Route::get('evaluation/answer', [App\Http\Controllers\Member\EvaluationController::class,'answer'])->name('member.evaluations.answer');

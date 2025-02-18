@@ -18,6 +18,7 @@ class QuizController extends Controller
      */
     public function index()
     {
+        
         return Inertia::render('Quiz/Index',[
 
         ]);

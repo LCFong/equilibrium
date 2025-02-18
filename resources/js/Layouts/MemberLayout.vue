@@ -284,7 +284,8 @@ onMounted(() => {
                         <div>
                             <div class="flex gap-4">
 
-                                <AnswerModal :open="open"/>
+                                <!-- 小問題 -->
+                                <!-- <AnswerModal :open="open"/> -->
 
                                 <!-- Authentication -->
                                 <a href="#" class="text-xl text-blue-600 hover:text-blue-800" @click="logout">

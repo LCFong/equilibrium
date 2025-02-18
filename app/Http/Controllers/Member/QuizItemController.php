@@ -48,7 +48,7 @@ class QuizItemController extends Controller
                 'value' => $v
             ]);
         }
-        return redirect()->back();
+        return redirect()->route('member.consultations.index');
     }
 
     /**

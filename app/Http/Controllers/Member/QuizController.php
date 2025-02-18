@@ -26,7 +26,8 @@ class QuizController extends Controller
     public function answer(){
         // Quiz 作答頁
         $options = QuizOption::get();
-        return Inertia::render('Quiz/Answer',[
+        
+        return Inertia::render('Member/Quiz/Answer',[
             'options' => $options,
         ]);
     }
@@ -41,9 +42,6 @@ class QuizController extends Controller
     public function create()
     {
         //
-        return Inertia::render('Quiz/CreateOption',[
-            'options' => QuizOption::all(),
-        ]);
     }
 
     /**
@@ -52,10 +50,6 @@ class QuizController extends Controller
     public function store(Request $request)
     {
         //
-        $data = $request->all();
-        // dd($data);
-        QuizOption::insert($data);
-        return redirect()->back();
     }
 
     /**

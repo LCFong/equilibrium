@@ -19,6 +19,8 @@ class DashboardController extends Controller
             // 就一次login就先做問卷
             if ( !Auth()->user()->do_evaluation_first ) {
                 return redirect()->route('member.evaluations.answer');
+            }else{
+                return redirect()->route('member.quizs.answer');
             }
 
             // 跳壓力感知

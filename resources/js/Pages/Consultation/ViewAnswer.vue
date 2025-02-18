@@ -30,18 +30,23 @@
                 <vue-echarts class="w-full" :option="consultationChat" style="height: 800px" ref="chart" />
             </div>
             <div class="w-full mx-auto sm:px-6 lg:px-8 flex flex-col bg-white rounded shadow p-4 border-t-2 border-green-500">
-                <div v-if="consultations.length > 0">
+                <!-- <div v-if="consultations.length > 0">
                     <span class="text-base font-bold">{{ consultations[0].user.name }}</span>&nbsp;
                     <span class="">{{ consultations[0].user.email }}</span>&nbsp;
                     <span class="text-slate-400">@{{ displayDate(consultations[0].created_at) }}</span>
-                </div>
+                </div> -->
                 <div v-for="con in consultations" class="">
+                    <div>
+                        <span class="text-base font-bold">{{ con.user.name }}</span>&nbsp;
+                        <span class="">{{ con.user.email }}</span>&nbsp;
+                        <span class="text-slate-400">@{{ displayDate(con.created_at) }}</span>
+                    </div>
                     <div v-for="item in con.items" class="flex text-base">
 
-                        <div v-if="item.option.type =='options'" class="my-1">
+                        <div v-if="item.option?.type =='options'" class="my-1">
                             <span class="text-blue-500 px-1">✓</span>{{ item.option.title }}
                         </div>
-                        <div v-if="item.option.type =='input'" class="my-1">
+                        <div v-if="item.option?.type =='input'" class="my-1">
                             <span class="text-slate-600">{{ item.option.title}}</span> <br>
                             <span class="underline font-semibold">{{ item.value }}</span>
                         </div>
@@ -81,10 +86,11 @@ export default {
     created() {
         this.selectedUserId = this.user_id?parseInt(this.user_id):''
 
+        console.log(this.consultations)
         this.consultations.forEach(con => {
 
             con.items.forEach(item => {
-                this.consultation_classify.push(item.option.classify)
+                this.consultation_classify.push(item.option?.classify)
             })
         });
 
