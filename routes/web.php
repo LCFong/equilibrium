@@ -81,6 +81,8 @@ Route::group([
         return redirect()->route('member.consultations.index');
     });
 
+    Route::get('/user/edit', [App\Http\Controllers\Member\UserController::class, 'edit'])->name('member.users.edit');
+    Route::post('/user/update', [App\Http\Controllers\Member\UserController::class, 'update'])->name('member.users.update');
 
     Route::get('quizs/get_option', [App\Http\Controllers\Member\QuizController::class,'getOption'])->name('member.quizs.get_option');
     Route::get('quizs/answer', [App\Http\Controllers\Member\QuizController::class,'answer'])->name('member.quizs.answer');
@@ -115,6 +117,9 @@ Route::group([
 ], function () {
 
     Route::get('/',[App\Http\Controllers\Admin\DashboardController::class,'index'])->name('admin.dashboard');
+
+    Route::get('/users', [App\Http\Controllers\Admin\UserController::class, 'index'])->name('admin.users.index');
+    Route::post('/users/{user}/change-password', [App\Http\Controllers\Admin\UserController::class, 'changePassword'])->name('admin.users.change_password');
 
     Route::get('breath', [App\Http\Controllers\Admin\BreathController::class,'index'])->name('admin.breath.index');
 

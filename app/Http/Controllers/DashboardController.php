@@ -15,6 +15,9 @@ class DashboardController extends Controller
             // Admin
             return redirect()->route('admin.consultations.index');
         }else{
+            if( Auth()->user()->gender == null || Auth()->user()->education == null ){
+                return redirect()->route('member.users.edit');
+            }
             // Member
             // 就一次login就先做問卷
             if ( !Auth()->user()->do_evaluation_first ) {
