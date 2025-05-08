@@ -39,14 +39,18 @@
                         <span class="text-slate-400">@{{ displayDate(eva.created_at) }}</span>
                     </div>
                     <div v-for="item in eva.items" class="flex text-base">
-
-                        <div v-if="item.question.type =='seven_options'" class="my-1">
+                        
+                        <div v-if="item.question.category =='pss'" class="my-1">
                             {{ item.question.title }}
-                            <span class="underline font-semibold">{{ seven_options[item.value]? seven_options[item.value].label:'' }}</span>
+                            <span class="underline font-semibold">{{ pssOptions[item.value]? pssOptions[item.value].label:'' }}</span>
                         </div>
-                        <div v-if="item.question.type =='input'" class="my-1">
-                            <span class="text-slate-600">{{ item.question.title}}</span> <br>
-                            <span class="underline font-semibold">{{ item.value }}</span>
+                        <div v-if="item.question.category =='wellbeing'" class="my-1">
+                            {{ item.question.title }}
+                            <span class="underline font-semibold">{{ wellbeingOptions[item.value]? wellbeingOptions[item.value].label:'' }}</span>
+                        </div>
+                        <div v-if="item.question.category =='learning'" class="my-1">
+                            {{ item.question.title }}
+                            <span class="underline font-semibold">{{ learningOptions[item.value]? learningOptions[item.value].label:'' }}</span>
                         </div>
                     </div>
                     <a-divider class="m-3" />
@@ -73,7 +77,7 @@ export default {
         VueEcharts,
         ...AntdIcons,
     },
-    props: ["evaluations", "classify", "users", "user_id", "seven_options"],
+    props: ["evaluations", "classify", "users", "user_id", "pssOptions", "wellbeingOptions", "learningOptions"],
     data() {
         return {
             consultation_classify: [],

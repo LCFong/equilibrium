@@ -34,7 +34,8 @@ class ConsultationItemController extends Controller
         $consultation = Consultation::create(['user_id' => $user_id]);
         
         $consultation->items()->createMany($data);
-        return redirect()->back();
+        // return redirect()->back();
+        return redirect()->route('member.consultations.toMediate');
     }
 
     /**

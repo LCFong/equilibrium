@@ -39,7 +39,10 @@ class EvaluationController extends Controller
             'evaluations' => $evaluations,
             'users' => User::all(),
             'user_id' => $userId,
-            'seven_options' => config('evaluation.seven_options')
+            // 'seven_options' => config('evaluation.seven_options'),
+            'pssOptions' => config('evaluation.pssOptions'),
+            'wellbeingOptions' => config('evaluation.wellbeingOptions'),
+            'learningOptions' => config('evaluation.learningOptions')
         ]);
     }
 
