@@ -82,8 +82,8 @@ export default {
             barchat_source: [],
 
             classify: {
-                'positive': '正面',
-                'negative': '反面',
+                '0': '否',
+                '1': '是',
             },
             
             linechat_source:[
@@ -112,14 +112,17 @@ export default {
             this.quizs.forEach(con => {
 
                 con.items.forEach(item => {
-                    this.quiz_classify.push(item.option.property)
+                    // this.quiz_classify.push(item.option.property)
+                    this.quiz_classify.push(item.value)
                 })
             });
 
+            // console.log( this.quiz_classify )
             let countClassify = this.quiz_classify.reduce((acc, key) => {
                 acc[key] = (acc[key] || 0) + 1;
                 return acc;
             }, {});
+            // console.log( countClassify )
 
             this.barchat_source = Object.keys(this.classify).map(key => {
                 const count = countClassify[key] || 0; // 如果計數不存在，則為0
@@ -134,6 +137,7 @@ export default {
     },
     computed: {
         stackLineResult(){
+            console.log("123")
             let result = {
                 positive: [],
                 negative: [],
@@ -156,9 +160,14 @@ export default {
 
                     // 如果該日期在有效日期範圍內，則進行計數
                     if (dateIndex !== -1) {
-                        if (item.option.property === "positive") {
+                        // if (item.option.property === "positive") {
+                        //     result.positive[dateIndex]++;
+                        // } else if (item.option.property === "negative") {
+                        //     result.negative[dateIndex]++;
+                        // }
+                        if (item.value === 1) {
                             result.positive[dateIndex]++;
-                        } else if (item.option.property === "negative") {
+                        } else if (item.value === 0) {
                             result.negative[dateIndex]++;
                         }
                     }
