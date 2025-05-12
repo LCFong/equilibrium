@@ -34,6 +34,9 @@ class MediateItemController extends Controller
         $mediate = Mediate::create(['user_id' => $user_id]);
         
         $mediate->items()->createMany($data);
+        
+        session()->put('mediate_done', true);
+        
         return redirect()->back();
     }
 

@@ -29,6 +29,12 @@ class MediateController extends Controller
             'category' => $category,
         ]);
     }
+
+    public function finish(){
+        
+        return Inertia::render('Member/Mediate/Finish',[
+        ]);
+    }
     /**
      * Show the form for creating a new resource.
      */

@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\Storage;
 */
 Route::get('test',[App\Http\Controllers\TestController::class,'index']); 
 
+Route::get('/remind', [App\Http\Controllers\RemindEmailController::class,'sendUserRemindEmail'] )->name('remind');
+
 Route::get('/download', function ( Request $request) {
    
     return Storage::get( $request->query('path'));
@@ -102,6 +104,7 @@ Route::group([
 
     Route::resource('mediate_items', App\Http\Controllers\Member\MediateItemController::class)->names('member.mediate_items');
     Route::get('mediates/answer/{category}', [App\Http\Controllers\Member\MediateController::class,'answer'])->name('member.mediates.answer');
+    Route::get('mediates/finish', [App\Http\Controllers\Member\MediateController::class,'finish'])->name('member.mediates.finish');
     Route::resource('mediates', App\Http\Controllers\Member\MediateController::class)->names('member.mediates');
 
 });

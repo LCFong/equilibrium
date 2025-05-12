@@ -33,7 +33,11 @@ export default {
     <div class="py-12">
         <div class="max-w-4xl mx-auto sm:px-6 lg:px-8 flex flex-col gap-4 ">
 
-            <a-page-header class="m-0 p-0 " title="情绪调节" sub-title="请选择任意一个情绪调节情境。" />
+            <a-page-header class="m-0 p-0 " title="情绪调解" sub-title="请选择任意一个情绪调节情境。" />
+
+            <div v-if="$page.props.mediate_done" class="mt-4 col-span-full flex ">
+                <a-button class="w-[200px] md:w-[300px] h-10 shadow rounded-lg hover:scale-110 border-2 border-slate-400 text-white hover:!text-white font-bold text-base hover:bg-green-700 bg-green-600" @click="redirectUrl( route('member.mediates.finish'))">情绪调节完成 <CheckOutlined /> </a-button>
+            </div>
 
             <p class="font-semibold my-0 py-0">心理放松音乐</p>
             <audio controls>
@@ -167,6 +171,7 @@ export default {
                     </a>
                 </div>
             </div>
+            <!-- {{ $page.props }} -->
             <!-- ------ -->
 
         </div>

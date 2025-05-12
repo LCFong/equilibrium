@@ -42,7 +42,8 @@ class HandleInertiaRequests extends Middleware
             //
             // $request->session()->get('data'),
             // Session::set('mediate', false),
-            'mediate' => fn () => $request->session()->get('medaite', false)
+            'mediate' => fn () => $request->session()->get('medaite', false),
+            'mediate_done' => fn () => $request->session()->get('mediate_done', false)
         ]);
     }
 }
