@@ -18,6 +18,9 @@
                 <h1 class="text-3xl font-bold text-gray-900 mb-4">
                     情绪调解已完成！
                 </h1>
+                <div class="mt-2 mb-4 text-slate-800 text-xl">
+                    {{ displayDate() }}
+                </div>
         
                 <!-- 操作按钮 -->
                 <button @click="handleReturn" class="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors" >
@@ -34,6 +37,9 @@
 <script>
 import MemberLayout from "@/Layouts/MemberLayout.vue";
 import * as AntdIcons from '@ant-design/icons-vue';
+import dayjs, {
+    Dayjs
+} from 'dayjs';
 
 export default {
     components: {
@@ -52,7 +58,10 @@ export default {
     methods:{
         handleReturn(){
             this.$inertia.post( route('logout') )
-        }
+        },
+        displayDate() {
+            return dayjs().format('YYYY-MM-DD HH:mm')
+        },
     }
 }
 </script>
