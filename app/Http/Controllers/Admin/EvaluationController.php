@@ -144,7 +144,7 @@ class EvaluationController extends Controller
                 
                 foreach($e->items->toArray() as $i){
 
-                    echo json_encode( $i['question']['category'] );
+                    // echo json_encode( $i['question']['category'] );
                     // die();
                     if( $i['question']['code'] ){
 
