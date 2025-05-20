@@ -17,12 +17,14 @@ const form = useForm({
     name: '',
     email: '',
     password: '',
+    gender: '',
+    education: '',
     password_confirmation: '',
     terms: false,
 });
 
 const submit = () => {
-    form.post(route('register'), {
+    form.post(route('user.register'), {
         onFinish: () => form.reset('password', 'password_confirmation'),
     });
 };

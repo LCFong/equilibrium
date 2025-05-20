@@ -35,9 +35,11 @@ class EvaluationController extends Controller
     }
     public function viewAnswer($userId = null){
         $evaluations = Evaluation::where('user_id', $userId)->with(['items.question','user'])->get();
+        
         return Inertia::render('Evaluation/ViewAnswer',[
             'evaluations' => $evaluations,
             'users' => User::all(),
+            'selectedUser' => User::find( $userId ),
             'user_id' => $userId,
             // 'seven_options' => config('evaluation.seven_options'),
             'pssOptions' => config('evaluation.pssOptions'),

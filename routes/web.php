@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\Storage;
 */
 Route::get('test',[App\Http\Controllers\TestController::class,'index']); 
 
+Route::post('/register',[App\Http\Controllers\UserController::class,'register'])->name('user.register'); 
+
 Route::get('/remind', [App\Http\Controllers\RemindEmailController::class,'sendUserRemindEmail'] )->name('remind');
 
 Route::get('/download', function ( Request $request) {
