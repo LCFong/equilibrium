@@ -8,7 +8,7 @@ export default {
         MemberLayout,
         ...AntdIcons,
     },
-    props: ["questions"],
+    props: ["questions", "do_evaluation_again"],
     data() {
         return {
             
@@ -43,6 +43,9 @@ export default {
         };
     },
     created(){
+        if( this.do_evaluation_again ){
+            this.formInput['do_evaluation_again'] = 1
+        }
     },
     methods:{
         checkOption(row){

@@ -95,7 +95,7 @@ Route::group([
 
 
     Route::resource('evaluations', App\Http\Controllers\Member\EvaluationController::class)->names('member.evaluations');
-    Route::get('evaluation/answer', [App\Http\Controllers\Member\EvaluationController::class,'answer'])->name('member.evaluations.answer');
+    Route::get('evaluation/answer/{do_evaluation_again?}', [App\Http\Controllers\Member\EvaluationController::class,'answer'])->name('member.evaluations.answer');
     Route::resource('evaluation_items', App\Http\Controllers\Member\EvaluationItemController::class)->names('member.evaluation_items');
 
     Route::resource('consultations', App\Http\Controllers\Member\ConsultationController::class)->names('member.consultations');

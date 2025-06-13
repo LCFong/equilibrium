@@ -31,6 +31,10 @@ class EvaluationItemController extends Controller
         $data = $request->all();
         $user_id = Auth()->user()->id;
         $evaluation = Evaluation::create(['user_id' => $user_id]);
+
+        if($data['do_evaluation_again']){
+            User::where('id', Auth()->user->id)->update(['do_evaluation_again' => 0]);
+        }
         
         foreach( $data  as $key => $value ){
             if( $value['value']??null ){

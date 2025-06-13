@@ -9,6 +9,7 @@ use App\Models\Config;
 use App\Models\Evaluation;
 use App\Models\EvaluationItem;
 use App\Models\EvaluationOption;
+use App\Models\User;
 
 class EvaluationItemController extends Controller
 {
@@ -30,6 +31,11 @@ class EvaluationItemController extends Controller
     {
         $data = $request->all();
         $user_id = Auth()->user()->id;
+
+        if( $data['do_evaluation_again'] == 1 ){
+            User::where('id', $user_id)->update(['do_evaluation_again'=>0]);
+            unset($data['do_evaluation_again'] );
+        }
 
         // 問卷已做, 下次登入就不用做
         Auth()->user()->do_evaluation_first = 1;

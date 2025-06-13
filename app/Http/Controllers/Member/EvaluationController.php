@@ -13,12 +13,14 @@ class EvaluationController extends Controller
 {
 
 
-    public function answer(Request $request){
+    public function answer($do_evaluation_again = null){
+        
         // Evaluation 作答頁
-            $questions = EvaluationQuestion::get();
-            return Inertia::render('Member/Evaluation/Answer',[
-                'questions' => $questions,
-            ]);
+        $questions = EvaluationQuestion::get();
+        return Inertia::render('Member/Evaluation/Answer',[
+            'questions' => $questions,
+            'do_evaluation_again' => $do_evaluation_again,
+        ]);
     }
 
 }

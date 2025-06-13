@@ -54,10 +54,9 @@
             <!-- <div class="w-full mx-auto sm:px-6 lg:px-8 flex flex-col bg-white rounded shadow p-4 border-t-2 border-blue-500">
                 <vue-echarts class="w-full" :option="consultationChat" style="height: 800px" ref="chart" />
             </div> -->
-            <div class="w-full mx-auto sm:px-6 lg:px-8 flex flex-col bg-white rounded shadow p-4 border-t-2 border-green-500">
-                
-                <a-divider class="m-3" />
-                <div v-for="eva in evaluations" class="">
+            <div class="w-full mx-auto sm:px-6 lg:px-8 flex flex-col bg-white rounded shadow p-4 border-t-2 border-green-500"
+                v-for="eva in evaluations">
+                <div class="">
 
                     <div >
                         <span class="text-base font-bold">{{ eva.user.name }}</span>&nbsp;
@@ -66,15 +65,15 @@
                     </div>
                     <div v-for="item in eva.items" class="flex text-base">
                         
-                        <div v-if="item.question.category =='pss'" class="my-1">
+                        <div v-if="item.question?.category =='pss'" class="my-1">
                             {{ item.question.title }}
                             <span class="underline font-semibold">{{ pssOptions[item.value]? pssOptions[item.value].label:'' }}</span>
                         </div>
-                        <div v-if="item.question.category =='wellbeing'" class="my-1">
+                        <div v-if="item.question?.category =='wellbeing'" class="my-1">
                             {{ item.question.title }}
                             <span class="underline font-semibold">{{ wellbeingOptions[item.value]? wellbeingOptions[item.value].label:'' }}</span>
                         </div>
-                        <div v-if="item.question.category =='learning'" class="my-1">
+                        <div v-if="item.question?.category =='learning'" class="my-1">
                             {{ item.question.title }}
                             <span class="underline font-semibold">{{ learningOptions[item.value]? learningOptions[item.value].label:'' }}</span>
                         </div>
