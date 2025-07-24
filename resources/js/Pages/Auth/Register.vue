@@ -17,8 +17,8 @@ const form = useForm({
     name: '',
     email: '',
     password: '',
-    gender: '',
-    education: '',
+    gender: 'M',
+    education: 'F1',
     password_confirmation: '',
     terms: false,
 });
