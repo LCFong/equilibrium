@@ -17,8 +17,8 @@ const form = useForm({
     name: '',
     email: '',
     password: '',
-    gender: 'M',
-    education: 'F1',
+    gender: '',
+    education: '',
     password_confirmation: '',
     terms: false,
 });
@@ -93,7 +93,7 @@ const educationOptions = ref([
             <TextInput id="name" v-model="form.name" type="text" class="mt-1 block w-full" required autofocus autocomplete="name" />
             <InputError class="mt-2" :message="form.errors.name" />
         </div>
-        <div v-if="false" class="mt-4">
+        <div class="mt-4">
             <InputLabel for="gender" value="性別" />
             <a-radio-group v-model:value="form.gender" name="radioGroup" class="mt-1 h-8 flex items-center">
                 <a-radio value="M">男</a-radio>
@@ -103,7 +103,7 @@ const educationOptions = ref([
             <!-- <TextInput id="gender" v-model="form.gender" type="text" class="mt-1 block w-full" required autofocus autocomplete="gender" /> -->
             <InputError class="mt-2" :message="form.errors.gender" />
         </div>
-        <div v-if="false" class="mt-4">
+        <div class="mt-4">
             <InputLabel for="education" value="學歷" />
             <a-select 
                 class=" border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full "
