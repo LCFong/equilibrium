@@ -32,7 +32,7 @@ class EvaluationItemController extends Controller
         $user_id = Auth()->user()->id;
         $evaluation = Evaluation::create(['user_id' => $user_id]);
 
-        if($data['do_evaluation_again']){
+        if(isset($data['do_evaluation_again']) && $data['do_evaluation_again']){
             User::where('id', Auth()->user->id)->update(['do_evaluation_again' => 0]);
         }
         
