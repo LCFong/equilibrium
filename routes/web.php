@@ -25,9 +25,17 @@ Route::post('/register',[App\Http\Controllers\UserController::class,'register'])
 Route::get('/remind', [App\Http\Controllers\RemindEmailController::class,'sendUserRemindEmail'] )->name('remind');
 
 Route::get('/download', function ( Request $request) {
-   
     return Storage::get( $request->query('path'));
 })->name('download');
+
+Route::get('/audio', function ( Request $request) {
+    $path = $request->query('path');
+    // 返回支持 Range Requests 的响应
+    return Storage::response($path, null, [
+        'Accept-Ranges' => 'bytes',
+        'Content-Type' => 'audio/mpeg', // 确保 MIME 类型正确
+    ]);
+})->name('audio');
 
 Route::get('/language/{language}', function ($language) {
     Session::put('applocale', $language);
