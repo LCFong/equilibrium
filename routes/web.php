@@ -145,6 +145,7 @@ Route::group([
     Route::get('consultation/export', [App\Http\Controllers\Admin\ConsultationController::class,'export'])->name('admin.consultations.export');
     
     Route::get('evaluation/view_answer/{user_id?}', [App\Http\Controllers\Admin\EvaluationController::class,'viewAnswer'])->name('admin.evaluations.view_answer');
+    Route::get('evaluation/viewByUser', [App\Http\Controllers\Admin\EvaluationController::class,'viewByUser'])->name('admin.evaluations.view_by_user');
     Route::get('evaluation/answer/{category}', [App\Http\Controllers\Admin\EvaluationController::class,'answer'])->name('admin.evaluations.answer');
     
     Route::get('mediate/view_answer/{user_id?}', [App\Http\Controllers\Admin\MediateController::class,'viewAnswer'])->name('admin.mediates.view_answer');

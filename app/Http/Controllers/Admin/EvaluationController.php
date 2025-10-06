@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Support\Facades\DB;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -117,6 +119,55 @@ class EvaluationController extends Controller
         //
     }
 
+    public function viewByUser(){
+
+        // 只顯示做過兩次或以上 Evalution
+        $user = User::with('evaluations.items.question')->get();
+
+        $u = [];
+
+        foreach( $user as $key => $value ){
+            if( count($value['evaluations']) >= 2 ){
+                array_push( $u , $value );
+            }
+        }
+        // echo json_encode( array_column( $u, 'id') );
+        // return ;
+        // $question = Questio
+
+        $evaluations = Evaluation::whereIn('user_id', array_column( $u, 'id'))
+            ->with(['items.question','user'])
+            ->get()->toArray();
+        foreach($evaluations as $idx=> $evaluation){
+            
+            $evaluations[$idx]['items'] = array_filter($evaluations[$idx]['items'], function($item) {
+                return !is_null($item['question']);
+            });
+
+            usort($evaluations[$idx]['items'],function($a,$b){
+                return $a['question']['id']- $b['question']['id'];
+            });
+        }
+    
+        // $evaluations->each(function($row){
+        //      $row->setRelation('items', $row->items->sortByDesc('question.id'));
+        // } );
+   
+        // echo json_encode( $evaluations );
+        // die();
+
+        return Inertia::render('Evaluation/ViewAnswerByUser',[
+
+            'evaluations' => $evaluations,
+            'users' => $u,
+            // 'selectedUser' => User::find( $userId ),
+            // 'user_id' => $userId,
+            // 'seven_options' => config('evaluation.seven_options'),
+            'pssOptions' => config('evaluation.pssOptions'),
+            'wellbeingOptions' => config('evaluation.wellbeingOptions'),
+            'learningOptions' => config('evaluation.learningOptions')
+        ]);
+    }
     
     public function export( ){
         
@@ -124,6 +175,18 @@ class EvaluationController extends Controller
 
         $quesitons = EvaluationQuestion::get();
 
+        // $d=DB::table('evaluations')->
+        // selectRaw('
+        //     group_concat(evaluation_items.value) as answers,user_id, 
+        //     evaluation_questions.title, evaluation_questions.category,   
+        //     evaluation_questions.code')->
+        //     groupBy('user_id','evaluation_questions.code')->
+        //     rightJoin('evaluation_items' ,'evaluations.id','=' ,'evaluation_items.evaluation_id')
+        //     ->rightJoin('evaluation_questions' ,'evaluation_questions.code','=' ,'evaluation_items.code')
+        // ->get();
+        // echo json_encode( $d->toArray());
+        // die();
+        
         $pssOptions = config('evaluation.pssOptions');
         $wellbeingOptions = config('evaluation.wellbeingOptions');
         $learningOptions = config('evaluation.learningOptions');
@@ -142,11 +205,20 @@ class EvaluationController extends Controller
 
             foreach($u->evaluations as $e){
                 
+                dd( $u->evaluations );
+                if( !isset($u->evaluations) ){
+                    continue ;
+                }
                 foreach($e->items->toArray() as $i){
+                
+                    // dd($i);
+                    if( !isset($e->items) ){
+                        continue ;
+                    }
 
                     // echo json_encode( $i['question']['category'] );
                     // die();
-                    if( $i['question']['code'] ){
+                    if( isset($i['question']['code']) && $i['question']['code'] ){
 
                         // 從Option中找label
                         if( $i['question']['category'] == 'pss' ){
@@ -184,6 +256,7 @@ class EvaluationController extends Controller
                 }
             }
         }
+                dd( $result );
 
         foreach($result as $k => $r){
             // 數字轉string

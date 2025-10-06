@@ -303,6 +303,14 @@ onMounted(() => {
                                         选项
                                     </NavLink>
                                 </a-menu-item>
+                                <a-menu-item key="admin.evaluations.view_by_user">
+                                    <template #icon>
+                                        <HomeOutlined  class="!text-2xl " />
+                                    </template>
+                                    <NavLink :href="route('admin.evaluations.view_by_user')" :active="route().current('admin.evaluations.view_by_user')" class="!text-lg !p-0 ">
+                                        前后测结果
+                                    </NavLink>
+                                </a-menu-item>
                                 <a-menu-item key="admin.evaluations.index">
                                     <template #icon>
                                         <HomeOutlined  class="!text-2xl " />
