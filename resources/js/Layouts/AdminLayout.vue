@@ -464,7 +464,7 @@ onMounted(() => {
 
 ::-webkit-scrollbar
 {
-	width: 4px;
+	width: 10px;
     @apply bg-slate-200;
 }
 

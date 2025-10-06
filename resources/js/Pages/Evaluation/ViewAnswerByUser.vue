@@ -8,6 +8,20 @@
 
     <div class="p-12">
         
+            
+            <button class="flex justify-center items-center gap-1 rounded-lg  p-2" @click="scrollToTop" style="position: fixed; bottom: 20px; right: 20px;">
+            返回顶部
+                <svg width="24px"  viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="none">
+                <g fill="#000000">
+
+                <path d="M2.5 2.5a.75.75 0 010-1.5H13a.75.75 0 010 1.5H2.5zM2.985 9.795a.75.75 0 001.06-.03L7 6.636v7.614a.75.75 0 001.5 0V6.636l2.955 3.129a.75.75 0 001.09-1.03l-4.25-4.5a.75.75 0 00-1.09 0l-4.25 4.5a.75.75 0 00.03 1.06z"/>
+
+                </g>
+
+                </svg>
+            </button>
+        
+
         <!-- <a-button :href="route('admin.evaluations.export')" class="ant-btn">汇出数据</a-button> -->
         <!-- <br> -->
         <div class="overflow-x-auto bg-white rounded-lg shadow my-4 " v-if="selectedUser">
@@ -37,22 +51,31 @@
             </table>
         </div>
         <br>
+        <div class="p-1 text-base font-semibold">选择用户</div>
+        <div class="flex gap-1 mb-4">
+            <a-select
+                show-search
+                placeholder="Select a user"
+                style="width: 500px"
+                :options="users.map( x => ( { label: x.name, value: x.id } ) ) "
+                @change="scrollToUser"
+            ></a-select>
+        </div>
+
         <div v-for="user in users" class="mb-4 w-full mx-auto sm:px-6 lg:px-8 flex flex-col bg-white rounded shadow p-4 border-t-2 border-green-500">
             <!-- <div class="w-full mx-auto sm:px-6 lg:px-8 flex flex-col bg-white rounded shadow p-4 border-t-2 border-blue-500">
                 <vue-echarts class="w-full" :option="consultationChat" style="height: 800px" ref="chart" />
             </div> -->
-            <div class="grid grid-cols-2 ">
+            <div class="grid grid-cols-2 " :id="user.id">
                 <!-- {{ user.evaluations[0] }}
                 {{ user.evaluations[user.evaluations.length-1] }} -->
                 <!-- {{ getFirstEvaluation(user.id) }} -->
-                  
-                <div class="text-lg col-span-2 border-b mb-2">
-                    <span class="font-bold">{{ user.name }}</span>&nbsp;
-                    <span class="">{{ user.email }}</span>&nbsp;
-                    <span class="text-slate-400">@{{ displayDate(getFirstEvaluation(user.id).created_at) }}</span>
-                </div>
-
                 <div class="">
+                    <div >
+                        <span class="text-base font-bold">{{ user.name }}</span>&nbsp;
+                        <span class="">{{ user.email }}</span>&nbsp;
+                        <span class="text-slate-400">@{{ displayDate(getFirstEvaluation(user.id).created_at) }}</span>
+                    </div>
                     <!-- {{ user.id }}
                     {{ getLastEvaluation(user_id)  }} -->
                     <div v-for="item in getFirstEvaluation(user.id).items" class="flex text-base">
@@ -73,11 +96,11 @@
                 </div>
                 <div class="">
 
-                    <!-- <div >
+                    <div >
                         <span class="text-base font-bold">{{ user.name }}</span>&nbsp;
                         <span class="">{{ user.email }}</span>&nbsp;
                         <span class="text-slate-400">@{{ displayDate(getLastEvaluation(user.id).created_at) }}</span>
-                    </div> -->
+                    </div>
                     <div v-for="item in getLastEvaluation(user.id).items" class="flex text-base">
                         
                         <div v-if="item.question?.category =='pss'" class="my-1">
@@ -181,6 +204,19 @@ export default {
 
     },
     methods: {
+
+        scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' }); // 平滑滚动到顶部
+        },
+
+        scrollToUser(user_id){
+            this.$nextTick(() => {
+                const element = document.getElementById(user_id);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' }); // 平滑滚动到指定用户部分
+                }
+            });
+        },
         getLastEvaluation(user_id){
             let last = this.evaluations.filter( x => x.user_id == user_id).length - 1
             return this.evaluations.filter( x => x.user_id == user_id)[last]
