@@ -102,19 +102,20 @@
                         <span class="text-slate-400">@{{ displayDate(getLastEvaluation(user.id).created_at) }}</span>
                     </div>
                     <div v-for="item in getLastEvaluation(user.id).items" class="flex text-base">
-                        <!-- {{ item.question }}
-                        {{ item.value }} -->
+                        <!-- {{ item.question }} -->
+                          <!-- {{ pssOptions[item.value] }} -->
+                        
                         <div v-if="item.question?.category =='pss'" class="my-1">
                             {{ item.question.title }}
-                            <span class="underline font-semibold">{{ pssOptions[item.value]? pssOptions[item.value].label:'' }}</span>
+                            <span class="underline font-semibold">{{ pssOptions.find( x => x.value == item.value)?.label }}</span>
                         </div>
                         <div v-if="item.question?.category =='wellbeing'" class="my-1">
                             {{ item.question.title }}
-                            <span class="underline font-semibold">{{ wellbeingOptions[item.value]? wellbeingOptions[item.value].label:'' }}</span>
+                            <span class="underline font-semibold">{{ wellbeingOptions.find( x => x.value == item.value)?.label }}</span>
                         </div>
                         <div v-if="item.question?.category =='learning'" class="my-1">
                             {{ item.question.title }}
-                            <span class="underline font-semibold">{{ learningOptions[item.value]? learningOptions[item.value].label:'' }}</span>
+                            <span class="underline font-semibold">{{ learningOptions.find( x => x.value == item.value)?.label }}</span>
                         </div>
                     </div>
                 </div>
