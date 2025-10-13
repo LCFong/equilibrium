@@ -9,17 +9,17 @@
     <div class="p-12">
         
             
-            <button class="flex justify-center items-center gap-1 rounded-lg  p-2" @click="scrollToTop" style="position: fixed; bottom: 20px; right: 20px;">
-            返回顶部
-                <svg width="24px"  viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="none">
-                <g fill="#000000">
+        <button class="flex justify-center items-center gap-1 rounded-lg  p-2" @click="scrollToTop" style="position: fixed; bottom: 20px; right: 20px;">
+        返回顶部
+            <svg width="24px"  viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <g fill="#000000">
 
-                <path d="M2.5 2.5a.75.75 0 010-1.5H13a.75.75 0 010 1.5H2.5zM2.985 9.795a.75.75 0 001.06-.03L7 6.636v7.614a.75.75 0 001.5 0V6.636l2.955 3.129a.75.75 0 001.09-1.03l-4.25-4.5a.75.75 0 00-1.09 0l-4.25 4.5a.75.75 0 00.03 1.06z"/>
+            <path d="M2.5 2.5a.75.75 0 010-1.5H13a.75.75 0 010 1.5H2.5zM2.985 9.795a.75.75 0 001.06-.03L7 6.636v7.614a.75.75 0 001.5 0V6.636l2.955 3.129a.75.75 0 001.09-1.03l-4.25-4.5a.75.75 0 00-1.09 0l-4.25 4.5a.75.75 0 00.03 1.06z"/>
 
-                </g>
+            </g>
 
-                </svg>
-            </button>
+            </svg>
+        </button>
         
 
         <!-- <a-button :href="route('admin.evaluations.export')" class="ant-btn">汇出数据</a-button> -->
@@ -102,7 +102,8 @@
                         <span class="text-slate-400">@{{ displayDate(getLastEvaluation(user.id).created_at) }}</span>
                     </div>
                     <div v-for="item in getLastEvaluation(user.id).items" class="flex text-base">
-                        
+                        <!-- {{ item.question }}
+                        {{ item.value }} -->
                         <div v-if="item.question?.category =='pss'" class="my-1">
                             {{ item.question.title }}
                             <span class="underline font-semibold">{{ pssOptions[item.value]? pssOptions[item.value].label:'' }}</span>

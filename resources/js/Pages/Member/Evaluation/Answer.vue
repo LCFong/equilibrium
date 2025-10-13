@@ -102,7 +102,7 @@ export default {
                         <div class="flex px-4 gap-2 text-base flex-1" >
                             <a-form-item :name="q.code" :label="q.title" :rules="[{ required: true, message: '请选择' }]">
                                 <a-radio-group v-model:value="formInput[q.code]">
-                                    <a-radio-button v-for="o in learningOptions" :value="o.value">{{o.label}}</a-radio-button>
+                                    <a-radio-button v-for="o in wellbeingOptions" :value="o.value">{{o.label}}</a-radio-button>
                                 </a-radio-group>
                             </a-form-item>
                         </div>
