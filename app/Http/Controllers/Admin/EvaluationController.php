@@ -169,23 +169,44 @@ class EvaluationController extends Controller
         ]);
     }
     
-    public function export( ){
+    public function export(){
+
+        return Excel::download(new EvaluationExport(), '问卷.xlsx');
+
+        // dd( $exportData );
+    }
+
+    public function export2( ){
         
         $user = User::with('evaluations.items.question')->get();
 
         $quesitons = EvaluationQuestion::get();
 
-        // $d=DB::table('evaluations')->
+        $data=DB::table('evaluations')->
+        selectRaw('
+            evaluation_items.value,user_id, 
+            evaluation_questions.title, evaluation_questions.category,   
+            evaluation_questions.code')->
+            where('user_id', 5)->
+            // groupBy('user_id','evaluation_questions.code')->
+            rightJoin('evaluation_items' ,'evaluations.id','=' ,'evaluation_items.evaluation_id')
+            ->rightJoin('evaluation_questions' ,'evaluation_questions.code','=' ,'evaluation_items.code')
+        ->get();
+        foreach( $data as $key => $d){
+            // $d->evaluation_items;
+        }
+        // $data=DB::table('evaluations')->
         // selectRaw('
         //     group_concat(evaluation_items.value) as answers,user_id, 
         //     evaluation_questions.title, evaluation_questions.category,   
         //     evaluation_questions.code')->
+        //     where('user_id', 5)->
         //     groupBy('user_id','evaluation_questions.code')->
         //     rightJoin('evaluation_items' ,'evaluations.id','=' ,'evaluation_items.evaluation_id')
         //     ->rightJoin('evaluation_questions' ,'evaluation_questions.code','=' ,'evaluation_items.code')
         // ->get();
-        // echo json_encode( $d->toArray());
-        // die();
+        echo json_encode( $data->toArray());
+        die();
         
         $pssOptions = config('evaluation.pssOptions');
         $wellbeingOptions = config('evaluation.wellbeingOptions');
@@ -205,7 +226,6 @@ class EvaluationController extends Controller
 
             foreach($u->evaluations as $e){
                 
-                dd( $u->evaluations );
                 if( !isset($u->evaluations) ){
                     continue ;
                 }
@@ -256,7 +276,7 @@ class EvaluationController extends Controller
                 }
             }
         }
-                dd( $result );
+                // dd( $result );
 
         foreach($result as $k => $r){
             // 數字轉string

@@ -80,7 +80,7 @@
                     {{ getLastEvaluation(user_id)  }} -->
                     <div v-for="item in getFirstEvaluation(user.id).items" class="flex text-base">
                         
-                        {{ item.value }}
+                        <!-- {{ item.value }} -->
                         <div v-if="item.question?.category =='pss'" class="my-1">
                             {{ item.question.title }}
                             <span class="underline font-semibold">{{ pssOptions.find( x => x.value == item.value)?.label }}</span>
@@ -104,7 +104,7 @@
                     </div>
                     <div v-for="item in getLastEvaluation(user.id).items" class="flex text-base">
                         <!-- {{ item.question }} -->
-                          {{ item.value }}
+                          <!-- {{ item.value }} -->
                         
                         <div v-if="item.question?.category =='pss'" class="my-1">
                             {{ item.question.title }}
